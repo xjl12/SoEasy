@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:gravity="center">
+    
+    <TextView
+        android:layout_height="wrap_content"
+        android:text="@string/wrong"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_margin="15dp"
+        android:textStyle="bold"
+		android:id="@+id/debug_app_version"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/debug_large"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_margin="15dp"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/wrong"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:textStyle="normal"
+		android:layout_margin="15dp"
+		android:id="@+id/debug_screen"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/wrong"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_margin="15dp"
+		android:id="@+id/debug_android_version"/>
+	
+	<Button
+		android:layout_height="wrap_content"
+		android:text="@string/debug_save_share"
+		android:layout_width="wrap_content"
+		android:ems="10"
+		android:onClick="SaveAndShare"
+		android:layout_marginTop="15dp"/>
+
+</LinearLayout>
+

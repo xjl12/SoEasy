@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="web_url_title">
+		<item>我的世界中世纪建筑欣赏 从入门到大神</item>
+		<item>我的世界别墅设计图_别墅设计图大全</item>
+		<item>我的世界房子设计图《我的世界》房子教程</item>
+		<item>我的世界建筑设计图 15款风格各异建筑</item>
+		<item>我的世界别墅设计图 别墅制作图文攻略</item>
+		<item>我的世界建筑物_我的世界建筑设计图</item>
+		<item>我的世界别墅设计图_别墅设计图大全</item>
+		<item>我的世界建筑教程 教你造宫殿</item>
+		<item>优秀地图欣赏 我的世界超平坦宫殿</item>
+		<item>《我的世界》中式宫殿制作教程</item>
+		<item>(广告严重)我的世界别墅图文教程</item>
+	</string-array>
+	
+	<string-array name="web_url">
+		<item>http://m.news.4399.com/gonglue/wdshijie/xinde/cz/m/500425.html</item>
+		<item>http://g.manmankan.com/shouyou/1507/8974.shtml</item>
+		<item>http://m.gao7.com/zq/mc/299920.shtm</item>
+		<item>http://m.72g.com/news/90753.html</item>
+		<item>http://m.ptbus.com/wdsj/333269/</item>
+		<item>http://minecraft.m.gamedog.cn/news/list_1948_1.html</item>
+		<item>http://g.manmankan.com/shouyou/1507/8974.shtml</item>
+		<item>http://m.yxzoo.com/wdsj/115136</item>
+		<item>http://m.yxzoo.com/wdsj/134801</item>
+		<item>http://m.kuai8.com/gonglue/490276.html</item>
+		<item>http://m.newyx.net/gl/366708.html</item>
+	</string-array>
+</resources>

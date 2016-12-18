@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="match_parent"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	android:gravity="top|center">
+
+	<TextView
+		android:text="@string/welcome"
+		android:layout_width="wrap_content"
+		android:layout_height="0dp"
+		android:textStyle="bold"
+		android:textAlignment="center"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_weight="1"
+		android:gravity="center"/>
+
+	<LinearLayout
+		android:gravity="center"
+		android:layout_width="wrap_content"
+		android:orientation="vertical"
+		android:layout_height="0dp"
+		android:layout_weight="4">
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/games_button"
+			android:layout_width="wrap_content"
+			android:ems="12"
+			android:id="@+id/games_button"
+			android:onClick="games_button"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/title_urllist"
+			android:layout_width="wrap_content"
+			android:ems="12"
+			android:onClick="URLList"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/debug_start"
+			android:layout_width="wrap_content"
+			android:ems="12"
+			android:onClick="debug_start"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/test_button"
+			android:layout_width="wrap_content"
+			android:onClick="test"
+			android:ems="12"
+			android:textColor="@color/red"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/exit"
+			android:layout_width="wrap_content"
+			android:ems="12"
+			android:onClick="Exit"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+

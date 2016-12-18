@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:gravity="top|center">
+
+	<ScrollView
+		android:layout_height="0dp"
+		android:layout_width="match_parent"
+		android:layout_weight="1"
+		android:layout_gravity="center"
+		android:foregroundGravity="center">
+
+		<LinearLayout
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:orientation="vertical"
+			android:gravity="center">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="@string/test_wrong"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:layout_width="wrap_content"
+				android:textStyle="bold"
+				android:id="@+id/testTextView1"/>
+
+		</LinearLayout>
+
+	</ScrollView>
+
+	<LinearLayout
+		android:gravity="center"
+		android:layout_height="0dp"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_weight="4">
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/test1"
+			android:layout_width="wrap_content"
+			android:onClick="test1"
+			android:ems="10"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/open_test_raw_image"
+			android:layout_width="wrap_content"
+			android:onClick="OpenRawTestImage"
+			android:ems="10"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/test_file_write"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:onClick="TestFileWrite"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/test_file_read"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:onClick="TestFileRead"/>
+
+		<Button
+			android:layout_height="wrap_content"
+			android:text="@string/delete_test_file"
+			android:layout_width="wrap_content"
+			android:ems="10"
+			android:onClick="DeleteTestFile"/>
+
+	</LinearLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "test.xjl12.soeasy"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 50
+        versionName "(*´▽`*)1.4.9 公测版-2"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+	compile 'com.android.support:design:+'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

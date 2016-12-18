@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SoEasy</string>
+    <string name="title_second_activity">你成功了！</string>
+    <string name="title_games_activity">猜数游戏</string>
+    <string name="title_debug">一些重要的信息</string>
+    <string name="title_test">测试功能！谨慎！</string>
+	<string name="title_urllist">网址大全</string>
+	<string name="welcome">欢迎使用SoEasy!</string>
+	<string name="thanks">感谢您使用本程序！</string>
+	<string name="hello_world">编程经典语录:Hello world!</string>
+	<string name="mainButton1">点我呀！</string>
+	<string name="edit_text">欢迎您对本软件提出宝贵的建议❀.(*´▽`*).❀</string>
+    <string name="second_Activity_text">谢谢您的评价!</string>
+    <string name="second_Activity_text_null">在编辑框里写点啥吧！</string>
+    <string name="search_action_title">搜索></string>
+    <string name="settings_action_title">设置 --功能开发中~</string>
+    <string name="games_button">游戏一下，轻松一刻！</string>
+    <string name="exit">退出并清除缓存</string>
+	<string name="main_point_to_set_theme">看到右上角的按钮了吗？在那里面可以设置本界面的布局和背景颜色哦！</string>
+	<!-- navigation menu -->
+	<string name="navigation_item_home">主页</string>
+	<string name="navigation_group_1">功能</string>
+	<string name="navigation_group_2">其它</string>
+	<!-- Theme or Layout Chhose -->
+	<string name="app_theme_default">默认主题</string>
+	<string name="app_theme_holo">黑色Holo主题</string>
+	<!-- Games -->
+    <string name="games_welcome">猜数游戏</string>
+    <string name="games_edittext">请输入要猜的数字然后点击下方按钮~</string>
+    <string name="games_submit_button">我猜这个！究竟是不是呢？</string>
+    <string name="games_restart_button">重新开始</string>
+    <string name="games_see_answers">不猜了，我要看答案！</string>
+    <string name="games_exit">退出游戏</string>
+    <string name="waiting">该功能正在开发中，敬请期待!</string>
+    <string name="games_success">恭喜！你猜对了!(*´▽`*)再接再厉吧！</string>
+    <string name="games_big">你猜的数太大了!再试一次吧!</string>
+    <string name="games_small">你猜的数太小了!再试一次吧!</string>
+    <string name="games_answers">神秘数字是:</string>
+    <string name="games_null">输入不能为空，请输入0-100的正整数</string>
+    <string name="games_help">本程序会随机生成一个0~100之间的整数，由你来猜。小提示:猜的次数越少，说明你越厉害哦!</string>
+    <string name="games_times">你这次共猜了</string>
+    <string name="games_times_more">次，再接再厉哦！</string>
+    <string name="games_times_less">次，你太厉害了！</string>
+    <string name="games_not_see_answers">你似乎还没有猜过呢！不能看答案哦，快去猜猜吧！</string>
+	<!-- Share -->
+	<string name="share_point">选择QQ，然后发送给我</string>
+	<!-- URLList -->
+	<string name="urllist">部分网址中可能有广告！感谢网友@叹。 提供的网址！</string>
+    <!-- Debug -->
+    <string name="debug_start">调试信息</string>
+    <string name="debug_normal">屏幕大小:正常或其它</string>
+    <string name="debug_small">屏幕大小:小(small)</string>
+    <string name="debug_large">屏幕大小:大(Large)</string>
+    <string name="debug_xlarge">屏幕大小:超级大(xlarge)</string>
+    <string name="debug_screen">屏幕详细信息:</string>
+    <string name="debug_screen_width">宽</string>
+    <string name="debug_screen_height">高</string>
+    <string name="debug_screen_dpi_before">(DPI:</string>
+    <string name="debug_screen_dpi_behind">)</string>
+    <string name="debug_android_version">安卓SDK版本:</string>
+    <string name="debug_welcome">这是调试模式，请你将本页截图发给我</string>
+    <string name="debug_app_version">程序版本号:</string>
+	<string name="debug_save_share">保存截图并发送</string>
+    <!-- Test -->
+    <string name="test_button">最新测试功能</string>
+    <string name="test_wrong">这是测试功能，可能有很多Bug,程序随时都有崩溃的可能！注意！</string>
+    <string name="test1">尝试打开百度搜索</string>
+	<string name="open_test_raw_image">尝试打开测试图片</string>
+	<!--<string name="open_test_res_image">打开压缩后的测试图片</string>-->
+	
+	<!--<string name=""></string>-->
+	
+    <string name="test_file_write">尝试写入测试文件</string>
+    <string name="test_file_read">尝试读取测试文件</string>
+    <string name="delete_test_file">删除所有测试文件</string>
+	<string name="delete_complete">已删除测试文件</string>
+	
+    <!--Wrong-->
+    <string name="wrong">出现未知错误！请及时反馈！</string>
+	<string name="Error_no_file">致命错误:测试文件不存在！</string>
+</resources>

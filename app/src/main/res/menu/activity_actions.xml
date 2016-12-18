@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+<!--
+    <item
+        android:id="@+id/search_action"
+        android.icon="@drawable/ic_action_search"
+        android:title="@string/search_action_title"/>
+-->
+    <item
+        android:id="@+id/settings_action"
+        android:showAsAction="never"
+        android:title="@string/settings_action_title"/>
+    <item
+        android:id="@+id/exit_action"
+        android:showAsAction="never"
+        android:title="@string/exit"/>
+</menu>

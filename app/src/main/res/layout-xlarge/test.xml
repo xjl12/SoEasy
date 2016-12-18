@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:gravity="top|center">
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/test_wrong"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_margin="10dp"
+		android:textStyle="bold"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:text="@string/test1"
+		android:layout_width="wrap_content"
+		android:onClick="test1"
+		android:ems="10"
+		android:layout_marginTop="10dp"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:text="@string/open_test_raw_image"
+		android:layout_width="wrap_content"
+		android:onClick="OpenRawTestImage"
+		android:ems="10"/>
+
+	<ScrollView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent">
+
+		<LinearLayout
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:orientation="vertical"
+			android:gravity="center|center_vertical">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:text="@string/wrong"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:layout_width="wrap_content"
+				android:id="@+id/testTextView1"/>
+
+			<Button
+				android:layout_height="wrap_content"
+				android:text="@string/test_file_write"
+				android:layout_width="wrap_content"
+				android:layout_marginTop="10dp"
+				android:ems="10"
+				android:onClick="TestFileWrite"/>
+
+			<Button
+				android:layout_height="wrap_content"
+				android:text="@string/test_file_read"
+				android:layout_width="wrap_content"
+				android:ems="10"
+				android:onClick="TestFileRead"/>
+
+			<Button
+				android:layout_height="wrap_content"
+				android:text="@string/delete_test_file"
+				android:layout_width="wrap_content"
+				android:ems="10"
+				android:onClick="DeleteTestFile"/>
+
+		</LinearLayout>
+
+	</ScrollView>
+
+</LinearLayout>
+
