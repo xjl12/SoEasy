@@ -22,13 +22,6 @@
 
 	</android.support.design.widget.AppBarLayout>
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content"
-		android:text="@string/welcome"
-		android:layout_below="@id/main_mdToolbar"/>
-
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/main_fab"
 		android:layout_height="wrap_content"

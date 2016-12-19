@@ -39,8 +39,19 @@ public class MainActivity extends AppCompatActivity
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
-	    
-		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle (this,mDrawerLayout,toolbar,R.string.app_name,R.string.app_name);
+		
+		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle (this,mDrawerLayout,toolbar,R.string.app_name,R.string.app_name) {
+			public void onDrawerOpened(View view)
+			{
+				super.onDrawerOpened(view);
+				fab.hide();
+			}
+			public void onDrawerClosed(View view)
+			{
+				super.onDrawerClosed(view);
+				fab.show();
+			}
+		};
 		mDrawerLayout.setDrawerListener(toggle);
 		toggle.syncState();
 		
@@ -56,15 +67,16 @@ public class MainActivity extends AppCompatActivity
 				@Override
 				public void onClick(View p1)
 				{
-					fab.hide();
 					mDrawerLayout.openDrawer(GravityCompat.START);
 				}
 			});
+		
 		mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
 
 				@Override
 				public boolean onNavigationItemSelected(MenuItem p1)
 				{
+					mDrawerLayout.closeDrawer(GravityCompat.START);
 					switch (p1.getItemId())
 					{
 						case R.id.navigation_item_games:
@@ -88,7 +100,6 @@ public class MainActivity extends AppCompatActivity
 							finish();
 							break;
 					}
-					mDrawerLayout.closeDrawer(GravityCompat.START);
 					return true;
 				}
 			});
