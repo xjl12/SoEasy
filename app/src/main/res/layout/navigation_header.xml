@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_height="200dp"
+	android:layout_height="@dimen/navigation_height"
 	android:layout_width="match_parent"
 	android:background="@color/colorPrimary">
 
@@ -12,8 +12,8 @@
 		android:layout_width="wrap_content"
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentBottom="true"
-		android:padding="10dp"
-		android:id="@+id/navigation_header_app_name"
+		android:padding="@dimen/normal_10"
+		android:id="@+id/navigation_header_m_app_name"
 		android:textColor="@color/white"/>
 
 	<TextView
@@ -21,17 +21,19 @@
 		android:text="@string/wrong"
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:layout_width="wrap_content"
-		android:id="@+id/navigation_header_version"
+		android:id="@+id/navigation_header_m_version"
 		android:textColor="@color/white"
-		android:padding="10dp"
-		android:layout_toRightOf="@id/navigation_header_app_name"
+		android:padding="@dimen/normal_10"
+		android:layout_toRightOf="@id/navigation_header_m_app_name"
 		android:layout_alignParentBottom="true"/>
 
 	<ImageView
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
+		android:layout_height="@dimen/icon_show"
+		android:layout_width="@dimen/icon_show"
 		android:src="@mipmap/ic_launcher"
-		android:layout_above="@id/navigation_header_app_name"/>
+		android:layout_above="@id/navigation_header_m_app_name"
+		android:paddingBottom="@dimen/md_6"
+		android:paddingLeft="@dimen/md_16"/>
 
 </RelativeLayout>
 

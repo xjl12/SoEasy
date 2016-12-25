@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_height="match_parent"
-	android:layout_width="match_parent">
+	android:layout_width="match_parent"
+	android:paddingBottom="@dimen/md_16"
+	android:paddingLeft="@dimen/md_16"
+	android:paddingRight="@dimen/md_16"
+	android:paddingTop="@dimen/md_16"
+	tools:context="test.xjl12.soeasy.MainActivity"
+	tools:showIn="@layout/main_md"
+	android:orientation="vertical"
+	android:gravity="center">
 
 	<TextView
-		android:layout_height="wrap_content"
+		android:layout_height="@dimen/height_0"
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:layout_width="wrap_content"
-		android:text="@string/welcome"/>
+		android:text="@string/welcome"
+		android:layout_weight="9"
+		android:gravity="center"/>
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:text="Text"/>
+	<android.support.design.widget.TextInputLayout
+		android:layout_height="@dimen/height_0"
+		android:layout_width="match_parent"
+		android:layout_weight="16">
 
-</RelativeLayout>
+		<android.support.design.widget.TextInputEditText
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:hint="@string/main_edit_hint"
+			android:gravity="center"
+			android:id="@+id/main_m_input"/>
+
+	</android.support.design.widget.TextInputLayout>
+
+</LinearLayout>
 

@@ -1,7 +1,6 @@
 package test.xjl12.soeasy;
 
 import android.content.*;
-import android.graphics.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v4.view.*;
@@ -9,15 +8,21 @@ import android.support.v4.widget.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
-import android.util.*;
-import android.view.View.*;
+import android.widget.*;
+
+import android.support.v7.widget.Toolbar;
+import android.content.pm.*;
+import android.content.pm.PackageManager.*;
+import android.net.*;
+import android.view.inputmethod.*;
 
 public class MainActivity extends AppCompatActivity
 {
-//    public final static String EXTRA_MESSAGE ="test.xjl12.soeasy.MESSAGE";
+    public final static String EXTRA_MESSAGE ="test.xjl12.soeasy.MESSAGE";
 	//public LinearLayout main_LinearLayout;
 	//public int set_theme = -1;
-	
+	TextInputEditText input;
+	CoordinatorLayout mCl;
 	@Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -35,12 +40,14 @@ public class MainActivity extends AppCompatActivity
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.main_mdToolbar);
 		final NavigationView mNavigation = (NavigationView) findViewById(R.id.main_NavigationView);
 		final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab);
+		mCl = (CoordinatorLayout) findViewById(R.id.main_mdCoordinatorLayout);
+		input = (TextInputEditText) findViewById(R.id.main_m_input);
 		
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
-		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle (this,mDrawerLayout,toolbar,R.string.app_name,R.string.app_name) {
+		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
 			public void onDrawerOpened(View view)
 			{
 				super.onDrawerOpened(view);
@@ -60,61 +67,151 @@ public class MainActivity extends AppCompatActivity
 				@Override
 				public void onClick(View p1)
 				{
-					
+					if (input.length() != 0)
+					{
+						Intent second_activity = new Intent(getApplicationContext(),SecondActivity.class);
+						second_activity.putExtra(EXTRA_MESSAGE,input.getText().toString());
+						startActivity(second_activity);
+					}
+					else
+					{
+						Toast.makeText(getApplicationContext(),R.string.second_Activity_text_null,Toast.LENGTH_SHORT).show();
+					}
 				}
 			});
+		
 		toolbar.setNavigationOnClickListener(new View.OnClickListener(){
 				@Override
 				public void onClick(View p1)
 				{
+					Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(),mCl,input);
+					final TextView mNavigation_header_version = (TextView) findViewById(R.id.navigation_header_m_version);
+					mNavigation_header_version.setText(Others.getAppVersionName(getApplicationContext()));
 					mDrawerLayout.openDrawer(GravityCompat.START);
 				}
 			});
 		
+		mCl.setOnTouchListener(new View.OnTouchListener(){
+
+				@Override
+				public boolean onTouch(View p1, MotionEvent p2)
+				{
+					Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(),p1,input);
+					return false;
+				}
+			});
+			
 		mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
 
 				@Override
-				public boolean onNavigationItemSelected(MenuItem p1)
+				public boolean onNavigationItemSelected(final MenuItem p1)
 				{
 					mDrawerLayout.closeDrawer(GravityCompat.START);
 					switch (p1.getItemId())
 					{
 						case R.id.navigation_item_games:
-							Intent games_intent = new Intent (MainActivity.this,GamesActivity.class);
+							Intent games_intent = new Intent (getApplicationContext(),GamesActivity.class);
 							startActivity(games_intent);
 							break;
 						case R.id.navigation_item_urllist:
-							Intent url_list_intent = new Intent (MainActivity.this,URLListActivity.class);
+							Intent url_list_intent = new Intent (getApplicationContext(),URLListActivity.class);
 							startActivity(url_list_intent);
 							break;
 						case R.id.navigation_item_test:
-							Intent test_intent = new Intent (MainActivity.this,TestActivity.class);
+							Intent test_intent = new Intent (getApplicationContext(),TestActivity.class);
 							startActivity(test_intent);
 							break;
 						case R.id.navigation_item_debug:
-							Intent debug_intent = new Intent (MainActivity.this,DebugActivity.class);
+							Intent debug_intent = new Intent (getApplicationContext(),DebugActivity.class);
         					startActivity(debug_intent);
 							break;
 						case R.id.navigation_item_exit:
 							Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
 							finish();
 							break;
+						default:
+							Snackbar.make(mCl,R.string.wrong,Snackbar.LENGTH_LONG)
+								.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
+								.setAction(R.string.send_error, new View.OnClickListener(){
+
+									@Override
+									public void onClick(View view)
+									{
+										Intent share_intent = new Intent(Intent.ACTION_SEND);
+										share_intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(MainActivity.this),p1.getTitle().toString()));
+										share_intent.setType("text/plain");
+										if (Others.isQQInstalled(getApplicationContext()))
+										{
+											share_intent.setPackage(getString(R.string.qq_name));
+										}
+										startActivity(Intent.createChooser(share_intent, getString(R.string.Error_no_item_action)));
+									}
+								}).show();
+							break;
 					}
 					return true;
 				}
 			});
-		//ImageView icon = (ImageView) mNavigation.getHeaderView(0).findViewById(R.id.);
-		
     }
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+		getMenuInflater().inflate(R.menu.activity_actions,menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case R.id.source_item:
+				Intent source_web = new Intent(Intent.ACTION_VIEW);
+				source_web.setData(Uri.parse(this.getResources().getStringArray(R.array.web_url)[0]));
+				startActivity(source_web);
+				break;
+			case R.id.force_exit_item:
+				Others.DeleteDirAllFile(getExternalCacheDir());
+				android.os.Process.killProcess(android.os.Process.myPid());
+				System.exit(0);
+				break;
+			case R.id.shot_item:
+				Others.SendShot(getApplicationContext());
+				break;
+			default:
+				Snackbar.make(mCl,R.string.wrong,Snackbar.LENGTH_LONG)
+					.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
+					.setAction(R.string.send_error, new View.OnClickListener(){
+
+						@Override
+						public void onClick(View p1)
+						{
+							Intent share_intent = new Intent(Intent.ACTION_SEND);
+							share_intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(MainActivity.this),item.getTitle().toString()));
+							share_intent.setType("text/plain");
+							if (Others.isQQInstalled(getApplicationContext()))
+							{
+								share_intent.setPackage(getString(R.string.qq_name));
+							}
+							startActivity(Intent.createChooser(share_intent, getString(R.string.Error_no_item_action)));
+						}
+					}).show();
+					break;
+		}
+		return true;
+	}
+	@Override
+	public void onResume ()
+	{
+		super.onResume();
+		Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(),mCl,input);
+		Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
+		input.setText(null);
+	}
 }
-	
-    /**@Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_activity_actions,menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
+
 	/**@Override
 	public void onSaveInstanceState(Bundle outState) 
 	{

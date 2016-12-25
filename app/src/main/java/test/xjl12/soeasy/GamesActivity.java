@@ -44,14 +44,29 @@ public class GamesActivity extends Activity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
+    public boolean onOptionsItemSelected(final MenuItem item)
     {
         switch (item.getItemId())
         {
-            case R.id.exit_action:
-                finish();
-                break;
-            default:
+			default:
+				Snackbar.make(findViewById(R.id.main_mdCoordinatorLayout),R.string.wrong,Snackbar.LENGTH_LONG)
+					.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
+					.setAction(R.string.send_error, new View.OnClickListener(){
+
+						@Override
+						public void onClick(View p1)
+						{
+							Intent share_intent = new Intent(Intent.ACTION_SEND);
+							share_intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(GamesActivity.this),item.getTitle().toString()));
+							share_intent.setType("text/plain");
+							if (Others.isQQInstalled(getApplicationContext()))
+							{
+								share_intent.setPackage(getString(R.string.qq_name));
+							}
+							startActivity(Intent.createChooser(share_intent, getString(R.string.Error_no_item_action)));
+						}
+					}).show();
+				break;
         }
         return super.onOptionsItemSelected(item);
     }

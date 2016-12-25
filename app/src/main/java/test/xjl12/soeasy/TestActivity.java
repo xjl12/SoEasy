@@ -4,12 +4,12 @@ import android.app.*;
 import android.content.*;
 import android.net.*;
 import android.os.*;
+import android.support.design.widget.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
-
 import java.io.*;
-import java.util.*;
+import test.xjl12.soeasy.*;
 
 public class TestActivity extends Activity
 {
@@ -54,21 +54,30 @@ public class TestActivity extends Activity
 		super.onResume();
 		Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
 	}
-    public boolean onOptionsItemSelected(MenuItem item)
+    public boolean onOptionsItemSelected(final MenuItem item)
     {
         switch (item.getItemId())
         {
+			default:
+				Snackbar.make(findViewById(R.id.main_mdCoordinatorLayout),R.string.wrong,Snackbar.LENGTH_LONG)
+					.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
+					.setAction(R.string.send_error, new View.OnClickListener(){
 
-            case R.id.exit_action:
-				Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
-                finish();
-                break;
-                /*case R.id.settings_action:
-                 openSettings ();
-                 return true;
-                 */
-            default:    
-        }
+						@Override
+						public void onClick(View p1)
+						{
+							Intent share_intent = new Intent(Intent.ACTION_SEND);
+							share_intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(TestActivity.this),item.getTitle().toString()));
+							share_intent.setType("text/plain");
+							if (Others.isQQInstalled(getApplicationContext()))
+							{
+								share_intent.setPackage(getString(R.string.qq_name));
+							}
+							startActivity(Intent.createChooser(share_intent, getString(R.string.Error_no_item_action)));
+						}
+					}).show();
+				break;
+		}
 
         return super.onOptionsItemSelected(item);
 
@@ -108,11 +117,15 @@ public class TestActivity extends Activity
 		Others.DeleteDirAllFile(getApplicationContext().getFilesDir());
 		test_textview1.setText(R.string.delete_complete);
 	}
+	public void TestFC (View view)
+	{
+		TextView test_fc = null;
+		test_fc.setText(null);
+	}
 	public void OpenRawTestImage (View view) throws IOException
 	{
-		Log.i("TestActivity","Begin!");
 		File cache_file = this.getAppCacheDir(getApplicationContext(),Others.RandomString(8));
-		InputStream test_is = getResources().openRawResource(R.drawable.ic_menu_background);
+		InputStream test_is = getResources().openRawResource(R.mipmap.ic_launcher);
 		FileOutputStream test_fos = new FileOutputStream(cache_file);
 		byte[] buffer = new byte[1024];
 		int byte_count = 0;
