@@ -1,1 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="md_16">16dp</dimen>
+	<dimen name="md_6">6dp</dimen>
+	
+	<dimen name="normal_10">10dp</dimen>
+	<dimen name="height_0">0dp</dimen>
+	<dimen name="icon_show">80dp</dimen>
+	<dimen name="navigation_height">196dp</dimen>
+</resources>
