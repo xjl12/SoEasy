@@ -21,28 +21,26 @@
         <activity
             android:name=".SecondActivity"
             android:label="@string/title_second_activity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".GamesActivity"
             android:label="@string/title_games_activity"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".DebugActivity"
             android:label="@string/title_debug"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".TestActivity"
             android:label="@string/title_test"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"/>
 		<activity
 			android:name=".URLListActivity"
 			android:label="@string/title_urllist"
-			android:parentActivityName=".MainActivity">
-		</activity>
+			android:parentActivityName=".MainActivity"/>
+		<service
+			android:name=".LongTermActionService"
+			android:exported="false"/>
     </application>
 
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

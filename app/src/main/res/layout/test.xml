@@ -79,7 +79,8 @@
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:textColor="@color/red"
-			android:onClick="TestFC"/>
+			android:onClick="TestFC"
+			android:id="@+id/test_fc_Button"/>
 
 	</LinearLayout>
 

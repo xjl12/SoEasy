@@ -20,7 +20,7 @@
 			android:layout_width="match_parent"
 			android:background="?attr/colorPrimary"
 			android:id="@+id/main_mdToolbar"
-			app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+			app:popupTheme="@style/ToolbarPopupTheme"/>
 
 	</android.support.design.widget.AppBarLayout>
 

@@ -56,14 +56,7 @@ public class GamesActivity extends Activity
 						@Override
 						public void onClick(View p1)
 						{
-							Intent share_intent = new Intent(Intent.ACTION_SEND);
-							share_intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(GamesActivity.this),item.getTitle().toString()));
-							share_intent.setType("text/plain");
-							if (Others.isQQInstalled(getApplicationContext()))
-							{
-								share_intent.setPackage(getString(R.string.qq_name));
-							}
-							startActivity(Intent.createChooser(share_intent, getString(R.string.Error_no_item_action)));
+							startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(),new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(GamesActivity.this),item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));
 						}
 					}).show();
 				break;

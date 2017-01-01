@@ -2,6 +2,7 @@
 <resources>
 	<dimen name="md_16">16dp</dimen>
 	<dimen name="md_6">6dp</dimen>
+	<dimen name="md_24">24dp</dimen>
 	
 	<dimen name="normal_10">10dp</dimen>
 	<dimen name="height_0">0dp</dimen>

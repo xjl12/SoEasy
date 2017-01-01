@@ -9,7 +9,7 @@ android {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 53
+        versionCode 54
         versionName "1.4.9-Beta4"
     }
 

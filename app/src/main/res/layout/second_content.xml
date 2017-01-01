@@ -1,6 +1,23 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
-    
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:paddingLeft="@dimen/md_16"
+	android:paddingTop="@dimen/md_16"
+	android:paddingRight="@dimen/md_16"
+	android:paddingBottom="@dimen/md_16"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="test.xjl12.soeasy.SecondActivity"
+	tools:showIn="@layout/second"
+	android:gravity="center">
+
+	<TextView
+		android:id="@+id/second_content_TextView1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"/>
+
 </LinearLayout>
+

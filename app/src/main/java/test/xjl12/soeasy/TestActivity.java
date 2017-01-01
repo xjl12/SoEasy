@@ -14,6 +14,7 @@ import test.xjl12.soeasy.*;
 public class TestActivity extends Activity
 {
     TextView test_textview1;
+	Button fc_button;
 	/** 获取SD卡内缓存目录 */
 	public File getAppCacheDir(Context context,String name)
 	{
@@ -37,9 +38,10 @@ public class TestActivity extends Activity
             
             getFragmentManager().beginTransaction().add(R.id.testFrameLayout,first).commit();
         }*/
+		fc_button = (Button) findViewById(R.id.test_fc_Button);
         test_textview1 = (TextView) findViewById(R.id.testTextView1);
         //test_textview1.setText(Environment.getExternalStorageState());
-        Log.i("TestActivity" , "TEST");
+        //test_textview1.setText(getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -66,14 +68,7 @@ public class TestActivity extends Activity
 						@Override
 						public void onClick(View p1)
 						{
-							Intent share_intent = new Intent(Intent.ACTION_SEND);
-							share_intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(TestActivity.this),item.getTitle().toString()));
-							share_intent.setType("text/plain");
-							if (Others.isQQInstalled(getApplicationContext()))
-							{
-								share_intent.setPackage(getString(R.string.qq_name));
-							}
-							startActivity(Intent.createChooser(share_intent, getString(R.string.Error_no_item_action)));
+							startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(),new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(TestActivity.this),item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));
 						}
 					}).show();
 				break;
@@ -119,6 +114,9 @@ public class TestActivity extends Activity
 	}
 	public void TestFC (View view)
 	{
+		fc_button.setFocusable(false);
+		fc_button.setPressed(false);
+		fc_button.setFocusableInTouchMode(false);
 		TextView test_fc = null;
 		test_fc.setText(null);
 	}

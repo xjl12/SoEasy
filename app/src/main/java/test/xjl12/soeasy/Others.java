@@ -17,7 +17,7 @@ import android.net.*;
 public class Others
 {
 	//判断QQ是否安装
-	public static boolean isQQInstalled(Context context)
+	public static Intent isQQInstalled(Context context, Intent intent)
 	{
         PackageInfo packageInfo = null;
         try
@@ -31,11 +31,11 @@ public class Others
 
         if (packageInfo == null) 
 		{
-            return false;
+            return intent;
         } 
 		else
 		{
-            return true;
+            return intent.setPackage(context.getString(R.string.qq_name));
         }
     }
 	//获取程序版本号
@@ -49,7 +49,7 @@ public class Others
 		}
 		catch (PackageManager.NameNotFoundException e)
 		{
-			Toast.makeText(context,R.string.Error_PackageManager_NameNotFoundException,Toast.LENGTH_LONG).show();
+			Toast.makeText(context, R.string.Error_PackageManager_NameNotFoundException, Toast.LENGTH_LONG).show();
 			app_version = context.getResources().getString(R.string.unknow);
 		}
 		return app_version;
@@ -61,48 +61,40 @@ public class Others
         return contextString.substring(contextString.lastIndexOf(".") + 1, contextString.indexOf("@"));
 	}
 	//改变编辑框为非输入状态并收回软键盘
-	public static void ChangeEdittextStatusAndHideSoftInput(Context context,View parent_view,TextInputEditText edittext)
+	public static void ChangeEdittextStatusAndHideSoftInput(Context context, View parent_view, TextInputEditText edittext)
 	{
 		parent_view.setFocusable(true);
 		parent_view.setFocusableInTouchMode(true);
 		parent_view.requestFocus();
-		
+
 		InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-		imm.hideSoftInputFromWindow(edittext.getWindowToken(),0);
+		imm.hideSoftInputFromWindow(edittext.getWindowToken(), 0);
 	}
 	//获取屏幕截图并发送(screencap)
-	public static void SendShot(Context context)
+	public static Intent SendShot(Context context)
 	{
-		File shot_file = new File(context.getExternalCacheDir(),Others.RandomString(5) + ".png");
+		File shot_file = new File(context.getExternalCacheDir(), Others.RandomString(5) + ".png");
+		ProcessBuilder pb = new ProcessBuilder(new String[] {"screencap","-p",shot_file.toString()});
 		try
 		{
-			Process proccess = Runtime.getRuntime().exec("sh");
-			PrintStream outs = new PrintStream(new BufferedOutputStream(proccess.getOutputStream(), 8192));
-			outs.println("screencap -p" + shot_file.getAbsolutePath());
-			outs.flush();
-			outs.close();
+			Process proc = pb.start();
 			try
 			{
-				proccess.waitFor();
+				proc.waitFor();
 			}
 			catch (InterruptedException e)
 			{}
-			proccess.destroy();
 		}
 		catch (IOException e)
 		{}
-		if (shot_file.exists() == false)
+		if (shot_file.exists())
 		{
-			
+			Intent send = new Intent(Intent.ACTION_SEND);
+			send.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(shot_file));
+			send.setType("image/png");
+			return Intent.createChooser(isQQInstalled(context, send), context.getString(R.string.share_point));
 		}
-		Intent send = new Intent(Intent.ACTION_SEND);
-		send.setData(Uri.fromFile(shot_file));
-		send.setType("image/*");
-		if (Others.isQQInstalled(context))
-		{
-			send.setPackage(context.getString(R.string.qq_name));
-		}
-		context.startActivity(Intent.createChooser(send,context.getString(R.string.share_point)));
+		return null;
 	}
 	//改变Snackbar背景,字体颜色
 	public static void setSnackbarColor(Snackbar snackbar, int messageColor, int backgroundColor) 
@@ -163,8 +155,9 @@ public class Others
 		return sb.toString();
 	}
 	// 获取当前活动的截屏
-	public static File getShot(Activity activity, File shot_file) throws FileNotFoundException, IOException
+	public static Intent getShot(Activity activity)
 	{
+		File shot_file = new File(activity.getExternalCacheDir(), RandomString(5) + ".png");
 		View view = activity.getWindow().getDecorView();
 		view.buildDrawingCache();
 		Rect rect = new Rect();
@@ -176,11 +169,22 @@ public class Others
 		view.setDrawingCacheEnabled(true);
 		Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache(), 0, status_bar_height, width, height - status_bar_height);
 		view.destroyDrawingCache();
-		FileOutputStream shot_fos = new FileOutputStream(shot_file);
-		bitmap.compress(Bitmap.CompressFormat.PNG, 100, shot_fos);
-		shot_fos.flush();
-		shot_fos.close();
-		return shot_file;
+		try
+		{
+			FileOutputStream shot_fos = new FileOutputStream(shot_file);
+			bitmap.compress(Bitmap.CompressFormat.PNG, 100, shot_fos);
+			try
+			{
+				shot_fos.flush();
+				shot_fos.close();
+			}
+			catch (IOException e)
+			{}
+		}
+		catch (FileNotFoundException e)
+		{}
+		
+		return Intent.createChooser(isQQInstalled(activity.getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_STREAM,Uri.fromFile(shot_file)).setType("image/png")), activity.getString(R.string.share_point));
 	}
 
 	public static Activity getGlobleActivity() throws ClassNotFoundException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, NoSuchFieldException

@@ -51,7 +51,7 @@
     <string name="games_not_see_answers">你似乎还没有猜过呢！不能看答案哦，快去猜猜吧！</string>
 	<!-- Share -->
 	<string name="share_point">分享到……</string>
-	<string name="share_from_soeasy">从SoEasy分享的消息: \n%s</string>
+	<string name="share_from_soeasy">从SoEasy分享的消息: \n \n%s</string>
 	<string name="qq_name">com.tencent.mobileqq</string>
 	<!-- URLList -->
 	<string name="urllist">部分网址中可能有广告！感谢网友@叹。 提供的网址！</string>
@@ -87,12 +87,15 @@
 	
     <!--Wrong-->
 	<string name="unknow">未知</string>
+	<string name="retry">重试</string>
     <string name="wrong">出现未知错误！请及时反馈！</string>
+	<string name="Error_cannot_shot">无法截图!请及时反馈！</string>
 	<string name="send_error">反馈</string>
 	<string name="Error_no_file">致命错误:测试文件不存在！</string>
+	<string name="Error_shot_error">截屏失败!请重试!</string>
 	<string name="Error_PackageManager_NameNotFoundException">错误:软件包包名未找到！请及时反馈，谢谢!(错误详细信息:android.content.pm.PackageManager.NameNotFoundException)</string>
 	<string name="Error_no_item_action">很抱歉，程序内部出现错误,请及时发送错误信息给我,我会尽快修复!</string>
 	<string name="fc_and_send">很抱歉，程序出现异常，请发送该错误文件给我，我将会尽快修复!</string>
 	<string name="fc">很抱歉，程序出现异常，即将退出……</string>
-	<string name="send_error_message">来自SoEasy--%1$s的错误反馈: \n%2$s \n%3$s</string>
+	<string name="send_error_message">来自SoEasy--%1$s的错误反馈: \n \n%2$s \n%3$s</string>
 </resources>

@@ -52,14 +52,7 @@ public class DebugActivity extends Activity
 						@Override
 						public void onClick(View p1)
 						{
-							Intent share_intent = new Intent(Intent.ACTION_SEND);
-							share_intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(DebugActivity.this),item.getTitle().toString()));
-							share_intent.setType("text/plain");
-							if (Others.isQQInstalled(getApplicationContext()))
-							{
-								share_intent.setPackage(getString(R.string.qq_name));
-							}
-							startActivity(Intent.createChooser(share_intent, getString(R.string.Error_no_item_action)));
+							startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(),new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(DebugActivity.this),item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));
 						}
 					}).show();
 				break;
@@ -75,16 +68,6 @@ public class DebugActivity extends Activity
 	}
 	public void SaveAndShare (View view) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, ClassNotFoundException, NoSuchFieldException, InvocationTargetException, IOException
 	{
-		File shot_file = new File (getApplicationContext().getExternalCacheDir(),Others.RandomString(5) + ".png");
-		Others.getShot(Others.getGlobleActivity(),shot_file);
-		Intent share_shot_file_intent = new Intent();
-		share_shot_file_intent.setAction(Intent.ACTION_SEND);
-		share_shot_file_intent.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(shot_file));
-		share_shot_file_intent.setType("image/*");
-		if (Others.isQQInstalled(this))
-		{
-			share_shot_file_intent.setPackage(this.getResources().getString(R.string.qq_name));
-		}
-		startActivity(Intent.createChooser(share_shot_file_intent,getResources().getText(R.string.share_point)));
+		startActivity(Intent.createChooser(Others.getShot(Others.getGlobleActivity()),getString(R.string.share_point)));
 	}
 }
