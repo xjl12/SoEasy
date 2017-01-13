@@ -1,4 +1,5 @@
 package test.xjl12.soeasy;
+
 import android.content.*;
 import android.net.*;
 import android.os.*;
@@ -24,7 +25,7 @@ public class SecondActivity extends AppCompatActivity
 		final FloatingActionButton second_fab = (FloatingActionButton) findViewById(R.id.second_fab);
 		final TextView textview = (TextView) findViewById(R.id.second_content_TextView1);
 		final CoordinatorLayout sCl = (CoordinatorLayout) findViewById(R.id.second_mdCoordinatorLayout);
-
+		
 		setSupportActionBar(second_toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
@@ -55,6 +56,11 @@ public class SecondActivity extends AppCompatActivity
 				{
 					switch (p1.getItemId())
 					{
+						case R.id.help_development:
+							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
+							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
+							startActivity(help_development_web);
+							break;
 						case R.id.source_item:
 							Intent source_web = new Intent(Intent.ACTION_VIEW);
 							source_web.setData(Uri.parse(SecondActivity.this.getResources().getStringArray(R.array.web_url)[0]));

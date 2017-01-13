@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:paddingLeft="@dimen/md_16"
+	android:paddingTop="@dimen/md_16"
+	android:paddingRight="@dimen/md_16"
+	android:paddingBottom="@dimen/md_16"
+	tools:context="test.xjl12.soeasy.URLListActivity"
+	tools:showIn="@layout/urllist">
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/urllist"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_width="wrap_content"/>
+
+	<ListView
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:id="@+id/urllist"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</LinearLayout>
+

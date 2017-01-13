@@ -1,11 +1,31 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto" 
+	xmlns:tools="http://schemas.android.com/tools"> 
+
+	<item
+		android:id="@+id/shot_item"
+		android:title="@string/debug_save_share"
+		android:icon="@drawable/menu_gallery"
+		app:showAsAction="ifRoom"/>
+	<item
+		android:id="@+id/help_development"
+		android:title="@string/help_development"
+		app:showAsAction="never"/>
+    <item 
+		android:id="@+id/force_exit_item"
+		android:title="@string/force_exit"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/source_item"
+		app:showAsAction="never"
+		android:title="@string/source_string"/>
     
 <!--
     <item
         android:id="@+id/search_action"
         android.icon="@drawable/ic_action_search"
         android:title="@string/search_action_title"/>
--->
+
 	<item
 		android:id="@+id/app_theme_choose_default"
 		android:showAsAction="never"
@@ -22,4 +42,5 @@
         android:id="@+id/exit_action"
         android:showAsAction="never"
         android:title="@string/exit"/>
+	-->
 </menu>

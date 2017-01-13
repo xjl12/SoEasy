@@ -7,14 +7,15 @@
 		android:title="@string/debug_save_share"
 		android:icon="@drawable/menu_gallery"
 		app:showAsAction="ifRoom"/>
-    <item 
-		android:id="@+id/force_exit_item"
-		android:title="@string/force_exit"
+	<item
+		android:id="@+id/help_development"
+		android:title="@string/help_development"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/source_item"
 		app:showAsAction="never"
 		android:title="@string/source_string"/>
+</menu>
 <!--
     <item
         android:id="@+id/search_action"
@@ -30,4 +31,3 @@
         android:showAsAction="never"
         android:title="@string/exit"/>
 	-->
-</menu>

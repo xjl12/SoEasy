@@ -169,6 +169,11 @@ public class MainActivity extends AppCompatActivity
 				{
 					switch (item.getItemId())
 					{
+						case R.id.help_development:
+							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
+							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
+							startActivity(help_development_web);
+							break;
 						case R.id.source_item:
 							Intent source_web = new Intent(Intent.ACTION_VIEW);
 							source_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[0]));
@@ -228,13 +233,14 @@ public class MainActivity extends AppCompatActivity
 					return true;
 				}
 			});
+			Others.DeleteDirAllFile(getExternalFilesDir("Log"));
     }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-		getMenuInflater().inflate(R.menu.activity_actions, menu);
+		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
 		return true;
 	}
 

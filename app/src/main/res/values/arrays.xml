@@ -2,6 +2,7 @@
 <resources>
 	<string-array name="web_url_title">
 		<item>SoEasy--源代码</item>
+		<item>帮助SoEasy开发</item>
 		<item>我的世界中世纪建筑欣赏 从入门到大神</item>
 		<item>我的世界别墅设计图_别墅设计图大全</item>
 		<item>我的世界房子设计图《我的世界》房子教程</item>
@@ -17,6 +18,7 @@
 	
 	<string-array name="web_url">
 		<item>https://github.com/xjl12/SoEasy</item>
+		<item>https://github.com/xjl12/SoEasy/blob/master/app/src/main/res/values/strings.xml</item>
 		<item>http://m.news.4399.com/gonglue/wdshijie/xinde/cz/m/500425.html</item>
 		<item>http://g.manmankan.com/shouyou/1507/8974.shtml</item>
 		<item>http://m.gao7.com/zq/mc/299920.shtm</item>

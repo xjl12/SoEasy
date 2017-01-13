@@ -26,8 +26,9 @@
 	<string name="navigation_group_1">功能</string>
 	<string name="navigation_group_2">其它</string>
 	<!-- Menu -->
+	<string name="help_development">帮助SoEasy开发</string>
 	<string name="source_string">查看程序源代码</string>
-	<string name="force_exit">退出时清理程序运行内存</string>
+	<string name="force_exit">强制退出</string>
 	<!-- Theme or Layout Chhose -->
 	<string name="app_theme_default">默认主题</string>
 	<string name="app_theme_holo">黑色Holo主题</string>
@@ -48,6 +49,7 @@
     <string name="games_times">你这次共猜了</string>
     <string name="games_times_more">次，再接再厉哦！</string>
     <string name="games_times_less">次，你太厉害了！</string>
+	<string name="games_share">来自SoEasy猜数游戏的分享: \n \n我共猜了%s次，不服来战！</string>
     <string name="games_not_see_answers">你似乎还没有猜过呢！不能看答案哦，快去猜猜吧！</string>
 	<!-- Share -->
 	<string name="share_point">分享到……</string>
@@ -70,6 +72,7 @@
     <string name="debug_welcome">这是调试模式，请你将本页截图发给我</string>
     <string name="debug_app_version">程序版本号:</string>
 	<string name="debug_save_share">发送屏幕截图</string>
+	<string name="debug_share">来自SoEasy的重要信息: \n \n%1$s \n%2$s \n%3$s</string>
     <!-- Test -->
     <string name="test_button">最新测试功能</string>
     <string name="test_wrong">这是测试功能，可能有很多Bug,程序随时都有崩溃的可能！注意！</string>

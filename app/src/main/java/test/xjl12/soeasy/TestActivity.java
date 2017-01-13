@@ -1,26 +1,22 @@
 package test.xjl12.soeasy;
 
-import android.app.*;
 import android.content.*;
 import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
+import android.support.v7.app.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
 import java.io.*;
-import test.xjl12.soeasy.*;
 
-public class TestActivity extends Activity
+import android.support.v7.widget.Toolbar;
+
+public class TestActivity extends AppCompatActivity
 {
     TextView test_textview1;
 	Button fc_button;
-	/** 获取SD卡内缓存目录 */
-	public File getAppCacheDir(Context context,String name)
-	{
-		File cache_file = new File (context.getExternalCacheDir(),name);
-		return cache_file;
-	}
+	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -40,8 +36,80 @@ public class TestActivity extends Activity
         }*/
 		fc_button = (Button) findViewById(R.id.test_fc_Button);
         test_textview1 = (TextView) findViewById(R.id.testTextView1);
-        //test_textview1.setText(Environment.getExternalStorageState());
-        //test_textview1.setText(getIntent().getStringExtra(MainActivity.EXTRA_MESSAGE));
+		Toolbar toolbar = (Toolbar) findViewById(R.id.test_mdToolbar);
+		final CoordinatorLayout mCl = (CoordinatorLayout) findViewById(R.id.test_mdCoordinatorLayout);
+        
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setHomeButtonEnabled(true);
+		
+		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+
+				@Override
+				public boolean onMenuItemClick(final MenuItem item)
+				{
+					switch (item.getItemId())
+					{
+						case R.id.help_development:
+							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
+							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
+							startActivity(help_development_web);
+							break;
+						case R.id.source_item:
+							Intent source_web = new Intent(Intent.ACTION_VIEW);
+							source_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[0]));
+							startActivity(source_web);
+							break;
+						case R.id.shot_item:
+							new Thread(new Runnable(){
+
+									@Override
+									public void run()
+									{
+										Intent shot_share = Others.SendShot(getApplicationContext());
+										if (shot_share != null)
+										{
+											startActivity(shot_share);
+										}
+										else
+										{
+											Snackbar.make(mCl, R.string.Error_shot_error, Snackbar.LENGTH_LONG)
+												.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
+												.setAction(R.string.retry, new View.OnClickListener(){
+
+													@Override
+													public void onClick(View p1)
+													{
+														Intent intent = Others.getShot(TestActivity.this);
+														if (intent != null)
+														{
+															startActivity(intent);
+														}
+														else
+														{
+															Toast.makeText(TestActivity.this,getString(R.string.Error_cannot_shot),Toast.LENGTH_LONG);
+														}
+													}
+												}).show();
+										}	
+									}
+								}).start();
+							break;
+						default:
+							Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
+								.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
+								.setAction(R.string.send_error, new View.OnClickListener(){
+
+									@Override
+									public void onClick(View p1)
+									{startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, getString(R.string.send_error_message, Others.getAppVersionName(getApplicationContext()), Others.getRunningActivityName(TestActivity.this), item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));}
+								}).show();
+							break;
+					}
+					return true;
+				}
+			});
+		
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -56,28 +124,7 @@ public class TestActivity extends Activity
 		super.onResume();
 		Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
 	}
-    public boolean onOptionsItemSelected(final MenuItem item)
-    {
-        switch (item.getItemId())
-        {
-			default:
-				Snackbar.make(findViewById(R.id.main_mdCoordinatorLayout),R.string.wrong,Snackbar.LENGTH_LONG)
-					.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-					.setAction(R.string.send_error, new View.OnClickListener(){
-
-						@Override
-						public void onClick(View p1)
-						{
-							startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(),new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT,getString(R.string.send_error_message,Others.getAppVersionName(getApplicationContext()),Others.getRunningActivityName(TestActivity.this),item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));
-						}
-					}).show();
-				break;
-		}
-
-        return super.onOptionsItemSelected(item);
-
-
-    }
+    
     public void test1 (View view)
     {
         Intent web = new Intent();
@@ -122,7 +169,7 @@ public class TestActivity extends Activity
 	}
 	public void OpenRawTestImage (View view) throws IOException
 	{
-		File cache_file = this.getAppCacheDir(getApplicationContext(),Others.RandomString(8));
+		File cache_file = new File(this.getExternalCacheDir(),Others.RandomString(8));
 		InputStream test_is = getResources().openRawResource(R.mipmap.ic_launcher);
 		FileOutputStream test_fos = new FileOutputStream(cache_file);
 		byte[] buffer = new byte[1024];

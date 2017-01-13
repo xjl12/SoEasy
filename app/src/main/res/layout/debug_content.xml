@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:paddingLeft="@dimen/md_16"
+	android:paddingTop="@dimen/md_16"
+	android:paddingRight="@dimen/md_16"
+	android:paddingBottom="@dimen/md_16"
+	tools:context="test.xjl12.soeasy.DebugActivity"
+	tools:showIn="@layout/debug"
+	android:orientation="vertical"
+	android:gravity="center">
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/wrong"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_margin="10dp"
+		android:textStyle="bold"
+		android:id="@+id/debug_app_version"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/debug_normal"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_margin="10dp"
+		android:id="@+id/debug_content_screen_size"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/wrong"
+		android:layout_width="wrap_content"
+		android:textStyle="normal"
+		android:layout_margin="10dp"
+		android:id="@+id/debug_screen"
+		android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/wrong"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_width="wrap_content"
+		android:layout_margin="10dp"
+		android:id="@+id/debug_android_version"/>
+
+</LinearLayout>
+

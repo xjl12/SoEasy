@@ -1,51 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:orientation="vertical"
-	android:gravity="center">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="true"
+	android:id="@+id/debug_mdCoordinatorLayout">
 
-	<TextView
+	<android.support.design.widget.AppBarLayout
 		android:layout_height="wrap_content"
-		android:text="@string/wrong"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content"
-		android:layout_margin="10dp"
-		android:textStyle="bold"
-		android:id="@+id/debug_app_version"/>
+		android:layout_width="match_parent"
+		android:fitsSystemWindows="true"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+		
+		<android.support.v7.widget.Toolbar
+			android:layout_height="?attr/actionBarSize"
+			android:layout_width="match_parent"
+			android:background="?attr/colorPrimary"
+			android:id="@+id/debug_mdToolbar"
+			app:popupTheme="@style/ToolbarPopupTheme"/>
 
-	<TextView
+	</android.support.design.widget.AppBarLayout>
+
+	<include layout="@layout/debug_content"
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:layout_marginTop="?attr/actionBarSize"/>
+		
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/debug_fab"
 		android:layout_height="wrap_content"
-		android:text="@string/debug_normal"
-		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:layout_width="wrap_content"
-		android:layout_margin="10dp"/>
+		android:layout_gravity="bottom|end"
+		app:srcCompat="@drawable/menu_share"
+		android:layout_margin="@dimen/md_16"/>
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:text="@string/wrong"
-		android:layout_width="wrap_content"
-		android:textStyle="normal"
-		android:layout_margin="10dp"
-		android:id="@+id/debug_screen"
-		android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-	<TextView
-		android:layout_height="wrap_content"
-		android:text="@string/wrong"
-		android:textAppearance="?android:attr/textAppearanceMedium"
-		android:layout_width="wrap_content"
-		android:layout_margin="10dp"
-		android:id="@+id/debug_android_version"/>
-
-	<Button
-		android:layout_height="wrap_content"
-		android:text="@string/debug_save_share"
-		android:layout_width="wrap_content"
-		android:ems="10"
-		android:onClick="SaveAndShare"
-		android:layout_marginTop="10dp"/>
-
-</LinearLayout>
-
+</android.support.design.widget.CoordinatorLayout>
