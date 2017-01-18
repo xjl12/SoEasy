@@ -3,19 +3,24 @@
     <group>
 		<item
 			android:id="@+id/navigation_item_games"
-			android:title="@string/games_button"/>
+			android:title="@string/games_button"
+			android:icon="@drawable/ic_games"/>
 		<item
 			android:id="@+id/navigation_item_urllist"
-			android:title="@string/title_urllist"/>
+			android:title="@string/title_urllist"
+			android:icon="@drawable/ic_web"/>
 		<item
 			android:id="@+id/navigation_item_test"
-			android:title="@string/title_test"/>
+			android:title="@string/title_test"
+			android:icon="@drawable/ic_test"/>
 		<item 
 			android:id="@+id/navigation_item_debug"
-			android:title="@string/title_debug"/>
+			android:title="@string/title_debug"
+			android:icon="@drawable/ic_info"/>
 		<item 
 			android:id="@+id/navigation_item_exit"
-			android:title="@string/exit"/>
+			android:title="@string/exit"
+			android:icon="@drawable/ic_exit"/>
 	</group>
 
 </menu>
