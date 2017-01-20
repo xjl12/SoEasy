@@ -29,6 +29,7 @@
 	<string name="help_development">帮助SoEasy开发</string>
 	<string name="source_string">查看程序源代码</string>
 	<string name="force_exit">强制退出</string>
+	<string name="help_prompt_message">因本人语文水平有限，程序中难免会出现一些错别字、病句，如果你发现了，请及时反馈给我，谢谢！</string>
 	<!-- Theme or Layout Chhose -->
 	<string name="app_theme_default">默认主题</string>
 	<string name="app_theme_holo">黑色Holo主题</string>

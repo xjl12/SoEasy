@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity
 					switch (item.getItemId())
 					{
 						case R.id.help_development:
+							Toast.makeText(getApplicationContext(),getString(R.string.help_prompt_message),Toast.LENGTH_LONG).show();
 							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
 							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
 							startActivity(help_development_web);
