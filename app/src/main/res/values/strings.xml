@@ -7,7 +7,8 @@
     <string name="title_debug">信息</string>
     <string name="title_test">测试</string>
 	<string name="title_urllist">网址</string>
-	
+	<string name="title_my_world">我的世界专区</string>
+	<!-- Main -->
 	<string name="welcome">欢迎使用SoEasy!</string>
 	<string name="thanks">感谢您使用本程序！</string>
 	<string name="saying">一切如此简单！</string>
@@ -52,6 +53,8 @@
     <string name="games_times_less">次，你太厉害了！</string>
 	<string name="games_share">来自SoEasy猜数游戏的分享: \n \n我共猜了%s次，不服来战！</string>
     <string name="games_not_see_answers">你似乎还没有猜过呢！不能看答案哦，快去猜猜吧！</string>
+	<!-- MyWorld -->
+	
 	<!-- Share -->
 	<string name="share_point">分享到……</string>
 	<string name="share_from_soeasy">从SoEasy分享的消息: \n \n%s</string>

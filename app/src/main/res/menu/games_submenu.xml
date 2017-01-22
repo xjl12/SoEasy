@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item
+        android:id="@+id/game_caishu_item"
+        android:title="@string/title_games_activity"/>
+	<item 
+		android:id="@+id/my_world_item"
+		android:title="@string/title_my_world"/>
+    
+</menu>

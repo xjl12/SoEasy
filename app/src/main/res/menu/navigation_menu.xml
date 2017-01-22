@@ -1,10 +1,18 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<!--android:checkableBehavior="single" -->
-    <group>
+    <group android:title="@string/games_button">
 		<item
-			android:id="@+id/navigation_item_games"
-			android:title="@string/games_button"
+			android:id="@+id/navigation_item_caishu_games"
+			android:title="@string/title_games_activity"
 			android:icon="@drawable/ic_games"/>
+			<!--app:actionLayout="@layout/empty"-->
+		<item
+			android:id="@+id/navigation_item_my_world"
+			android:title="@string/title_my_world"
+			android:icon="@mipmap/my_world"/>
+	</group>
+	<group>
 		<item
 			android:id="@+id/navigation_item_urllist"
 			android:title="@string/title_urllist"

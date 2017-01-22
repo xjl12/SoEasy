@@ -38,6 +38,10 @@
 			android:name=".URLListActivity"
 			android:label="@string/title_urllist"
 			android:parentActivityName=".MainActivity"/>
+		<activity
+			android:name=".MyWorldActivity"
+			android:label="@string/title_my_world"
+			android:parentActivityName=".MainActivity"/>
 		<service
 			android:name=".LongTermActionService"
 			android:exported="false"/>

@@ -12,6 +12,7 @@ import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity
@@ -125,12 +126,47 @@ public class MainActivity extends AppCompatActivity
 				@Override
 				public boolean onNavigationItemSelected(final MenuItem p1)
 				{
-					mDrawerLayout.closeDrawer(GravityCompat.START);
+					//mDrawerLayout.closeDrawer(GravityCompat.START);
 					switch (p1.getItemId())
 					{
-						case R.id.navigation_item_games:
+						case R.id.navigation_item_caishu_games:
 							Intent games_intent = new Intent(getApplicationContext(), GamesActivity.class);
 							startActivity(games_intent);
+							break;
+/*
+							PopupMenu pop_menu = new PopupMenu(MainActivity.this,p1.getActionView());
+							pop_menu.getMenuInflater().inflate(R.menu.games_submenu,pop_menu.getMenu());
+							pop_menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+
+									@Override
+									public boolean onMenuItemClick(final MenuItem p2)
+									{
+										switch (p2.getItemId())
+										{
+											case R.id.game_caishu_item:
+												Intent games_intent = new Intent(getApplicationContext(), GamesActivity.class);
+												startActivity(games_intent);
+												break;
+											default:
+												Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
+													.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
+													.setAction(R.string.send_error, new View.OnClickListener(){
+
+														@Override
+														public void onClick(View view)
+														{
+															startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, getString(R.string.send_error_message, Others.getAppVersionName(getApplicationContext()), Others.getRunningActivityName(MainActivity.this), p2.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));
+														}
+													}).show();
+												break;
+										}
+										return true;
+									}
+								});
+							pop_menu.show();
+*/
+						case R.id.navigation_item_my_world:
+							startActivity(new Intent (getApplicationContext(),MyWorldActivity.class));
 							break;
 						case R.id.navigation_item_urllist:
 							Intent url_list_intent = new Intent(getApplicationContext(), URLListActivity.class);
