@@ -2,18 +2,24 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="@dimen/navigation_height"
-	android:layout_width="match_parent">
+	android:layout_width="match_parent"
+	android:theme="@style/ThemeOverlay.AppCompat.Dark"
+	android:background="@drawable/side_nav_bar"
+	android:paddingLeft="@dimen/md_16"
+	android:paddingTop="@dimen/md_16"
+	android:paddingRight="@dimen/md_16"
+	android:paddingBottom="@dimen/md_16">
 
 	<TextView
 		android:layout_height="wrap_content"
 		android:text="@string/app_name"
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:layout_width="wrap_content"
-		android:padding="@dimen/md_16"
 		android:id="@+id/navigation_header_m_app_name"
 		android:layout_above="@+id/navigation_header_saying_textview"
 		android:layout_centerHorizontal="true"
-		android:textSize="@dimen/text_size_large"/>
+		android:textSize="@dimen/text_size_large"
+		android:textColor="@color/white"/>
 
 	<TextView
 		android:layout_height="wrap_content"
@@ -22,7 +28,8 @@
 		android:id="@+id/navigation_header_saying_textview"
 		android:padding="@dimen/normal_10"
 		android:layout_above="@+id/navigation_header_app_version"
-		android:layout_centerHorizontal="true"/>
+		android:layout_centerHorizontal="true"
+		android:textColor="@color/white"/>
 
 	<TextView
 		android:layout_height="wrap_content"
@@ -32,7 +39,7 @@
 		android:id="@+id/navigation_header_app_version"
 		android:layout_centerHorizontal="true"
 		android:layout_alignParentBottom="true"
-		android:padding="@dimen/md_16"/>
+		android:textColor="@color/white"/>
 
 </RelativeLayout>
 

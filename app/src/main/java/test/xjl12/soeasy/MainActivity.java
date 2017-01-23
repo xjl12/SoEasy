@@ -14,6 +14,7 @@ import android.widget.*;
 
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.text.*;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity
 	//public int set_theme = -1;
 	TextInputEditText input;
 	CoordinatorLayout mCl;
+	DrawerLayout mDrawerLayout;
 	
 	//LongTermActionService mService;
 	//boolean mBound = false;
@@ -50,12 +52,13 @@ public class MainActivity extends AppCompatActivity
 		 } */
         setContentView(R.layout.main);
 
-		final DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.main_DrawerLayout);
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.main_DrawerLayout);
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.main_mdToolbar);
 		final NavigationView mNavigation = (NavigationView) findViewById(R.id.main_NavigationView);
 		final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab);
 		mCl = (CoordinatorLayout) findViewById(R.id.main_mdCoordinatorLayout);
 		input = (TextInputEditText) findViewById(R.id.main_m_input);
+		final TextInputLayout inputLayout = (TextInputLayout) findViewById(R.id.main_TextInputLayout);
 		final Typeface light_typeface = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Light.ttf");
 		//final Typeface medium_italic = Typeface.createFromAsset(getAssets(),"fonts/Roboto-MediumItalic.ttf");
 		
@@ -63,6 +66,13 @@ public class MainActivity extends AppCompatActivity
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 
+		mNavigation.setItemIconTintList(null);
+		View header = mNavigation.getHeaderView(0);
+		TextView mNavigation_header_version = (TextView) header.findViewById(R.id.navigation_header_app_version);
+		TextView app_name = (TextView) header.findViewById(R.id.navigation_header_m_app_name);
+		mNavigation_header_version.setText(Others.getAppVersionName(getApplicationContext()));
+		app_name.setTypeface(light_typeface);
+		
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
 			public void onDrawerOpened(View view)
 			{
@@ -78,6 +88,18 @@ public class MainActivity extends AppCompatActivity
 		mDrawerLayout.setDrawerListener(toggle);
 		toggle.syncState();
 
+		input.addTextChangedListener(new TextWatcher(){
+
+				@Override
+				public void afterTextChanged(Editable p1){}
+				@Override
+				public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4){}
+				@Override
+				public void onTextChanged(CharSequence p1, int p2, int p3, int p4)
+				{
+					
+				}
+			});
 		fab.setOnClickListener(new View.OnClickListener(){
 
 				@Override
@@ -101,12 +123,6 @@ public class MainActivity extends AppCompatActivity
 				public void onClick(View p1)
 				{
 					Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(), mCl, input);
-					final TextView mNavigation_header_version = (TextView) findViewById(R.id.navigation_header_app_version);
-					TextView saying_textview = (TextView) findViewById(R.id.navigation_header_saying_textview);
-					TextView app_name = (TextView) findViewById(R.id.navigation_header_m_app_name);
-					mNavigation_header_version.setText(Others.getAppVersionName(getApplicationContext()));
-					saying_textview.getPaint();
-					app_name.setTypeface(light_typeface);
 					mDrawerLayout.openDrawer(GravityCompat.START);
 				}
 			});
@@ -292,6 +308,20 @@ public class MainActivity extends AppCompatActivity
 		Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(), mCl, input);
 		Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
 	}
+	
+	@Override
+    public void onBackPressed() 
+	{
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) 
+		{
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }
+		else 
+		{
+            super.onBackPressed();
+        }
+    }
+}
 	/*private ServiceConnection mConnection = new ServiceConnection(){
 
 		@Override
@@ -308,7 +338,6 @@ public class MainActivity extends AppCompatActivity
 			mBound = false;
 		}
 	};*/
-}
 
 	/**@Override
 	public void onSaveInstanceState(Bundle outState) 

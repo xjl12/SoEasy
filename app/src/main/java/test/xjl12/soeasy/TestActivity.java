@@ -161,11 +161,15 @@ public class TestActivity extends AppCompatActivity
 	}
 	public void TestFC (View view)
 	{
-		fc_button.setFocusable(false);
-		fc_button.setPressed(false);
-		fc_button.setFocusableInTouchMode(false);
-		TextView test_fc = null;
-		test_fc.setText(null);
+		new Thread(new Runnable(){
+
+				@Override
+				public void run()
+				{
+					TextView test_fc = null;
+					test_fc.setText(null);
+				}
+			}).start();
 	}
 	public void OpenRawTestImage (View view) throws IOException
 	{

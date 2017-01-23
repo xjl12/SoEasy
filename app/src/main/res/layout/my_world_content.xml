@@ -1,0 +1,14 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:paddingLeft="@dimen/md_16"
+	android:paddingTop="@dimen/md_16"
+	android:paddingRight="@dimen/md_16"
+	android:paddingBottom="@dimen/md_16"
+	tools:context="test.xjl12.soeasy.MyWorldActivity"
+	tools:showIn="@layout/my_world"
+	android:orientation="vertical"
+	android:gravity="center">
+    
+</LinearLayout>
