@@ -61,7 +61,7 @@ public class Others
         return contextString.substring(contextString.lastIndexOf(".") + 1, contextString.indexOf("@"));
 	}
 	//改变编辑框为非输入状态并收回软键盘
-	public static void ChangeEdittextStatusAndHideSoftInput(Context context, View parent_view, TextInputEditText edittext)
+	public static void ChangeEdittextStatusAndHideSoftInput(Context context, View parent_view, EditText edittext)
 	{
 		parent_view.setFocusable(true);
 		parent_view.setFocusableInTouchMode(true);

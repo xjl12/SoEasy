@@ -21,6 +21,7 @@
     <string name="settings_action_title">设置 --功能开发中~</string>
     <string name="games_button">游戏</string>
     <string name="exit">退出</string>
+	<string name="happy_new_year">新年快乐！</string>
 	<string name="main_point_to_set_theme">看到右上角的按钮了吗？在那里面可以设置本界面的布局和背景颜色哦！</string>
 	<!-- navigation menu -->
 	<string name="navigation_item_home">主页</string>

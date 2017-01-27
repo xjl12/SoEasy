@@ -15,13 +15,14 @@ import android.widget.*;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.text.*;
+import com.wayww.edittextfirework.*;
 
 public class MainActivity extends AppCompatActivity
 {
     public final static String EXTRA_MESSAGE ="test.xjl12.soeasy.MESSAGE";
 	//public LinearLayout main_LinearLayout;
 	//public int set_theme = -1;
-	TextInputEditText input;
+	EditText input;
 	CoordinatorLayout mCl;
 	DrawerLayout mDrawerLayout;
 	
@@ -57,8 +58,8 @@ public class MainActivity extends AppCompatActivity
 		final NavigationView mNavigation = (NavigationView) findViewById(R.id.main_NavigationView);
 		final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab);
 		mCl = (CoordinatorLayout) findViewById(R.id.main_mdCoordinatorLayout);
-		input = (TextInputEditText) findViewById(R.id.main_m_input);
-		final TextInputLayout inputLayout = (TextInputLayout) findViewById(R.id.main_TextInputLayout);
+		input = (EditText) findViewById(R.id.main_m_input);
+		//final TextInputLayout inputLayout = (TextInputLayout) findViewById(R.id.main_TextInputLayout);
 		final Typeface light_typeface = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Light.ttf");
 		//final Typeface medium_italic = Typeface.createFromAsset(getAssets(),"fonts/Roboto-MediumItalic.ttf");
 		
@@ -67,11 +68,14 @@ public class MainActivity extends AppCompatActivity
 		getSupportActionBar().setHomeButtonEnabled(true);
 
 		//mNavigation.setItemIconTintList(null);
+		input.setText(R.string.happy_new_year);
 		View header = mNavigation.getHeaderView(0);
 		TextView mNavigation_header_version = (TextView) header.findViewById(R.id.navigation_header_app_version);
 		TextView app_name = (TextView) header.findViewById(R.id.navigation_header_m_app_name);
 		mNavigation_header_version.setText(Others.getAppVersionName(getApplicationContext()));
 		app_name.setTypeface(light_typeface);
+		FireworkView mFireworkview = (FireworkView) findViewById(R.id.fire_work);
+		mFireworkview.bindEditText(input);
 		
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
 			public void onDrawerOpened(View view)
@@ -87,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 		};
 		mDrawerLayout.setDrawerListener(toggle);
 		toggle.syncState();
-
+/*
 		input.addTextChangedListener(new TextWatcher(){
 
 				@Override
@@ -100,6 +104,7 @@ public class MainActivity extends AppCompatActivity
 					
 				}
 			});
+			*/
 		fab.setOnClickListener(new View.OnClickListener(){
 
 				@Override
