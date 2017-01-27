@@ -4,11 +4,11 @@
 	android:layout_height="@dimen/navigation_height"
 	android:layout_width="match_parent"
 	android:theme="@style/ThemeOverlay.AppCompat.Dark"
-	android:background="@drawable/side_nav_bar"
 	android:paddingLeft="@dimen/md_16"
 	android:paddingTop="@dimen/md_16"
 	android:paddingRight="@dimen/md_16"
-	android:paddingBottom="@dimen/md_16">
+	android:paddingBottom="@dimen/md_16"
+	android:background="@drawable/side_nav_bar">
 
 	<TextView
 		android:layout_height="wrap_content"

@@ -13,7 +13,7 @@
 	<string name="thanks">感谢您使用本程序！</string>
 	<string name="saying">一切如此简单！</string>
 	<string name="mainButton1">点我呀！</string>
-	<string name="main_edit_hint">欢迎您对本软件提出宝贵的建议！</string>
+	<string name="main_edit_hint">写下此刻的想法……</string>
     <string name="second_Activity_text">感谢您的评价!</string>
     <string name="second_Activity_text_null">在编辑框里写点啥吧！</string>
 	<string name="second_Activity_snackbar_action">返回</string>

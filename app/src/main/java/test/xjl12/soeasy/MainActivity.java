@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 
-		mNavigation.setItemIconTintList(null);
+		//mNavigation.setItemIconTintList(null);
 		View header = mNavigation.getHeaderView(0);
 		TextView mNavigation_header_version = (TextView) header.findViewById(R.id.navigation_header_app_version);
 		TextView app_name = (TextView) header.findViewById(R.id.navigation_header_m_app_name);
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity
 				@Override
 				public boolean onNavigationItemSelected(final MenuItem p1)
 				{
-					//mDrawerLayout.closeDrawer(GravityCompat.START);
+					mDrawerLayout.closeDrawer(GravityCompat.START);
 					switch (p1.getItemId())
 					{
 						case R.id.navigation_item_caishu_games:
@@ -181,9 +181,9 @@ public class MainActivity extends AppCompatActivity
 								});
 							pop_menu.show();
 */
-						case R.id.navigation_item_my_world:
+						/*case R.id.navigation_item_my_world:
 							startActivity(new Intent (getApplicationContext(),MyWorldActivity.class));
-							break;
+							break;*/
 						case R.id.navigation_item_urllist:
 							Intent url_list_intent = new Intent(getApplicationContext(), URLListActivity.class);
 							startActivity(url_list_intent);
