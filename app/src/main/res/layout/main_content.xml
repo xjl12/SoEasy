@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,40 +15,39 @@
 	android:gravity="center">
 
 	<TextView
-		android:layout_height="@dimen/height_0"
+		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:layout_width="wrap_content"
 		android:text="@string/welcome"
-		android:layout_weight="6"
 		android:gravity="center"
 		android:id="@+id/main_welcome_TextView"
-		android:textColor="@color/material_black"/>
+		android:textColor="@color/material_black"
+		android:layout_marginTop="16dp"
+		android:layout_centerHorizontal="true"/>
 
 	<ImageView
-		android:layout_height="0dp"
+		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:src="@drawable/happy_new_year_google"
-		android:layout_weight="5"/>
+		android:layout_below="@+id/main_welcome_TextView"
+		android:layout_centerHorizontal="true"
+		android:id="@+id/main_content_ImageView1"/>
 
-	<RelativeLayout
-		android:layout_height="0dp"
-		android:layout_weight="8"
-		android:layout_width="match_parent">
+	
+	<EditText
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:hint="@string/main_edit_hint"
+		android:gravity="center"
+		android:id="@+id/main_m_input"
+		android:layout_below="@+id/main_content_ImageView1"
+		android:layout_marginTop="16dp"
+		android:textColor="@color/material_black"/>
 
-		<EditText
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:hint="@string/main_edit_hint"
-			android:gravity="center"
-			android:id="@+id/main_m_input"
-			android:layout_centerInParent="true"/>
+	<com.wayww.edittextfirework.FireworkView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/fire_work"/>
 
-		<com.wayww.edittextfirework.FireworkView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:id="@+id/fire_work"/>
-
-	</RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>
 

@@ -9,8 +9,8 @@ android {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 57
-        versionName "1.5"
+        versionCode 60
+        versionName "1.6 新春贺岁特别版"
     }
 
     buildTypes {
