@@ -186,9 +186,9 @@ public class MainActivity extends AppCompatActivity
 								});
 							pop_menu.show();
 */
-						/*case R.id.navigation_item_my_world:
+						case R.id.navigation_item_my_world:
 							startActivity(new Intent (getApplicationContext(),MyWorldActivity.class));
-							break;*/
+							break;
 						case R.id.navigation_item_urllist:
 							Intent url_list_intent = new Intent(getApplicationContext(), URLListActivity.class);
 							startActivity(url_list_intent);

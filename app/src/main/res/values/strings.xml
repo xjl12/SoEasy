@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<!-- All Around -->
+	<string name="ok">确认</string>
+	<string name="good">好的</string>
+	<string name="cancel">取消</string>
+	<string name="revoke">撤销</string>
+	<string name="delete">删除</string>
+	<string name="send">发送</string>
+	<string name="no_thanks">不，谢谢</string>
+	<string name="reading">正在读取……</string>
+	<string name="writting">正在写入……</string>
+	<string name="finish_process">操作已完成</string>
 	<!-- Title-->
     <string name="app_name">SoEasy</string>
     <string name="title_second_activity">你成功了！</string>
@@ -7,7 +18,7 @@
     <string name="title_debug">信息</string>
     <string name="title_test">测试</string>
 	<string name="title_urllist">网址</string>
-	<string name="title_my_world">我的世界专区</string>
+	<string name="title_my_world">我的世界存档</string>
 	<!-- Main -->
 	<string name="welcome">欢迎使用SoEasy!</string>
 	<string name="thanks">感谢您使用本程序！</string>
@@ -23,10 +34,11 @@
     <string name="exit">退出</string>
 	<string name="happy_new_year">新年快乐！</string>
 	<string name="main_point_to_set_theme">看到右上角的按钮了吗？在那里面可以设置本界面的布局和背景颜色哦！</string>
-	<!-- navigation menu -->
+	<!-- Navigation Menu -->
 	<string name="navigation_item_home">主页</string>
 	<string name="navigation_group_1">功能</string>
 	<string name="navigation_group_2">其它</string>
+	<string name="navigation_item_my_world">存档</string>
 	<!-- Menu -->
 	<string name="help_development">帮助SoEasy开发</string>
 	<string name="source_string">查看程序源代码</string>
@@ -55,11 +67,22 @@
 	<string name="games_share">来自SoEasy猜数游戏的分享: \n \n我共猜了%s次，不服来战！</string>
     <string name="games_not_see_answers">你似乎还没有猜过呢！不能看答案哦，快去猜猜吧！</string>
 	<!-- MyWorld -->
-	
+	<string name="my_world_soeasy_has_version">SoEasy自带版本:</string>
+	<string name="my_world_phone_has_version">手机上的版本:</string>
+	<string name="my_world_unzip_to_phone">解压到手机</string>
+	<string name="my_world_update">更新存档</string>
+	<string name="finish_if_start_myworld">是否立即起动我的世界？</string>
+	<string name="my_world_delete">删除存档</string>
+	<string name="my_world_send">发送存档</string>
+	<string name="my_world_hurt">存档已损坏，请更新存档！</string>
+	<string name="my_world_starting">正在启动我的世界……\n稍后请选择xjl_lyy_git存档进入</string>
+	<string name="my_world_not_installed">我的世界没有安装，请下载0.16.0.5版本的我的世界！</string>
+	<string name="my_world_not_version">我的世界版本不对，请卸载后重新安装0.16.0.5版本的我的世界</string>
 	<!-- Share -->
 	<string name="share_point">分享到……</string>
 	<string name="share_from_soeasy">从SoEasy分享的消息: \n \n%s</string>
 	<string name="qq_name">com.tencent.mobileqq</string>
+	<string name="my_world_name">com.mojang.minecraftpe</string>
 	<!-- URLList -->
 	<string name="urllist">部分网址中可能有广告！感谢网友@叹。 提供的网址！</string>
     <!-- Debug -->
@@ -92,7 +115,8 @@
     <string name="test_file_read">尝试读取测试文件</string>
     <string name="delete_test_file">删除所有测试文件</string>
 	<string name="delete_complete">已删除测试文件</string>
-	
+	<!-- Warn -->
+	<string name="warn_not_exit">当前任务正在运行中，为避免数据丢失，请勿退出！</string>
     <!--Wrong-->
 	<string name="unknow">未知</string>
 	<string name="retry">重试</string>

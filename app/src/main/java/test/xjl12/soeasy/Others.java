@@ -4,7 +4,9 @@ import android.app.*;
 import android.content.*;
 import android.content.pm.*;
 import android.graphics.*;
+import android.net.*;
 import android.support.design.widget.*;
+import android.support.v7.widget.*;
 import android.util.*;
 import android.view.*;
 import android.view.inputmethod.*;
@@ -12,10 +14,55 @@ import android.widget.*;
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
-import android.net.*;
+
+import android.support.v7.widget.Toolbar;
+import android.support.v7.app.*;
 
 public class Others
 {
+	//初始化activity
+	public static void initActivity (AppCompatActivity mdActivity,Toolbar toolbar)
+	{
+		mdActivity.setSupportActionBar(toolbar);
+		mdActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		mdActivity.getSupportActionBar().setHomeButtonEnabled(true);
+	}
+	//判断程序是否安装
+	public static boolean isAppInstalled(Context context,String package_name)
+	{
+		try
+		{
+			context.getPackageManager().getPackageInfo(package_name,0);
+			return true;
+		}
+		catch (PackageManager.NameNotFoundException e)
+		{
+			return false;
+		}
+	}
+	//判断我的世界版本
+	public static boolean CheckMyWorldVersion (Context context)
+	{
+		int versionCode = -1;
+		String my_world = context.getString(R.string.my_world_name);
+		List<PackageInfo> p_infos = context.getPackageManager().getInstalledPackages(PackageManager.GET_ACTIVITIES);
+		for (PackageInfo p_info : p_infos)
+		{
+			if (p_info.packageName.equals(my_world))
+			{
+				versionCode = p_info.versionCode;
+			}
+		}
+		
+		if (versionCode == 870160005)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	//判断QQ是否安装
 	public static Intent isQQInstalled(Context context, Intent intent)
 	{

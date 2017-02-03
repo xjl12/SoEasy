@@ -10,12 +10,14 @@ android {
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 60
-        versionName "1.6 新春贺岁特别版"
+        versionName "1.6"
+		resConfigs "zh" , "en"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+			shrinkResources true 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

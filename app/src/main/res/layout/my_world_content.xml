@@ -1,4 +1,6 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
@@ -8,7 +10,81 @@
 	android:paddingBottom="@dimen/md_16"
 	tools:context="test.xjl12.soeasy.MyWorldActivity"
 	tools:showIn="@layout/my_world"
-	android:orientation="vertical"
-	android:gravity="center">
-    
-</LinearLayout>
+	android:layout_margin="10dp">
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/my_world_soeasy_has_version"
+		android:layout_width="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentLeft="true"
+		android:id="@+id/my_world_content_soeasy_has_version_TextView"
+		android:layout_marginBottom="16dp"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/reading"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_below="@id/my_world_content_soeasy_has_version_TextView"
+		android:layout_centerHorizontal="true"
+		android:id="@+id/my_world_content_soeaay_version_show_TextView"
+		android:layout_margin="10dp"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/my_world_phone_has_version"
+		android:layout_width="wrap_content"
+		android:layout_below="@id/my_world_content_soeaay_version_show_TextView"
+		android:id="@+id/my_world_content_phone_has_version_TextView"
+		android:layout_alignParentLeft="true"
+		android:layout_marginBottom="16dp"
+		android:visibility="gone"/>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:text="@string/reading"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_below="@id/my_world_content_phone_has_version_TextView"
+		android:layout_centerHorizontal="true"
+		android:layout_margin="10dp"
+		android:id="@+id/my_world_content_phone_version_show_TextView"
+		android:visibility="gone"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:text="@string/my_world_unzip_to_phone"
+		android:layout_width="match_parent"
+		android:id="@+id/my_world_content_unzip_Button"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="16dp"
+		android:layout_below="@id/my_world_content_phone_version_show_TextView"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:text="@string/my_world_send"
+		android:layout_width="match_parent"
+		android:layout_below="@id/my_world_content_unzip_Button"
+		android:id="@+id/my_world_content_send_Button"
+		android:visibility="gone"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:text="@string/revoke"
+		android:layout_width="match_parent"
+		android:id="@+id/my_world_content_revoke_Button"
+		android:layout_below="@id/my_world_content_send_Button"
+		android:visibility="gone"/>
+
+	<Button
+		android:layout_height="wrap_content"
+		android:text="@string/my_world_delete"
+		android:layout_width="match_parent"
+		android:layout_below="@id/my_world_content_revoke_Button"
+		android:textColor="@color/red"
+		android:id="@+id/my_world_content_delete_Button"
+		android:visibility="gone"/>
+
+</RelativeLayout>
+
