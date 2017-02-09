@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity
 	EditText input;
 	CoordinatorLayout mCl;
 	DrawerLayout mDrawerLayout;
-	
+
 	//LongTermActionService mService;
 	//boolean mBound = false;
 
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity
 		mCl = (CoordinatorLayout) findViewById(R.id.main_mdCoordinatorLayout);
 		input = (EditText) findViewById(R.id.main_m_input);
 		//final TextInputLayout inputLayout = (TextInputLayout) findViewById(R.id.main_TextInputLayout);
-		final Typeface light_typeface = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Light.ttf");
+		final Typeface light_typeface = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
 		//final Typeface medium_italic = Typeface.createFromAsset(getAssets(),"fonts/Roboto-MediumItalic.ttf");
-		
+
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity
 		app_name.setTypeface(light_typeface);
 		FireworkView mFireworkview = (FireworkView) findViewById(R.id.fire_work);
 		mFireworkview.bindEditText(input);
-		
+
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
 			public void onDrawerOpened(View view)
 			{
@@ -91,20 +91,20 @@ public class MainActivity extends AppCompatActivity
 		};
 		mDrawerLayout.setDrawerListener(toggle);
 		toggle.syncState();
-/*
-		input.addTextChangedListener(new TextWatcher(){
+		/*
+		 input.addTextChangedListener(new TextWatcher(){
 
-				@Override
-				public void afterTextChanged(Editable p1){}
-				@Override
-				public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4){}
-				@Override
-				public void onTextChanged(CharSequence p1, int p2, int p3, int p4)
-				{
-					
-				}
-			});
-			*/
+		 @Override
+		 public void afterTextChanged(Editable p1){}
+		 @Override
+		 public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4){}
+		 @Override
+		 public void onTextChanged(CharSequence p1, int p2, int p3, int p4)
+		 {
+
+		 }
+		 });
+		 */
 		fab.setOnClickListener(new View.OnClickListener(){
 
 				@Override
@@ -147,47 +147,14 @@ public class MainActivity extends AppCompatActivity
 				@Override
 				public boolean onNavigationItemSelected(final MenuItem p1)
 				{
-					mDrawerLayout.closeDrawer(GravityCompat.START);
 					switch (p1.getItemId())
 					{
 						case R.id.navigation_item_caishu_games:
 							Intent games_intent = new Intent(getApplicationContext(), GamesActivity.class);
 							startActivity(games_intent);
 							break;
-/*
-							PopupMenu pop_menu = new PopupMenu(MainActivity.this,p1.getActionView());
-							pop_menu.getMenuInflater().inflate(R.menu.games_submenu,pop_menu.getMenu());
-							pop_menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
-
-									@Override
-									public boolean onMenuItemClick(final MenuItem p2)
-									{
-										switch (p2.getItemId())
-										{
-											case R.id.game_caishu_item:
-												Intent games_intent = new Intent(getApplicationContext(), GamesActivity.class);
-												startActivity(games_intent);
-												break;
-											default:
-												Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
-													.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-													.setAction(R.string.send_error, new View.OnClickListener(){
-
-														@Override
-														public void onClick(View view)
-														{
-															startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, getString(R.string.send_error_message, Others.getAppVersionName(getApplicationContext()), Others.getRunningActivityName(MainActivity.this), p2.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));
-														}
-													}).show();
-												break;
-										}
-										return true;
-									}
-								});
-							pop_menu.show();
-*/
 						case R.id.navigation_item_my_world:
-							startActivity(new Intent (getApplicationContext(),MyWorldActivity.class));
+							startActivity(new Intent(getApplicationContext(), MyWorldActivity.class));
 							break;
 						case R.id.navigation_item_urllist:
 							Intent url_list_intent = new Intent(getApplicationContext(), URLListActivity.class);
@@ -199,7 +166,7 @@ public class MainActivity extends AppCompatActivity
 							break;
 						case R.id.navigation_item_debug:
 							Intent debug_intent = new Intent(getApplicationContext(), DebugActivity.class);
-							debug_intent.putExtra(EXTRA_MESSAGE,Others.getAppVersionName(getApplicationContext()));
+							debug_intent.putExtra(EXTRA_MESSAGE, Others.getAppVersionName(getApplicationContext()));
         					startActivity(debug_intent);
 							break;
 						case R.id.navigation_item_exit:
@@ -222,7 +189,7 @@ public class MainActivity extends AppCompatActivity
 					return true;
 				}
 			});
-			
+
 		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
 
 				@Override
@@ -231,7 +198,7 @@ public class MainActivity extends AppCompatActivity
 					switch (item.getItemId())
 					{
 						case R.id.help_development:
-							Toast.makeText(getApplicationContext(),getString(R.string.help_prompt_message),Toast.LENGTH_LONG).show();
+							Toast.makeText(getApplicationContext(), getString(R.string.help_prompt_message), Toast.LENGTH_LONG).show();
 							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
 							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
 							startActivity(help_development_web);
@@ -273,7 +240,7 @@ public class MainActivity extends AppCompatActivity
 														}
 														else
 														{
-															Toast.makeText(MainActivity.this,getString(R.string.Error_cannot_shot),Toast.LENGTH_LONG);
+															Toast.makeText(MainActivity.this, getString(R.string.Error_cannot_shot), Toast.LENGTH_LONG);
 														}
 													}
 												}).show();
@@ -295,7 +262,7 @@ public class MainActivity extends AppCompatActivity
 					return true;
 				}
 			});
-			Others.DeleteDirAllFile(getExternalFilesDir("Log"));
+		//Others.DeleteDirAllFile(getExternalFilesDir("Log"));
     }
 
 	@Override
@@ -311,9 +278,9 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onResume();
 		Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(), mCl, input);
-		Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
+		//Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
 	}
-	
+
 	@Override
     public void onBackPressed() 
 	{
@@ -326,6 +293,16 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
+	@Override
+	protected void onStop()
+	{
+		if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) 
+		{
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }
+		super.onStop();
+	}
 }
 	/*private ServiceConnection mConnection = new ServiceConnection(){
 

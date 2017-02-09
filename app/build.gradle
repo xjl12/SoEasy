@@ -9,8 +9,8 @@ android {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 60
-        versionName "1.6"
+        versionCode 70
+        versionName "1.7"
 		resConfigs "zh" , "en"
     }
 
@@ -24,6 +24,7 @@ android {
 }
 
 dependencies {
+	compile project(':maddogdialogs')
 	compile project(':edittextfirework')
 	compile 'com.android.support:design:+'
     compile fileTree(dir: 'libs', include: ['*.jar'])

@@ -30,7 +30,7 @@
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:layout_gravity="bottom|end"
-		app:srcCompat="@drawable/menu_share"
+		app:srcCompat="@drawable/ic_lightbulb_outline_white"
 		android:layout_margin="@dimen/md_16"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -20,7 +20,7 @@
 		<item
 			android:id="@+id/navigation_item_my_world"
 			android:title="@string/navigation_item_my_world"
-			android:icon="@drawable/my_world"/>
+			android:icon="@drawable/ic_description_black"/>
 		<item
 			android:id="@+id/navigation_item_urllist"
 			android:title="@string/title_urllist"

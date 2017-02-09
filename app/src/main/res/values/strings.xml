@@ -3,14 +3,28 @@
 	<!-- All Around -->
 	<string name="ok">确认</string>
 	<string name="good">好的</string>
+	<string name="continue_str">继续</string>
 	<string name="cancel">取消</string>
-	<string name="revoke">撤销</string>
+	<string name="revoke">撤销还原</string>
 	<string name="delete">删除</string>
+	<string name="delete_backup">删除备份</string>
 	<string name="send">发送</string>
+	<string name="warn">警告</string>
+	<string name="error">错误</string>
+	<string name="help">帮助</string>
+	<string name="feebback">反馈</string>
 	<string name="no_thanks">不，谢谢</string>
+	<string name="ok_I_know">好的，我知道了</string>
 	<string name="reading">正在读取……</string>
 	<string name="writting">正在写入……</string>
 	<string name="finish_process">操作已完成</string>
+	<string name="running">正在运行……</string>
+	<string name="running_mesage">正在执行操作，请耐心等待</string>
+	<string name="feebback_point">反馈内容已复制到剪切板中，粘贴后即可发送。</string>
+	<string name="error_message">操作失败，请稍后重试，如多次发生此错误，欢迎反馈给我！</string>
+	<string name="error_message_with_infomation">操作失败，请稍后重试，如多次发生此错误，欢迎反馈给我！\n\n以下是有关此错误的详细信息：\n\n %s</string>
+	<string name="sdcard_error">您的存储设备似乎不可用。\n\n请按照如下步骤检查您的设备:\n1.您是否授予SoEasy存储权限？\n2.您是否挂载USB存储设备到电脑上？\n3.您的存储设备可用空间（至少要5MB）是否充足？\n4.也许您应该重新启动一下手机？\n\n如果您排除了这些问题，请再试一次，如果多次出现此情况请及时向我反馈！</string>
+	<string name="sdcard_error_with_info">您的存储设备似乎不可用。\n\n请按照如下步骤检查您的设备:\n1.您是否授予SoEasy存储权限？\n2.您是否挂载USB存储设备到电脑上？\n3.您的存储设备可用空间（至少要5MB）是否充足？\n4.也许您应该重新启动一下手机？\n\n如果您排除了这些问题，请再试一次，如果多次出现此情况请及时向我反馈！\n以下是错误信息:\n\n%s</string>
 	<!-- Title-->
     <string name="app_name">SoEasy</string>
     <string name="title_second_activity">你成功了！</string>
@@ -69,15 +83,27 @@
 	<!-- MyWorld -->
 	<string name="my_world_soeasy_has_version">SoEasy自带版本:</string>
 	<string name="my_world_phone_has_version">手机上的版本:</string>
+	<string name="my_world_backup_version">备份区版本:</string>
 	<string name="my_world_unzip_to_phone">解压到手机</string>
 	<string name="my_world_update">更新存档</string>
 	<string name="finish_if_start_myworld">是否立即起动我的世界？</string>
 	<string name="my_world_delete">删除存档</string>
 	<string name="my_world_send">发送存档</string>
 	<string name="my_world_hurt">存档已损坏，请更新存档！</string>
+	<string name="my_world_read_failed">读取失败，请稍后再试</string>
+	<string name="my_world_development_option">开发者选项</string>
+	<string name="my_world_package">打包存档并打开AIDE</string>
 	<string name="my_world_starting">正在启动我的世界……\n稍后请选择xjl_lyy_git存档进入</string>
 	<string name="my_world_not_installed">我的世界没有安装，请下载0.16.0.5版本的我的世界！</string>
 	<string name="my_world_not_version">我的世界版本不对，请卸载后重新安装0.16.0.5版本的我的世界</string>
+	<string name="my_world_phone_version_bigger">您手机上的我的世界存档版本比SoEasy自带版本更高，继续操作将会使您的修改失效，但如果您仅仅是为了还原存档，请继续，否则为保护您的数据，请取消！\n\n小提示:本操作可使用下面的撤销按钮撤销。</string>
+	<string name="my_world_help">\n我的世界存档管理功能集解压、更新、发送、删除等功能于一体，旨在方便xjl_lyy_git存档的同步，共同建设美好明天！\n\n以下是各功能要点说明:\n
+	1、存档版本\n存档版本是由一串数字组成，每进入一次存档，数字便会往高处增长，增长的多少是由我的世界游戏决定的，与SoEasy无关，SoEasy只是通过记录存档来方便管理罢。\n
+	2、解压/更新\nSoEasy自带一份完整的存档，使用该功能可以将SoEasy内的存档解压到手机上。\n注意:请不要将低版本存档解压到手机，这会覆盖掉手机上的高版本存档,如执意操作，则SoEasy会自动备份手机上的高版本存档，用户可随时还原。\n
+	3、发送存档\n该功能会将手机上的存档打包成压缩包，用户在弹出来的界面中选择好友即可发送分享。\n
+	3、删除\n该功能不会自动备份存档，请谨慎操作！谨防数据丢失！\n
+	\n数据无价，谨慎操作！\n</string>
+	
 	<!-- Share -->
 	<string name="share_point">分享到……</string>
 	<string name="share_from_soeasy">从SoEasy分享的消息: \n \n%s</string>
@@ -121,6 +147,7 @@
 	<string name="unknow">未知</string>
 	<string name="retry">重试</string>
     <string name="wrong">出现未知错误！请及时反馈！</string>
+	
 	<string name="Error_cannot_shot">无法截图!请及时反馈！</string>
 	<string name="send_error">反馈</string>
 	<string name="Error_no_file">致命错误:测试文件不存在！</string>

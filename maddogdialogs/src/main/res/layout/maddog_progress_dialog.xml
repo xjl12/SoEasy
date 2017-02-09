@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="@dimen/maddog_dimen_material_design_default_padding"
+    android:paddingLeft="@dimen/maddog_dimen_material_design_default_padding"
+    android:paddingEnd="@dimen/maddog_dimen_material_design_default_padding"
+    android:paddingRight="@dimen/maddog_dimen_material_design_default_padding"
+    android:paddingTop="@dimen/maddog_dimen_material_design_default_padding"
+    android:paddingBottom="@dimen/maddog_dimen_material_design_default_padding">
+    <TextView
+        android:id="@+id/maddogProgressDialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:textSize="@dimen/maddog_dimen_title_text_size"/>
+    <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+        android:id="@+id/maddogProgressDialogIndicator"
+        android:layout_below="@+id/maddogProgressDialogTitle"
+        android:layout_marginTop="@dimen/maddog_dimen_material_design_defaul_space_between_contents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:mpb_progressStyle="circular" />
+    <TextView
+        android:id="@+id/maddogProgressDialogMessage"
+        android:layout_toEndOf="@+id/maddogProgressDialogIndicator"
+        android:layout_toRightOf="@+id/maddogProgressDialogIndicator"
+        android:layout_alignTop="@+id/maddogProgressDialogIndicator"
+        android:layout_alignBottom="@+id/maddogProgressDialogIndicator"
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/maddog_dimen_material_design_default_padding"
+        android:layout_marginLeft="@dimen/maddog_dimen_material_design_default_padding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/maddog_dimen_message_text_size"/>
+</RelativeLayout>

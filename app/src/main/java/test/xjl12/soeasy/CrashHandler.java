@@ -71,7 +71,7 @@ public class CrashHandler implements UncaughtExceptionHandler
             File saveCrashInfo2File = saveCrashInfo2File(th);
             if (saveCrashInfo2File != null) 
 			{
-                ((AlarmManager) mContext.getSystemService("alarm")).set(1, System.currentTimeMillis() + ((long) 100), PendingIntent.getActivity(mContext, 0, Intent.createChooser(Others.isQQInstalled(mContext, new Intent(Intent.ACTION_SEND).setData(Uri.fromFile(saveCrashInfo2File)).setType("text/*")), mContext.getResources().getString(R.string.fc_and_send)), 268435456));
+                ((AlarmManager) mContext.getSystemService("alarm")).set(1, System.currentTimeMillis() + (100L), PendingIntent.getActivity(mContext, 0, Intent.createChooser(Others.isQQInstalled(mContext, new Intent(Intent.ACTION_SEND).setData(Uri.fromFile(saveCrashInfo2File)).setType("text/*")), mContext.getResources().getString(R.string.fc_and_send)), 268435456));
                 return true;
             }
             Toast.makeText(mContext, this.mContext.getResources().getString(R.string.fc), 0).show();
@@ -130,7 +130,7 @@ public class CrashHandler implements UncaughtExceptionHandler
         stringBuffer.append(stringWriter.toString());
         try
 		{
-            File file = new File(this.mContext.getExternalFilesDir("Log"), new StringBuffer().append(new StringBuffer().append(new StringBuffer().append(new StringBuffer().append("log-").append(this.formatter.format(new Date())).toString()).append("-").toString()).append(System.currentTimeMillis()).toString()).append(".log").toString());
+            File file = new File(mContext.getExternalFilesDir("Log"), new StringBuffer().append(new StringBuffer().append(new StringBuffer().append(new StringBuffer().append("log-").append(this.formatter.format(new Date())).toString()).append("-").toString()).append(System.currentTimeMillis()).toString()).append(".log").toString());
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write(stringBuffer.toString().getBytes());
             fileOutputStream.flush();
@@ -139,7 +139,7 @@ public class CrashHandler implements UncaughtExceptionHandler
         }
 		catch (Exception e)
 		{
-            return (File) null;
+            return null;
         }
     }
 }

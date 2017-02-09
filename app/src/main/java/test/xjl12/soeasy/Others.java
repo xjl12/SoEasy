@@ -17,22 +17,25 @@ import java.util.*;
 
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.*;
+import android.content.res.*;
+import java.util.zip.*;
 
 public class Others
 {
+	public static final String separator = ";";
 	//初始化activity
-	public static void initActivity (AppCompatActivity mdActivity,Toolbar toolbar)
+	public static void initActivity(AppCompatActivity mdActivity, Toolbar toolbar)
 	{
 		mdActivity.setSupportActionBar(toolbar);
 		mdActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		mdActivity.getSupportActionBar().setHomeButtonEnabled(true);
 	}
 	//判断程序是否安装
-	public static boolean isAppInstalled(Context context,String package_name)
+	public static boolean isAppInstalled(Context context, String package_name)
 	{
 		try
 		{
-			context.getPackageManager().getPackageInfo(package_name,0);
+			context.getPackageManager().getPackageInfo(package_name, 0);
 			return true;
 		}
 		catch (PackageManager.NameNotFoundException e)
@@ -41,7 +44,7 @@ public class Others
 		}
 	}
 	//判断我的世界版本
-	public static boolean CheckMyWorldVersion (Context context)
+	public static boolean CheckMyWorldVersion(Context context)
 	{
 		int versionCode = -1;
 		String my_world = context.getString(R.string.my_world_name);
@@ -53,7 +56,7 @@ public class Others
 				versionCode = p_info.versionCode;
 			}
 		}
-		
+
 		if (versionCode == 870160005)
 		{
 			return true;
@@ -107,6 +110,179 @@ public class Others
         String contextString = context.toString();
         return contextString.substring(contextString.lastIndexOf(".") + 1, contextString.indexOf("@"));
 	}
+	//判断存储设备是否可写
+	public static boolean checkIsStorageWritable(Context context)
+	{
+		try
+		{
+			File test_file = new File(context.getExternalCacheDir(), RandomString(5));
+			OutputStream os = new FileOutputStream(test_file);
+			os.write(RandomString(16).getBytes());
+			os.flush();
+			os.close();
+			test_file.delete();
+			return true;
+		}
+		catch (IOException e)
+		{
+			return false;
+		}
+	}
+
+	public static String checkStorageWritableWithInfo(Context context)
+	{
+		try
+		{
+			File test_file = new File(context.getExternalCacheDir(), RandomString(5));
+			OutputStream os = new FileOutputStream(test_file);
+			os.write(RandomString(16).getBytes());
+			os.flush();
+			os.close();
+			test_file.delete();
+		}
+		catch (IOException e)
+		{
+			return e.toString();
+		}
+		return null;
+	}
+	//获取目录结构
+	public static String getDiretoryStructureForString(File dir, String dir_name)
+	{
+		StringBuffer result = new StringBuffer();
+		if (dir.isDirectory())
+		{
+			File[] lists = dir.listFiles();
+			if (lists.length == 0 && dir_name == null)
+			{
+				result.append(dir.getName() + File.separator);
+			}
+			else if (lists.length == 0)
+			{
+				result.append(dir_name + File.separator + dir.getName() + File.separator);
+			}
+			else
+			{
+				for (File file : lists)
+				{
+					if (dir_name == null)
+					{
+						result.append(getDiretoryStructureForString(file, dir.getName()));
+					}
+					else
+					{
+						result.append(getDiretoryStructureForString(file, dir_name + File.separator + dir.getName()));
+					}
+				}
+			}
+		}
+		else
+		{
+			result.append(dir_name + File.separator + dir.getName() + separator);
+		}
+		return result.toString();
+	}
+
+	//流复制
+	public static void copyAcordingStream(InputStream is, OutputStream os) throws IOException
+	{
+		byte[] cache = new byte[1024];
+		int length;
+		while ((length = is.read(cache)) > 0)
+		{
+			os.write(cache, 0, length);
+		}
+	}
+	/*	复制文件或文件夹
+	 例如:复制/abc目录到/abcd/
+	 则应该传入/abc的File对象和/abcd/abc的File对象
+	 */
+	public static void fileCopy(File src, File dest) throws IOException
+	{
+		if (src.isDirectory())
+		{
+			if (!dest.exists())
+			{
+				dest.mkdir();
+			}
+			String[] list = src.list();
+			for (String list_file_name : list)
+			{
+				File src_file = new File(src, list_file_name);
+				File dest_file = new File(dest, list_file_name);
+				fileCopy(src_file, dest_file);
+			}
+		}
+		else
+		{
+			InputStream is = new FileInputStream(src);
+			OutputStream os = new FileOutputStream(dest);
+			copyAcordingStream(is, os);
+			is.close();
+			os.flush();
+			os.close();
+		}
+	}
+	/*	解压assets中指定目录到sd卡指定目录
+	 例如将指定assets下abc目录所有文件解压到/sdcard/abc中
+	 则应传入Context,abc的String对象,/sdcard/abc的File对象
+	 */
+	public static void assetsCopy(AssetManager am, String assets_path, File dest) throws IOException
+	{
+		if (dest.isDirectory())
+		{
+			String[] file_names = am.list(assets_path);
+			for (String file_name : file_names)
+			{
+				File dest_file = new File(dest, file_name);
+				String[] sub_list = am.list(assets_path + "/" + file_name);
+				if (sub_list.length > 0)
+				{
+					dest_file.mkdir();
+				}
+				assetsCopy(am, assets_path + "/" + file_name, dest_file);
+			}
+		}
+		else
+		{
+			InputStream is = am.open(assets_path);
+			OutputStream os = new FileOutputStream(dest);
+			copyAcordingStream(is, os);
+			is.close();
+			os.flush();
+			os.close();
+		}
+	}
+	//ZIP压缩方法，支持文件夹压缩
+
+	public static void zipCompression(File src, File target) throws IOException
+	{
+		InputStream is;
+		ZipOutputStream zipOs = new ZipOutputStream(new FileOutputStream(target));
+		ZipEntry zipEntry;
+		String[] lists = getDiretoryStructureForString(src, null).split(separator);
+		for (String file : lists)
+		{
+			File src_file;
+			if (file.endsWith(File.separator))
+			{
+				zipEntry = new ZipEntry(file);
+				zipOs.putNextEntry(zipEntry);
+			}
+			else
+			{
+				src_file = new File(src.getParentFile(), file);
+				zipEntry = new ZipEntry(file);
+				is = new FileInputStream(src_file);
+				zipOs.putNextEntry(zipEntry);
+				copyAcordingStream(is, zipOs);
+				is.close();
+			}
+		}
+		zipOs.flush();
+		zipOs.close();
+	}
+
 	//改变编辑框为非输入状态并收回软键盘
 	public static void ChangeEdittextStatusAndHideSoftInput(Context context, View parent_view, EditText edittext)
 	{
@@ -137,7 +313,7 @@ public class Others
 		if (shot_file.exists())
 		{
 			Intent send = new Intent(Intent.ACTION_SEND);
-			send.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(shot_file));
+			send.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(shot_file));
 			send.setType("image/png");
 			return Intent.createChooser(isQQInstalled(context, send), context.getString(R.string.share_point));
 		}
@@ -170,14 +346,22 @@ public class Others
 	//删除目录内所有文件文件
 	public static boolean DeleteDirAllFile(File dir)
 	{
-		File cache_dir_file;
-		String[] cache_dir_files = dir.list();
-		for (int f = 0;f < cache_dir_files.length;f++)
+		if (dir.isDirectory())
 		{
-			cache_dir_file = new File(dir, cache_dir_files[f]);
-			cache_dir_file.delete();
+			File[] list_files = dir.listFiles();
+			for (File file : list_files)
+			{
+				DeleteDirAllFile(file);
+			}
+			
 		}
-		return true;
+		return dir.delete();
+	}
+	//测试
+	public static void test(Context context)
+	{
+		Intent intent = new Intent(context, MainActivity.class);
+		context.startActivity(intent);
 	}
 	//输入流转文本
 	public static String getString(InputStream is)
@@ -230,8 +414,8 @@ public class Others
 		}
 		catch (FileNotFoundException e)
 		{}
-		
-		return Intent.createChooser(isQQInstalled(activity.getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_STREAM,Uri.fromFile(shot_file)).setType("image/png")), activity.getString(R.string.share_point));
+
+		return Intent.createChooser(isQQInstalled(activity.getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_STREAM, Uri.fromFile(shot_file)).setType("image/png")), activity.getString(R.string.share_point));
 	}
 
 	public static Activity getGlobleActivity() throws ClassNotFoundException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, NoSuchFieldException
