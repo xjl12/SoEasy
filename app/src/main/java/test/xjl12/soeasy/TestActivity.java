@@ -38,20 +38,11 @@ public class TestActivity extends AppCompatActivity
         test_textview1 = (TextView) findViewById(R.id.testTextView1);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.test_mdToolbar);
 		final CoordinatorLayout mCl = (CoordinatorLayout) findViewById(R.id.test_mdCoordinatorLayout);
-        Button test1 = (Button) findViewById(R.id.test_content_test_Button1);
 		
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
 		
-		test1.setOnClickListener(new View.OnClickListener(){
-
-				@Override
-				public void onClick(View p1)
-				{
-					Others.test(TestActivity.this);
-				}
-			});
 		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
 
 				@Override
