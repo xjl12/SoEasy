@@ -33,6 +33,10 @@
 			android:id="@+id/navigation_item_debug"
 			android:title="@string/title_debug"
 			android:icon="@drawable/ic_info"/>
+		<item
+			android:id="@+id/navigation_item_update"
+			android:title="@string/update"/>
+		<!--	android:icon="@drawable/ic_update" -->
 		<item 
 			android:id="@+id/navigation_item_exit"
 			android:title="@string/exit"

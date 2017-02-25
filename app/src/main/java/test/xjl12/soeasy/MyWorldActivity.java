@@ -120,7 +120,7 @@ public class MyWorldActivity extends AppCompatActivity
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					feebbackErrorInfo(error_info);
+					Others.feebbackErrorInfo(error_info,MyWorldActivity.this,mHandle);
 					p1.dismiss();
 				}
 			});
@@ -166,7 +166,7 @@ public class MyWorldActivity extends AppCompatActivity
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					feebbackErrorInfo(error_info);
+					Others.feebbackErrorInfo(error_info,MyWorldActivity.this,mHandle);
 				}
 			});
 		error_builder.setOnDismissListener(errorDialogDismiss());
@@ -668,49 +668,7 @@ public class MyWorldActivity extends AppCompatActivity
 		}
 		return -1;
 	}
-	private void feebbackErrorInfo (final String info)
-	{
-		new Thread(new Runnable(){
-
-				@Override
-				public void run()
-				{
-					Intent feebback;
-					final String feebback_message = getString(R.string.send_error_message, Others.getAppVersionName(getApplicationContext()), Others.getRunningActivityName(MyWorldActivity.this),info == null? getString(R.string.wrong):info);
-					if (Others.isAppInstalled(MyWorldActivity.this, getString(R.string.qq_name)))
-					{
-						feebback = new Intent(Intent.ACTION_VIEW, Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin=1062256455"));
-						mHandle.post(new Runnable(){
-
-								@Override
-								public void run()
-								{
-									ClipboardManager clip = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-									clip.setText(feebback_message);
-								}
-
-						});
-					}
-					else
-					{
-						feebback = new Intent(Intent.ACTION_SEND);
-						feebback.setType("text/plain");
-					}
-					feebback.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					feebback.putExtra(Intent.EXTRA_TEXT,feebback_message);
-					try
-					{
-						Thread.sleep(100L);
-					}
-					catch (InterruptedException e)
-					{
-						errorDialog(e.toString());
-					}
-					startActivity(feebback);
-				}
-			}).start();
-			Toast.makeText(getApplicationContext(),getString(R.string.feebback_point),Toast.LENGTH_LONG).show();
-	}
+	
 	private void errorCanNotWrite(String error)
 	{
 		if (error != null)

@@ -3,9 +3,12 @@ package test.xjl12.soeasy;
 import android.app.*;
 import android.content.*;
 import android.content.pm.*;
+import android.content.res.*;
 import android.graphics.*;
 import android.net.*;
+import android.os.*;
 import android.support.design.widget.*;
+import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.util.*;
 import android.view.*;
@@ -13,12 +16,13 @@ import android.view.inputmethod.*;
 import android.widget.*;
 import java.io.*;
 import java.lang.reflect.*;
+import java.net.*;
 import java.util.*;
+import java.util.zip.*;
 
 import android.support.v7.widget.Toolbar;
-import android.support.v7.app.*;
-import android.content.res.*;
-import java.util.zip.*;
+import java.lang.Process;
+import android.accounts.*;
 
 public class Others
 {
@@ -109,6 +113,48 @@ public class Others
 	{    
         String contextString = context.toString();
         return contextString.substring(contextString.lastIndexOf(".") + 1, contextString.indexOf("@"));
+	}
+	//反馈
+	public static void feebbackErrorInfo (final String info,final Context context,final Handler mHandle)
+	{
+		new Thread(new Runnable(){
+
+				@Override
+				public void run()
+				{
+					Intent feebback;
+					final String feebback_message = context.getString(R.string.send_error_message, Others.getAppVersionName(context), Others.getRunningActivityName(context),info == null? context.getString(R.string.wrong):info);
+					if (Others.isAppInstalled(context,context.getString(R.string.qq_name)))
+					{
+						feebback = new Intent(Intent.ACTION_VIEW, Uri.parse("mqqwpa://im/chat?chat_type=wpa&uin=1062256455"));
+						mHandle.post(new Runnable(){
+
+								@Override
+								public void run()
+								{
+									ClipboardManager clip = (ClipboardManager) context.getSystemService(context.CLIPBOARD_SERVICE);
+									clip.setText(feebback_message);
+								}
+
+							});
+					}
+					else
+					{
+						feebback = new Intent(Intent.ACTION_SEND);
+						feebback.setType("text/plain");
+					}
+					feebback.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					feebback.putExtra(Intent.EXTRA_TEXT,feebback_message);
+					try
+					{
+						Thread.sleep(100L);
+					}
+					catch (InterruptedException e)
+					{}
+					context.startActivity(feebback);
+				}
+			}).start();
+		Toast.makeText(context,context.getString(R.string.feebback_point),Toast.LENGTH_LONG).show();
 	}
 	//判断存储设备是否可写
 	public static boolean checkIsStorageWritable(Context context)
@@ -282,7 +328,27 @@ public class Others
 		zipOs.flush();
 		zipOs.close();
 	}
-
+	//Web
+	public static String getWebString(String url_str,HttpURLConnection connection) throws Exception
+	{
+		URL url = new URL(url_str);
+		connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestMethod("GET");
+		connection.setReadTimeout(5000);
+		connection.setConnectTimeout(10000);
+		
+		int request_code = connection.getResponseCode();
+		if (request_code == 200)
+		{
+			InputStream is = connection.getInputStream();
+			String request = getString(is);
+			return request;
+		}
+		else
+		{
+			throw new NetworkErrorException(Integer.toString(request_code));
+		}
+	}
 	//改变编辑框为非输入状态并收回软键盘
 	public static void ChangeEdittextStatusAndHideSoftInput(Context context, View parent_view, EditText edittext)
 	{
@@ -364,25 +430,18 @@ public class Others
 		context.startActivity(intent);
 	}
 	//输入流转文本
-	public static String getString(InputStream is)
+	public static String getString(InputStream is) throws IOException
 	{
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		StringBuffer sb = new StringBuffer("");
 		String line;
-		try
+		while ((line = br.readLine()) != null)
 		{
-			while ((line = br.readLine()) != null)
-			{
-				sb.append(line);
-				//sb.append("/n");
-			}
+			sb.append(line);
+			//sb.append("\n");
 		}
-		catch (IOException e)
-		{
-			Log.e("Read", "Read test.txt error");
- 			return "Error:java.io.IOException";
-		}
+		
 		return sb.toString();
 	}
 	// 获取当前活动的截屏

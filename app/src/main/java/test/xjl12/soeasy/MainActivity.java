@@ -16,6 +16,8 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.text.*;
 import com.wayww.edittextfirework.*;
+import com.maddog05.maddogdialogs.MaddogProgressDialog;
+import java.net.*;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -25,7 +27,12 @@ public class MainActivity extends AppCompatActivity
 	EditText input;
 	CoordinatorLayout mCl;
 	DrawerLayout mDrawerLayout;
-
+	MaddogProgressDialog mProgress;
+	AlertDialog.Builder new_version;
+	AlertDialog.Builder not_new_version;
+	AlertDialog.Builder error_dialog;
+	HttpURLConnection connection;
+	
 	//LongTermActionService mService;
 	//boolean mBound = false;
 
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity
 		 }
 		 } */
         setContentView(R.layout.main);
-
+		
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.main_DrawerLayout);
 		final Toolbar toolbar = (Toolbar) findViewById(R.id.main_mdToolbar);
 		final NavigationView mNavigation = (NavigationView) findViewById(R.id.main_NavigationView);
@@ -105,6 +112,19 @@ public class MainActivity extends AppCompatActivity
 		 }
 		 });
 		 */
+		 
+		 //Dialog init
+		mProgress = new MaddogProgressDialog(this);
+		mProgress.setCancelable(false);
+		mProgress.setTitle(R.string.running);
+		mProgress.setMessage(R.string.updating_message);
+		
+		new_version = new AlertDialog.Builder(this);
+		new_version.setTitle(R.string.find_new_version_title);
+		new_version.setIcon(R.drawable.ic_check_black);
+		new_version.setMessage(R.string.find_new_version);
+		new_version.setPositiveButton();
+		
 		fab.setOnClickListener(new View.OnClickListener(){
 
 				@Override
@@ -168,6 +188,9 @@ public class MainActivity extends AppCompatActivity
 							Intent debug_intent = new Intent(getApplicationContext(), DebugActivity.class);
 							debug_intent.putExtra(EXTRA_MESSAGE, Others.getAppVersionName(getApplicationContext()));
         					startActivity(debug_intent);
+							break;
+						case R.id.navigation_item_update:
+							
 							break;
 						case R.id.navigation_item_exit:
 							Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
