@@ -8,13 +8,9 @@ import android.support.design.widget.*;
 import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
-import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
-
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
-import android.text.*;
 import com.wayww.edittextfirework.*;
 import com.maddog05.maddogdialogs.MaddogProgressDialog;
 import java.net.*;
@@ -51,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-		/** if (savedInstanceState != null)
+		/* if (savedInstanceState != null)
 		 {
 		 if (savedInstanceState.getInt("theme") != -1)
 		 {
@@ -96,24 +92,11 @@ public class MainActivity extends AppCompatActivity
 				fab.show();
 			}
 		};
-		mDrawerLayout.setDrawerListener(toggle);
+		//mDrawerLayout.setDrawerListener(toggle);
 		toggle.syncState();
-		/*
-		 input.addTextChangedListener(new TextWatcher(){
 
-		 @Override
-		 public void afterTextChanged(Editable p1){}
-		 @Override
-		 public void beforeTextChanged(CharSequence p1, int p2, int p3, int p4){}
-		 @Override
-		 public void onTextChanged(CharSequence p1, int p2, int p3, int p4)
-		 {
-
-		 }
-		 });
-		 */
-		 
 		 //Dialog init
+        /*
 		mProgress = new MaddogProgressDialog(this);
 		mProgress.setCancelable(false);
 		mProgress.setTitle(R.string.running);
@@ -124,7 +107,7 @@ public class MainActivity extends AppCompatActivity
 		new_version.setIcon(R.drawable.ic_check_black);
 		new_version.setMessage(R.string.find_new_version);
 		new_version.setPositiveButton();
-		
+		*/
 		fab.setOnClickListener(new View.OnClickListener(){
 
 				@Override
@@ -344,13 +327,13 @@ public class MainActivity extends AppCompatActivity
 		}
 	};*/
 
-	/**@Override
+	/*@Override
 	public void onSaveInstanceState(Bundle outState) 
 	{
 		super.onSaveInstanceState(outState);
 		outState.putInt("theme",set_theme);
 	} */
-	/** public void button1(View view)
+	/* public void button1(View view)
 	{
 		Intent intent = new Intent (this, SecondActivity.class);
 		EditText editText = (EditText) findViewById(R.id.mainEditText);
@@ -369,7 +352,7 @@ public class MainActivity extends AppCompatActivity
         }
 	} */
 
-   /** public boolean onOptionsItemSelected(MenuItem item)
+   /* public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId())
         {
@@ -392,15 +375,3 @@ public class MainActivity extends AppCompatActivity
          return super.onOptionsItemSelected(item);
     }*/
 
-/* public class ArticleFragment extends Fragment
-{
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        // TODO: Implement this method
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-    
-}
-*/

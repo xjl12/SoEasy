@@ -174,7 +174,7 @@ public class TestActivity extends AppCompatActivity
 	public void OpenRawTestImage (View view) throws IOException
 	{
 		File cache_file = new File(this.getExternalCacheDir(),Others.RandomString(8));
-		InputStream test_is = getResources().openRawResource(R.mipmap.ic_launcher);
+		InputStream test_is = getResources().openRawResource(R.raw.ic_launcher_raw);
 		FileOutputStream test_fos = new FileOutputStream(cache_file);
 		byte[] buffer = new byte[1024];
 		int byte_count = 0;

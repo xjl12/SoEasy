@@ -115,7 +115,7 @@ public class GamesActivity extends AppCompatActivity
 				public void onClick(View p1)
 				{
 					Intent share = new Intent(Intent.ACTION_SEND);
-					share.putExtra(Intent.EXTRA_TEXT,getString(R.string.games_share,t));
+					share.putExtra(Intent.EXTRA_TEXT,getString(R.string.games_share,Integer.toString(t)));
 					share.setType("text/plain");
 					startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(),share),getString(R.string.share_point)));
 				}
