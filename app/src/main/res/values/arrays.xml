@@ -31,4 +31,9 @@
 		<item>http://m.kuai8.com/gonglue/490276.html</item>
 		<item>http://m.newyx.net/gl/366708.html</item>
 	</string-array>
+
+	<string-array name="math_problems">
+		<item>1+2+3+...+n等于几？</item>
+		<item>1*2*3*...*n等于几？</item>
+	</string-array>
 </resources>

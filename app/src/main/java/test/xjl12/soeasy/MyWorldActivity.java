@@ -69,7 +69,7 @@ public class MyWorldActivity extends AppCompatActivity
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.my_world_mdToolbar);
 		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.my_world_fab);
 
-		Others.initActivity(this, mToolbar);
+		Others.initActivity(this, mToolbar,mCl);
 
 		help_sp = getSharedPreferences(Others.getRunningActivityName(this),MODE_APPEND);
 		help_edit = help_sp.edit();

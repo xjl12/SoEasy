@@ -2,16 +2,23 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
+        appkey {
+            keyAlias 'appkey'
+            keyPassword 'zxcvbnm'
+            storeFile file('/home/xjl/AndroidStudioProjects/publish.keystore')
+            storePassword 'zxcvbnm'
+        }
     }
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 70
         versionName "1.7"
         resConfigs "zh", "en"
+        signingConfig signingConfigs.appkey
     }
     buildTypes {
         release {
@@ -19,11 +26,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
 
 dependencies {
     compile project(':maddogdialogs')
     compile project(':edittextfirework')
-    compile 'com.android.support:design:+'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:design:26.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

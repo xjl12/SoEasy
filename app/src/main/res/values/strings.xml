@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- All Around -->
-	<string name="ok">确认</string>
-	<string name="good">好的</string>
-	<string name="continue_str">继续</string>
-	<string name="cancel">取消</string>
-	<string name="revoke">撤销还原</string>
-	<string name="delete">删除</string>
-	<string name="update">更新</string>
-	<string name="delete_backup">删除备份</string>
-	<string name="send">发送</string>
-	<string name="warn">警告</string>
-	<string name="error">错误</string>
-	<string name="help">帮助</string>
-	<string name="feebback">反馈</string>
-	<string name="hide">隐藏</string>
-	<string name="retry">重试</string>
-	<string name="no_thanks">不，谢谢</string>
-	<string name="ok_I_know">好的，我知道了</string>
-	<string name="reading">正在读取……</string>
-	<string name="writting">正在写入……</string>
-	<string name="finish_process">操作已完成</string>
-	<string name="running">正在运行……</string>
-	<string name="running_mesage">正在执行操作，请耐心等待</string>
-	<!-- Title-->
+    <!-- All Around -->
+    <string name="ok">确认</string>
+    <string name="good">好的</string>
+    <string name="continue_str">继续</string>
+    <string name="cancel">取消</string>
+    <string name="revoke">撤销还原</string>
+    <string name="delete">删除</string>
+    <string name="update">更新</string>
+    <string name="delete_backup">删除备份</string>
+    <string name="send">发送</string>
+    <string name="warn">警告</string>
+    <string name="error">错误</string>
+    <string name="help">帮助</string>
+    <string name="feebback">反馈</string>
+    <string name="hide">隐藏</string>
+    <string name="retry">重试</string>
+    <string name="no_thanks">不，谢谢</string>
+    <string name="ok_I_know">好的，我知道了</string>
+    <string name="reading">正在读取……</string>
+    <string name="writting">正在写入……</string>
+    <string name="finish_process">操作已完成</string>
+    <string name="running">正在运行……</string>
+    <string name="running_mesage">正在执行操作，请耐心等待</string>
+    <!-- Title-->
     <string name="app_name">SoEasy</string>
     <string name="title_second_activity">你成功了！</string>
     <string name="title_games_activity">猜数游戏</string>
     <string name="title_debug">信息</string>
     <string name="title_test">测试</string>
-	<string name="title_urllist">网址</string>
-	<string name="title_my_world">我的世界存档</string>
-	<!-- Main -->
-	<string name="welcome">欢迎使用SoEasy!</string>
-	<string name="thanks">感谢您使用本程序！</string>
-	<string name="saying">一切如此简单！</string>
-	<string name="mainButton1">点我呀！</string>
-	<string name="main_edit_hint">写下此刻的想法……</string>
+    <string name="title_urllist">网址</string>
+    <string name="title_my_world">我的世界存档</string>
+    <!-- Main -->
+    <string name="welcome">欢迎使用SoEasy!</string>
+    <string name="thanks">感谢您使用本程序！</string>
+    <string name="saying">一切如此简单！</string>
+    <string name="mainButton1">点我呀！</string>
+    <string name="main_edit_hint">写下此刻的想法……</string>
     <string name="second_Activity_text">感谢您的评价!</string>
     <string name="second_Activity_text_null">在编辑框里写点啥吧！</string>
-	<string name="second_Activity_snackbar_action">返回</string>
+    <string name="second_Activity_snackbar_action">返回</string>
     <string name="search_action_title">搜索></string>
     <string name="settings_action_title">设置 &#8212;功能开发中~</string>
     <string name="games_button">游戏</string>
     <string name="exit">退出</string>
-	<string name="happy_new_year">新年快乐！</string>
-	<string name="main_point_to_set_theme">看到右上角的按钮了吗？在那里面可以设置本界面的布局和背景颜色哦！</string>
-	<!-- Update -->
-	<string name="updating_message">正在检查更新，请君耐心等会儿～</string>
-	<string name="find_new_version">发现新版本！(^_^) 请立即更新！</string>
-	<string name="find_new_version_title">发现新版本！</string>
-	<string name="check_update_failed">Oh no! :-) 网络开小差咯，检查更新失败！\n也许再试一次就能行啦！(^_^)\n\n如果多次尝试不成功，请向我反馈！\n错误代码：%s</string>
-	<string name="soeasy_version_newest">恭喜 ^_^ SoEasy 已是最新版本，感谢您的使用！</string>
-	<!-- Navigation Menu -->
-	<string name="navigation_item_home">主页</string>
-	<string name="navigation_group_1">功能</string>
-	<string name="navigation_group_2">其它</string>
-	<string name="navigation_item_my_world">存档</string>
-	<!-- Menu -->
-	<string name="help_development">帮助SoEasy开发</string>
-	<string name="source_string">查看程序源代码</string>
-	<string name="force_exit">强制退出</string>
-	<string name="help_prompt_message">因本人语文水平有限，程序中难免会出现一些错别字、病句，如果你发现了，请及时反馈给我，谢谢！</string>
-	<!-- Theme or Layout Chhose -->
-	<string name="app_theme_default">默认主题</string>
-	<string name="app_theme_holo">黑色Holo主题</string>
-	<!-- Games -->
+    <string name="happy_new_year">新年快乐！</string>
+    <string name="main_point_to_set_theme">看到右上角的按钮了吗？在那里面可以设置本界面的布局和背景颜色哦！</string>
+    <!-- Update -->
+    <string name="updating_message">正在检查更新，请君耐心等会儿～</string>
+    <string name="find_new_version">发现新版本！(^_^) 请立即更新！</string>
+    <string name="find_new_version_title">发现新版本！</string>
+    <string name="check_update_failed">Oh no! :-) 网络开小差咯，检查更新失败！\n也许再试一次就能行啦！(^_^)\n\n如果多次尝试不成功，请向我反馈！\n错误代码：%s</string>
+    <string name="soeasy_version_newest">恭喜 ^_^ SoEasy 已是最新版本，感谢您的使用！</string>
+    <!-- Navigation Menu -->
+    <string name="navigation_item_home">主页</string>
+    <string name="navigation_group_1">功能</string>
+    <string name="navigation_group_2">其它</string>
+    <string name="navigation_item_my_world">存档</string>
+    <!-- Menu -->
+    <string name="help_development">帮助SoEasy开发</string>
+    <string name="source_string">查看程序源代码</string>
+    <string name="force_exit">强制退出</string>
+    <string name="help_prompt_message">因本人语文水平有限，程序中难免会出现一些错别字、病句，如果你发现了，请及时反馈给我，谢谢！</string>
+    <!-- Theme or Layout Chhose -->
+    <string name="app_theme_default">默认主题</string>
+    <string name="app_theme_holo">黑色Holo主题</string>
+    <!-- Games -->
     <string name="games_welcome">猜数游戏</string>
     <string name="games_edittext">请输入要猜的数字然后点击下方按钮~</string>
     <string name="games_submit_button">我猜这个！究竟是不是呢？</string>
@@ -82,39 +82,39 @@
     <string name="games_times">你这次共猜了</string>
     <string name="games_times_more">次，再接再厉哦！</string>
     <string name="games_times_less">次，你太厉害了！</string>
-	<string name="games_share">来自SoEasy猜数游戏的分享: \n \n我共猜了%s次，不服来战！</string>
+    <string name="games_share">来自SoEasy猜数游戏的分享: \n \n我共猜了%s次，不服来战！</string>
     <string name="games_not_see_answers">你似乎还没有猜过呢！不能看答案哦，快去猜猜吧！</string>
-	<!-- MyWorld -->
-	<string name="my_world_soeasy_has_version">SoEasy自带版本:</string>
-	<string name="my_world_phone_has_version">手机上的版本:</string>
-	<string name="my_world_backup_version">备份区版本:</string>
-	<string name="my_world_unzip_to_phone">解压到手机</string>
-	<string name="my_world_update">更新存档</string>
-	<string name="finish_if_start_myworld">是否立即起动我的世界？</string>
-	<string name="my_world_delete">删除存档</string>
-	<string name="my_world_send">发送存档</string>
-	<string name="my_world_hurt">存档已损坏，请更新存档！</string>
-	<string name="my_world_read_failed">读取失败，请稍后再试</string>
-	<string name="my_world_development_option">开发者选项</string>
-	<string name="my_world_package">打包存档并打开AIDE</string>
-	<string name="my_world_starting">正在启动我的世界……\n稍后请选择xjl_lyy_git存档进入</string>
-	<string name="my_world_not_installed">我的世界没有安装，请下载0.16.0.5版本的我的世界！</string>
-	<string name="my_world_not_version">我的世界版本不对，请卸载后重新安装0.16.0.5版本的我的世界</string>
-	<string name="my_world_phone_version_bigger">您手机上的我的世界存档版本比SoEasy自带版本更高，继续操作将会使您的修改失效，但如果您仅仅是为了还原存档，请继续，否则为保护您的数据，请取消！\n\n小提示:本操作可使用下面的撤销按钮撤销。</string>
-	<string name="my_world_help">\n我的世界存档管理功能集解压、更新、发送、删除等功能于一体，旨在方便xjl_lyy_git存档的同步，共同建设美好明天！\n\n以下是各功能要点说明:\n
+    <!-- MyWorld -->
+    <string name="my_world_soeasy_has_version">SoEasy自带版本:</string>
+    <string name="my_world_phone_has_version">手机上的版本:</string>
+    <string name="my_world_backup_version">备份区版本:</string>
+    <string name="my_world_unzip_to_phone">解压到手机</string>
+    <string name="my_world_update">更新存档</string>
+    <string name="finish_if_start_myworld">是否立即起动我的世界？</string>
+    <string name="my_world_delete">删除存档</string>
+    <string name="my_world_send">发送存档</string>
+    <string name="my_world_hurt">存档已损坏，请更新存档！</string>
+    <string name="my_world_read_failed">读取失败，请稍后再试</string>
+    <string name="my_world_development_option">开发者选项</string>
+    <string name="my_world_package">打包存档并打开AIDE</string>
+    <string name="my_world_starting">正在启动我的世界……\n稍后请选择xjl_lyy_git存档进入</string>
+    <string name="my_world_not_installed">我的世界没有安装，请下载0.16.0.5版本的我的世界！</string>
+    <string name="my_world_not_version">我的世界版本不对，请卸载后重新安装0.16.0.5版本的我的世界</string>
+    <string name="my_world_phone_version_bigger">您手机上的我的世界存档版本比SoEasy自带版本更高，继续操作将会使您的修改失效，但如果您仅仅是为了还原存档，请继续，否则为保护您的数据，请取消！\n\n小提示:本操作可使用下面的撤销按钮撤销。</string>
+    <string name="my_world_help">\n我的世界存档管理功能集解压、更新、发送、删除等功能于一体，旨在方便xjl_lyy_git存档的同步，共同建设美好明天！\n\n以下是各功能要点说明:\n
 	1、存档版本\n存档版本是由一串数字组成，每进入一次存档，数字便会往高处增长，增长的多少是由我的世界游戏决定的，与SoEasy无关，SoEasy只是通过记录存档来方便管理罢。\n
 	2、解压/更新\nSoEasy自带一份完整的存档，使用该功能可以将SoEasy内的存档解压到手机上。\n注意:请不要将低版本存档解压到手机，这会覆盖掉手机上的高版本存档,如执意操作，则SoEasy会自动备份手机上的高版本存档，用户可随时还原。\n
 	3、发送存档\n该功能会将手机上的存档打包成压缩包，用户在弹出来的界面中选择好友即可发送分享。\n
 	3、删除\n该功能不会自动备份存档，请谨慎操作！谨防数据丢失！\n
 	\n数据无价，谨慎操作！\n</string>
-	
-	<!-- Share -->
-	<string name="share_point">分享到……</string>
-	<string name="share_from_soeasy">从SoEasy分享的消息: \n \n%s</string>
-	<string name="qq_name">com.tencent.mobileqq</string>
-	<string name="my_world_name">com.mojang.minecraftpe</string>
-	<!-- URLList -->
-	<string name="urllist">部分网址中可能有广告！感谢网友@叹。 提供的网址！</string>
+
+    <!-- Share -->
+    <string name="share_point">分享到……</string>
+    <string name="share_from_soeasy">从SoEasy分享的消息: \n \n%s</string>
+    <string name="qq_name">com.tencent.mobileqq</string>
+    <string name="my_world_name">com.mojang.minecraftpe</string>
+    <!-- URLList -->
+    <string name="urllist">部分网址中可能有广告！感谢网友@叹。 提供的网址！</string>
     <!-- Debug -->
     <string name="debug_start">调试信息</string>
     <string name="debug_normal">屏幕大小:正常或其它</string>
@@ -129,41 +129,49 @@
     <string name="debug_android_version">安卓SDK版本:</string>
     <string name="debug_welcome">这是调试模式，请你将本页截图发给我</string>
     <string name="debug_app_version">程序版本号:</string>
-	<string name="debug_save_share">发送屏幕截图</string>
-	<string name="debug_share">来自SoEasy的重要信息: \n \n%1$s \n%2$s \n%3$s</string>
+    <string name="debug_save_share">发送屏幕截图</string>
+    <string name="debug_share">来自SoEasy的重要信息: \n \n%1$s \n%2$s \n%3$s</string>
     <!-- Test -->
     <string name="test_button">最新测试功能</string>
     <string name="test_wrong">这是测试功能，可能有很多Bug,程序随时都有崩溃的可能！注意！</string>
     <string name="test1">尝试打开百度搜索</string>
-	<string name="open_test_raw_image">尝试打开测试图片</string>
-	<string name="test_fc">程序崩溃测试</string>
-	<!--<string name="open_test_res_image">打开压缩后的测试图片</string>-->
-	
-	<!--<string name=""></string>-->
-	
+    <string name="open_test_raw_image">尝试打开测试图片</string>
+    <string name="test_fc">程序崩溃测试</string>
+    <!--<string name="open_test_res_image">打开压缩后的测试图片</string>-->
+
+    <!--<string name=""></string>-->
+
     <string name="test_file_write">尝试写入测试文件</string>
     <string name="test_file_read">尝试读取测试文件</string>
     <string name="delete_test_file">删除所有测试文件</string>
-	<string name="delete_complete">已删除测试文件</string>
-	<!-- Warn -->
-	<string name="warn_not_exit">当前任务正在运行中，为避免数据丢失，请勿退出！</string>
+    <string name="delete_complete">已删除测试文件</string>
+    <!-- Warn -->
+    <string name="warn_not_exit">当前任务正在运行中，为避免数据丢失，请勿退出！</string>
     <!--Wrong-->
-	<string name="unknow">未知</string>
+    <string name="unknow">未知</string>
     <string name="wrong">出现未知错误！请及时反馈！</string>
-	
-	<string name="feebback_point">反馈内容已复制到剪切板中，粘贴后即可发送。</string>
-	<string name="error_message">操作失败，请稍后重试，如多次发生此错误，欢迎反馈给我！</string>
-	<string name="error_message_with_infomation">操作失败，请稍后重试，如多次发生此错误，欢迎反馈给我！\n\n以下是有关此错误的详细信息：\n\n %s</string>
-	<string name="sdcard_error">您的存储设备似乎不可用。\n\n请按照如下步骤检查您的设备:\n1.您是否授予SoEasy存储权限？\n2.您是否挂载USB存储设备到电脑上？\n3.您的存储设备可用空间（至少要5MB）是否充足？\n4.也许您应该重新启动一下手机？\n\n如果您排除了这些问题，请再试一次，如果多次出现此情况请及时向我反馈！</string>
-	<string name="sdcard_error_with_info">您的存储设备似乎不可用。\n\n请按照如下步骤检查您的设备:\n1.您是否授予SoEasy存储权限？\n2.您是否挂载USB存储设备到电脑上？\n3.您的存储设备可用空间（至少要5MB）是否充足？\n4.也许您应该重新启动一下手机？\n\n如果您排除了这些问题，请再试一次，如果多次出现此情况请及时向我反馈！\n以下是错误信息:\n\n%s</string>
-	<string name="error_web">网络似乎出了点小问题(≧▽≦)\n错误代码：%s</string>
-	<string name="Error_cannot_shot">无法截图!请及时反馈！</string>
-	<string name="send_error">反馈</string>
-	<string name="Error_no_file">致命错误:测试文件不存在！</string>
-	<string name="Error_shot_error">截屏失败!请重试!</string>
-	<string name="Error_PackageManager_NameNotFoundException">错误:软件包包名未找到！请及时反馈，谢谢!(错误详细信息:android.content.pm.PackageManager.NameNotFoundException)</string>
-	<string name="Error_no_item_action">很抱歉，程序内部出现错误,请及时发送错误信息给我,我会尽快修复!</string>
-	<string name="fc_and_send">很抱歉，程序出现异常，请发送该错误文件给我，我将会尽快修复!</string>
-	<string name="fc">很抱歉，程序出现异常，即将退出……</string>
-	<string name="send_error_message">来自SoEasy&#8212;%1$s的错误反馈: \n \n%2$s \n%3$s</string>
+
+    <string name="feebback_point">反馈内容已复制到剪切板中，粘贴后即可发送。</string>
+    <string name="error_message">操作失败，请稍后重试，如多次发生此错误，欢迎反馈给我！</string>
+    <string name="error_message_with_infomation">操作失败，请稍后重试，如多次发生此错误，欢迎反馈给我！\n\n以下是有关此错误的详细信息：\n\n %s</string>
+    <string name="sdcard_error">您的存储设备似乎不可用。\n\n请按照如下步骤检查您的设备:\n1.您是否授予SoEasy存储权限？\n2.您是否挂载USB存储设备到电脑上？\n3.您的存储设备可用空间（至少要5MB）是否充足？\n4.也许您应该重新启动一下手机？\n\n如果您排除了这些问题，请再试一次，如果多次出现此情况请及时向我反馈！</string>
+    <string name="sdcard_error_with_info">您的存储设备似乎不可用。\n\n请按照如下步骤检查您的设备:\n1.您是否授予SoEasy存储权限？\n2.您是否挂载USB存储设备到电脑上？\n3.您的存储设备可用空间（至少要5MB）是否充足？\n4.也许您应该重新启动一下手机？\n\n如果您排除了这些问题，请再试一次，如果多次出现此情况请及时向我反馈！\n以下是错误信息:\n\n%s</string>
+    <string name="error_web">网络似乎出了点小问题(≧▽≦)\n错误代码：%s</string>
+    <string name="Error_cannot_shot">无法截图!请及时反馈！</string>
+    <string name="send_error">反馈</string>
+    <string name="Error_no_file">致命错误:测试文件不存在！</string>
+    <string name="Error_shot_error">截屏失败!请重试!</string>
+    <string name="Error_PackageManager_NameNotFoundException">错误:软件包包名未找到！请及时反馈，谢谢!(错误详细信息:android.content.pm.PackageManager.NameNotFoundException)</string>
+    <string name="Error_no_item_action">很抱歉，程序内部出现错误,请及时发送错误信息给我,我会尽快修复!</string>
+    <string name="fc_and_send">很抱歉，程序出现异常，请发送该错误文件给我，我将会尽快修复!</string>
+    <string name="fc">很抱歉，程序出现异常，即将退出……</string>
+    <string name="send_error_message">来自SoEasy&#8212;%1$s的错误反馈: \n \n%2$s \n%3$s</string>
+    <string name="title_activity_math">数学问题验证与解决</string>
+    <string name="math_mode_point">请选择一个数学问题：</string>
+    <string name="math_point">请从上面的选项框中选择你想验证或解决的数学问题，并在下面的输入框内输入数字，单击计算按钮，即可求出结果。</string>
+    <string name="math_input_point">请输入数字</string>
+    <string name="math_result_point">输出结果</string>
+    <string name="calculate">计算</string>
+    <string name="clear">清空</string>
+    <string name="math">数学</string>
 </resources>

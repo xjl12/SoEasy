@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android">    
-	<style name="AppBaseTheme"
-		parent="Theme.AppCompat.Light.NoActionBar">
-	</style>
-		
-	<style name="AppTheme"
-		parent="AppBaseTheme">
-		<item name="colorPrimary">@color/colorPrimary</item>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-		<item name="colorAccent">@color/colorAccent</item>
-	</style>
-	<style name="AppTheme_old" 
-		parent="@android:style/Theme.Holo.Light"> 
-		<item name="android:actionBarStyle">@style/MyActionBar</item>
-	</style> 
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
-	<style name="AppTheme_holo"
-		parent="@android:style/Theme.Holo">
-	</style>
-	
-	<style name="ToolbarPopupTheme" 
-		parent="@style/ThemeOverlay.AppCompat.Light"> 
-		<item name="android:colorBackground">@color/white</item> 
-		<item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item> <!--新增一个item，用于控制menu--> 
-	</style> 
-	
-	<style name="OverflowMenuStyle" 
-		parent="Widget.AppCompat.Light.PopupMenu.Overflow"> 
-		<item name="overlapAnchor">false</item> <!--把该属性改为false即可使menu位置位于toolbar之下--> 
-	</style>
+    <style name="AppTheme_old" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
 
-	<style name="MyActionBar"            
-		parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-		<item name="android:background">@color/actionbar_background</item>
-	</style>
+    <style name="AppTheme_holo" parent="@android:style/Theme.Holo"></style>
+
+    <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/white</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle
+        </item> <!--新增一个item，用于控制menu-->
+    </style>
+
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item> <!--把该属性改为false即可使menu位置位于toolbar之下-->
+    </style>
+
+    <style name="OverflowMenu" parent="Widget.AppCompat.Spinner">
+        <item name="overlapAnchor">false</item>
+    </style>
+
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/actionbar_background</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

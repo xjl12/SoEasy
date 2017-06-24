@@ -66,9 +66,7 @@ public class MainActivity extends AppCompatActivity
 		final Typeface light_typeface = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
 		//final Typeface medium_italic = Typeface.createFromAsset(getAssets(),"fonts/Roboto-MediumItalic.ttf");
 
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setHomeButtonEnabled(true);
+		Others.initActivity(this,toolbar,mCl);
 
 		//mNavigation.setItemIconTintList(null);
 		input.setText(R.string.happy_new_year);
@@ -172,9 +170,10 @@ public class MainActivity extends AppCompatActivity
 							debug_intent.putExtra(EXTRA_MESSAGE, Others.getAppVersionName(getApplicationContext()));
         					startActivity(debug_intent);
 							break;
-						case R.id.navigation_item_update:
-							
-							break;
+                        case R.id.navigation_item_math:
+                            Intent math_intent = new Intent(getApplicationContext(),MathActivity.class);
+                            startActivity(math_intent);
+                            break;
 						case R.id.navigation_item_exit:
 							Others.DeleteDirAllFile(getApplicationContext().getExternalCacheDir());
 							finish();
@@ -196,78 +195,7 @@ public class MainActivity extends AppCompatActivity
 				}
 			});
 
-		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
 
-				@Override
-				public boolean onMenuItemClick(final MenuItem item)
-				{
-					switch (item.getItemId())
-					{
-						case R.id.help_development:
-							Toast.makeText(getApplicationContext(), getString(R.string.help_prompt_message), Toast.LENGTH_LONG).show();
-							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
-							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
-							startActivity(help_development_web);
-							break;
-						case R.id.source_item:
-							Intent source_web = new Intent(Intent.ACTION_VIEW);
-							source_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[0]));
-							startActivity(source_web);
-							break;
-						case R.id.force_exit_item:
-							Others.DeleteDirAllFile(getExternalCacheDir());
-							android.os.Process.killProcess(android.os.Process.myPid());
-							System.exit(0);
-							break;
-						case R.id.shot_item:
-							new Thread(new Runnable(){
-
-									@Override
-									public void run()
-									{
-										Intent shot_share = Others.SendShot(getApplicationContext());
-										if (shot_share != null)
-										{
-											startActivity(shot_share);
-										}
-										else
-										{
-											Snackbar.make(mCl, R.string.Error_shot_error, Snackbar.LENGTH_LONG)
-												.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-												.setAction(R.string.retry, new View.OnClickListener(){
-
-													@Override
-													public void onClick(View p1)
-													{
-														Intent intent = Others.getShot(MainActivity.this);
-														if (intent != null)
-														{
-															startActivity(intent);
-														}
-														else
-														{
-															Toast.makeText(MainActivity.this, getString(R.string.Error_cannot_shot), Toast.LENGTH_LONG);
-														}
-													}
-												}).show();
-										}	
-									}
-								}).start();
-							break;
-						default:
-							Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
-								.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-								.setAction(R.string.send_error, new View.OnClickListener(){
-
-									@Override
-									public void onClick(View p1)
-									{startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, getString(R.string.send_error_message, Others.getAppVersionName(getApplicationContext()), Others.getRunningActivityName(MainActivity.this), item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));}
-								}).show();
-							break;
-					}
-					return true;
-				}
-			});
 		//Others.DeleteDirAllFile(getExternalFilesDir("Log"));
     }
 

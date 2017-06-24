@@ -28,11 +28,83 @@ public class Others
 {
 	public static final String separator = ";";
 	//初始化activity
-	public static void initActivity(AppCompatActivity mdActivity, Toolbar toolbar)
+	public static void initActivity(final AppCompatActivity mdActivity, final Toolbar toolbar,final CoordinatorLayout mCl)
 	{
 		mdActivity.setSupportActionBar(toolbar);
 		mdActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		mdActivity.getSupportActionBar().setHomeButtonEnabled(true);
+
+		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+
+			@Override
+			public boolean onMenuItemClick(final MenuItem item)
+			{
+				switch (item.getItemId())
+				{
+					case R.id.help_development:
+						Intent help_development_web = new Intent(Intent.ACTION_VIEW);
+						help_development_web.setData(Uri.parse(mdActivity.getResources().getStringArray(R.array.web_url)[1]));
+						mdActivity.startActivity(help_development_web);
+						break;
+					case R.id.source_item:
+						Intent source_web = new Intent(Intent.ACTION_VIEW);
+						source_web.setData(Uri.parse(mdActivity.getResources().getStringArray(R.array.web_url)[0]));
+						mdActivity.startActivity(source_web);
+						break;
+					case R.id.force_exit_item:
+						Others.DeleteDirAllFile(mdActivity.getExternalCacheDir());
+						android.os.Process.killProcess(android.os.Process.myPid());
+						System.exit(0);
+						break;
+					case R.id.shot_item:
+						new Thread(new Runnable(){
+
+							@Override
+							public void run()
+							{
+								Intent shot_share = Others.SendShot(mdActivity);
+								if (shot_share != null)
+								{
+									mdActivity.startActivity(shot_share);
+								}
+								else
+								{
+									Snackbar.make(mCl, R.string.Error_shot_error, Snackbar.LENGTH_LONG)
+											.setActionTextColor(mdActivity.getResources().getColor(R.color.colorAccent_Light))
+											.setAction(R.string.retry, new View.OnClickListener(){
+
+												@Override
+												public void onClick(View p1)
+												{
+													Intent intent = Others.getShot(mdActivity);
+													if (intent != null)
+													{
+														mdActivity.startActivity(intent);
+													}
+													else
+													{
+														Toast.makeText(mdActivity,mdActivity.getString(R.string.Error_cannot_shot),Toast.LENGTH_LONG);
+													}
+												}
+											}).show();
+								}
+							}
+						}).start();
+						break;
+					default:
+						Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
+								.setActionTextColor(mdActivity.getResources().getColor(R.color.colorAccent_Light))
+								.setAction(R.string.send_error, new View.OnClickListener(){
+
+									@Override
+									public void onClick(View p1)
+									{mdActivity.startActivity(Intent.createChooser(Others.isQQInstalled(mdActivity, new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, mdActivity.getString(R.string.send_error_message, Others.getAppVersionName(mdActivity), Others.getRunningActivityName(mdActivity), item.getTitle().toString())).setType("text/plain")), mdActivity.getString(R.string.Error_no_item_action)));}
+								}).show();
+						break;
+				}
+				return true;
+			}
+		});
 	}
 	//判断程序是否安装
 	public static boolean isAppInstalled(Context context, String package_name)

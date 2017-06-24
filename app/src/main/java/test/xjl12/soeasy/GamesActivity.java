@@ -37,78 +37,9 @@ public class GamesActivity extends AppCompatActivity
 		fab = (FloatingActionButton) findViewById(R.id.games_fab);
 		toolbar = (Toolbar) findViewById(R.id.games_mdToolbar);
 		mCl = (CoordinatorLayout) findViewById(R.id.games_mdCoordinatorLayout);
-		
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setHomeButtonEnabled(true);
-		
+		Others.initActivity(this,toolbar,mCl);
 		t = 0;
-		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
 
-				@Override
-				public boolean onMenuItemClick(final MenuItem item)
-				{
-					switch (item.getItemId())
-					{
-						case R.id.help_development:
-							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
-							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
-							startActivity(help_development_web);
-							break;
-						case R.id.source_item:
-							Intent source_web = new Intent(Intent.ACTION_VIEW);
-							source_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[0]));
-							startActivity(source_web);
-							break;
-						case R.id.shot_item:
-							new Thread(new Runnable(){
-
-									@Override
-									public void run()
-									{
-										Intent shot_share = Others.SendShot(getApplicationContext());
-										if (shot_share != null)
-										{
-											startActivity(shot_share);
-										}
-										else
-										{
-											Snackbar.make(mCl, R.string.Error_shot_error, Snackbar.LENGTH_LONG)
-												.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-												.setAction(R.string.retry, new View.OnClickListener(){
-
-													@Override
-													public void onClick(View p1)
-													{
-														Intent intent = Others.getShot(GamesActivity.this);
-														if (intent != null)
-														{
-															startActivity(intent);
-														}
-														else
-														{
-															Toast.makeText(GamesActivity.this,getString(R.string.Error_cannot_shot),Toast.LENGTH_LONG);
-														}
-													}
-												}).show();
-										}	
-									}
-								}).start();
-							break;
-						default:
-							Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
-								.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-								.setAction(R.string.send_error, new View.OnClickListener(){
-
-									@Override
-									public void onClick(View p1)
-									{startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, getString(R.string.send_error_message, Others.getAppVersionName(getApplicationContext()), Others.getRunningActivityName(GamesActivity.this), item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));}
-								}).show();
-							break;
-					}
-					return true;
-				}
-			});
 		fab.setOnClickListener(new View.OnClickListener(){
 
 				@Override
@@ -120,14 +51,13 @@ public class GamesActivity extends AppCompatActivity
 					startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(),share),getString(R.string.share_point)));
 				}
 			});
-		mCl.setOnClickListener(new View.OnClickListener(){
-
-				@Override
-				public void onClick(View p1)
-				{
-					Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(),p1,input);
-				}
-			});
+		mCl.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(),view,input);
+                return false;
+            }
+        });
         games_see_answers.setOnLongClickListener(new OnLongClickListener(){
 
                 @Override

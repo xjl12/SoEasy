@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:paddingBottom="@dimen/md_16"
+    android:paddingLeft="@dimen/md_16"
+    android:paddingRight="@dimen/md_16"
+    android:paddingTop="@dimen/md_16"
+    android:layout_marginTop="@dimen/widget_space"
+    android:id="@+id/math_relative_layout"
+    tools:context="test.xjl12.soeasy.MathActivity"
+    tools:showIn="@layout/activity_math">
+
+    <LinearLayout
+        android:id="@+id/math_linearlayout_1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/math_mode_point"
+            android:layout_weight="2" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/math_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:spinnerMode="dropdown"
+            style="@style/OverflowMenu"
+            android:entries="@array/math_problems" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/widget_space"
+        android:layout_marginBottom="@dimen/widget_space"
+        android:id="@+id/math_point_textview"
+        android:text="@string/math_point"
+        android:layout_below="@id/math_linearlayout_1" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/math_textinputlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/widget_space"
+        android:layout_below="@id/math_point_textview">
+
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/math_input_edittext"
+            android:inputType="number"
+            android:gravity="center"
+            android:hint="@string/math_input_point"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/math_calculate_button"
+        android:layout_below="@id/math_textinputlayout"
+        android:text="@string/calculate"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/math_calculate_button"
+        android:visibility="gone"
+        android:id="@+id/math_clear_button"
+        android:text="@string/clear"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/math_output_point_textview"
+        android:layout_below="@id/math_textinputlayout"
+        android:text="@string/math_result_point"
+        android:layout_marginBottom="@dimen/widget_space"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/math_output_point_textview"
+        android:id="@+id/math_output_textview"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+</RelativeLayout>
