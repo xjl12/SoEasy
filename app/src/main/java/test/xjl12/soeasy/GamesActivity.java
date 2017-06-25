@@ -79,7 +79,7 @@ public class GamesActivity extends AppCompatActivity
     
     public void games_submit(View games_submit_view)
     {
-        if (input.length() == 0 )//this.getString(R.string.games_edittext))
+        if (input.length() == 0 )
         {
             GamesTextview.setTextSize(20);
             GamesTextview.setText(R.string.games_null);

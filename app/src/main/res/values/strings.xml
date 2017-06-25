@@ -174,4 +174,7 @@
     <string name="calculate">计算</string>
     <string name="clear">清空</string>
     <string name="math">数学</string>
+    <string name="empty_input">输入不能为空！</string>
+    <string name="math_input_too_large">您输入的数据太大了！</string>
+    <string name="calculating">正在计算中......</string>
 </resources>
