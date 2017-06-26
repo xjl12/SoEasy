@@ -10,6 +10,7 @@
 	android:paddingTop="@dimen/md_16"
 	android:paddingRight="@dimen/md_16"
 	android:paddingBottom="@dimen/md_16"
+	app:layout_behavior="@string/appbar_scrolling_view_behavior"
 	tools:context="test.xjl12.soeasy.URLListActivity"
 	tools:showIn="@layout/urllist">
 
@@ -22,8 +23,7 @@
 	<ListView
 		android:layout_height="match_parent"
 		android:layout_width="match_parent"
-		android:id="@+id/urllist"
-		app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+		android:id="@+id/urllist" />
 
 </LinearLayout>
 

@@ -78,7 +78,7 @@ public class MathActivity extends AppCompatActivity {
                 else if (input_edittext.length() > 10 || Long.parseLong(input_edittext.getText().toString()) > 2147483647) {
                     Snackbar.make(mCl,getString(R.string.math_input_too_large),Snackbar.LENGTH_LONG).show();
                 }
-                else if (input_edittext.length() == 1 || Long.parseLong(input_edittext.getText().toString()) == 0) {
+                else if (input_edittext.length() == 1 && Long.parseLong(input_edittext.getText().toString()) == 0) {
                     Snackbar.make(mCl,getString(R.string.math_not_zero),Snackbar.LENGTH_LONG).show();
                 }
                 else {

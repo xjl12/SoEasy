@@ -2,7 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-
+        appkey {
+            keyAlias 'appkey'
+            keyPassword 'zxcvbnm'
+            storeFile file('/home/xjl/AndroidStudioProjects/publish.keystore')
+            storePassword 'zxcvbnm'
+        }
     }
     compileSdkVersion 26
     buildToolsVersion '26.0.0'
@@ -13,11 +18,14 @@ android {
         versionCode 80
         versionName "1.8"
         resConfigs "zh", "en"
+        signingConfig signingConfigs.appkey
     }
     buildTypes {
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.appkey
         }
     }
     productFlavors {
