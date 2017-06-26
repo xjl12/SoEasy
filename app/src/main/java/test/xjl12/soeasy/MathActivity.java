@@ -1,6 +1,7 @@
 package test.xjl12.soeasy;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,26 +16,30 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.math.BigInteger;
+
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class MathActivity extends AppCompatActivity {
 
     //定义计算模式
-    int mode = 0;
+    int mode_selected = 0;
 
+    private static Handler mHandle = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.math_toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.math_fab);
         final CoordinatorLayout mCl = (CoordinatorLayout) findViewById(R.id.math_mdCoordinatorLayout);
-        Button clear_button = (Button) findViewById(R.id.math_clear_button);
-        Button calculate_button = (Button) findViewById(R.id.math_calculate_button);
+        final Button clear_button = (Button) findViewById(R.id.math_clear_button);
+        final Button calculate_button = (Button) findViewById(R.id.math_calculate_button);
         final TextInputEditText input_edittext = (TextInputEditText) findViewById(R.id.math_input_edittext);
         final TextView output_textview = (TextView) findViewById(R.id.math_output_textview);
         final TextView output_point_textview = (TextView) findViewById(R.id.math_output_point_textview);
+        final TextView point_textview = (TextView) findViewById(R.id.math_point_textview);
+        final TextView time_cost_textview = (TextView) findViewById(R.id.math_time_cost_view);
         AppCompatSpinner spi = (AppCompatSpinner) findViewById(R.id.math_spinner);
         final MaterialProgressBar progressBar = (MaterialProgressBar) findViewById(R.id.math_progressbar);
 
@@ -48,18 +53,12 @@ public class MathActivity extends AppCompatActivity {
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                mode = i;
+                mode_selected = i;
+                point_textview.setText(getResources().getStringArray(R.array.math_point)[mode_selected]);
             }
 
             @Override
@@ -68,29 +67,65 @@ public class MathActivity extends AppCompatActivity {
             }
         });
 
+        point_textview.setText(getResources().getStringArray(R.array.math_point)[mode_selected]);
         calculate_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Others.ChangeEdittextStatusAndHideSoftInput(getApplicationContext(),mCl,input_edittext);
                 if (input_edittext.length() == 0 ) {
                     Snackbar.make(mCl,getString(R.string.empty_input),Snackbar.LENGTH_LONG).show();
                 }
-                else if (input_edittext.length() > 8) {
+                else if (input_edittext.length() > 10 || Long.parseLong(input_edittext.getText().toString()) > 2147483647) {
                     Snackbar.make(mCl,getString(R.string.math_input_too_large),Snackbar.LENGTH_LONG).show();
+                }
+                else if (input_edittext.length() == 1 || Long.parseLong(input_edittext.getText().toString()) == 0) {
+                    Snackbar.make(mCl,getString(R.string.math_not_zero),Snackbar.LENGTH_LONG).show();
                 }
                 else {
                     output_textview.setText(R.string.calculating);
                     output_textview.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
+                    calculate_button.setClickable(false);
+                    clear_button.setVisibility(View.GONE);
+                    output_point_textview.setVisibility(View.GONE);
+                    time_cost_textview.setVisibility(View.GONE);
                     final int input_number = Integer.parseInt(input_edittext.getText().toString());
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            int output = modeOne(input_number);
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            final Long time_0 = System.currentTimeMillis();
+                            final String output = calculateRun(input_number,mode_selected);
+                            final long time_1 = System.currentTimeMillis();
+                            mHandle.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    output_point_textview.setVisibility(View.VISIBLE);
+                                    output_textview.setText(output);
+                                    progressBar.setVisibility(View.GONE);
+                                    clear_button.setVisibility(View.VISIBLE);
+                                    calculate_button.setClickable(true);
+                                    time_cost_textview.setText(getString(R.string.time_cost,String.valueOf(time_1 - time_0)));
+                                    time_cost_textview.setVisibility(View.VISIBLE);
+                                }
+                            });
 
                         }
-                    });
+                    }).start();
                 }
-
+            }
+        });
+        clear_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clear_button.setVisibility(View.GONE);
+                output_point_textview.setVisibility(View.GONE);
+                output_textview.setVisibility(View.GONE);
+                input_edittext.setText(null);
             }
         });
 
@@ -103,13 +138,58 @@ public class MathActivity extends AppCompatActivity {
     }
 
     //计算模式核心流程
-    private int modeOne (int input)
+    private String calculateRun (int input,int mode)
     {
-        int output = 0;
-        for (int i=1;i <= input;i++)
-        {
-            output +=  i;
+        String output = new String();
+        switch (mode) {
+            case 0:
+                long out_result = 0;
+                for (int i = 1; i <= input; i++) {
+                    out_result += i;
+                }
+                output = String.valueOf(out_result);
+                break;
+            case 1:
+                BigInteger big_out_one = BigInteger.ONE;
+                for (int i = 1;i <= input;i++) {
+                    big_out_one = big_out_one.multiply(BigInteger.valueOf(i));
+                }
+                output = big_out_one.toString();
+                break;
+            case 2:
+                BigInteger big_out_three = BigInteger.ONE;
+                BigInteger big_tmp_one;
+                final BigInteger bit_two = new BigInteger("2");
+                for (int i = 1;i<=input;i++) {
+                    big_tmp_one = bit_two;
+                    if (i > 1) {
+                        for (int n = 2;n<=i;n++) {
+                            big_tmp_one = big_tmp_one.multiply(bit_two);
+                        }
+                    }
+                    big_out_three = big_out_three.add(big_tmp_one);
+                }
+                output = big_out_three.toString();
+                break;
+            case 3:
+                if (input > 2) {
+                    BigInteger[] big_out_two = new BigInteger[input];
+                    big_out_two[0] = BigInteger.ZERO;
+                    big_out_two[1] = BigInteger.ONE;
+                    for (int l = 3; l <= input; l++) {
+                        big_out_two[l - 1] = big_out_two[l - 3].add(big_out_two[l - 2]);
+                    }
+                    output = big_out_two[input - 1].toString();
+                }
+                else if (input == 1) {
+                    output = "0";
+                }
+                else if (input == 2) {
+                    output = "1";
+                }
+                break;
         }
         return  output;
     }
+
 }

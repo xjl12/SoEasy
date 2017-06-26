@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
 
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -9,16 +9,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
     <style name="AppTheme_old" parent="@android:style/Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
 
-    <style name="AppTheme_holo" parent="@android:style/Theme.Holo"></style>
+    <style name="AppTheme_holo" parent="@android:style/Theme.Holo"/>
 
     <style name="ToolbarPopupTheme" parent="@style/ThemeOverlay.AppCompat.Light">
         <item name="android:colorBackground">@color/white</item>
-        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle
-        </item> <!--新增一个item，用于控制menu-->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item> <!--新增一个item，用于控制menu-->
     </style>
 
     <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">

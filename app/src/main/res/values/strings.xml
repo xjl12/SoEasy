@@ -168,7 +168,6 @@
     <string name="send_error_message">来自SoEasy&#8212;%1$s的错误反馈: \n \n%2$s \n%3$s</string>
     <string name="title_activity_math">数学问题验证与解决</string>
     <string name="math_mode_point">请选择一个数学问题：</string>
-    <string name="math_point">请从上面的选项框中选择你想验证或解决的数学问题，并在下面的输入框内输入数字，单击计算按钮，即可求出结果。</string>
     <string name="math_input_point">请输入数字</string>
     <string name="math_result_point">输出结果</string>
     <string name="calculate">计算</string>
@@ -177,4 +176,6 @@
     <string name="empty_input">输入不能为空！</string>
     <string name="math_input_too_large">您输入的数据太大了！</string>
     <string name="calculating">正在计算中......</string>
+    <string name="math_not_zero">输入不能为0，请重新输入！</string>
+    <string name="time_cost">此次运算耗时：%s ms</string>
 </resources>
