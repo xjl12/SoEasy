@@ -1,14 +1,17 @@
-#一切如此简单！
-<br>
+# 一切如此简单！
+
 SoEasy——我的第一个Android App!
-<br>
 
-项目中引用了几个优秀的库，特此感谢！
+### 【最新APP安装包下载】
 
-*EditTextFirework-Demo*
+https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/SoEasy.apk
 
-https://github.com/covetcode/EditTextFirework-Demo
+__项目中引用了几个优秀的库，特此感谢！__
 
-*ProgressDialogCompat*
-
-https://github.com/maddog05/ProgressDialogCompat
+> __EditTextFirework-Demo__
+>
+> https://github.com/covetcode/EditTextFirework-Demo
+>
+> __ProgressDialogCompat__
+>
+> https://github.com/maddog05/ProgressDialogCompat
