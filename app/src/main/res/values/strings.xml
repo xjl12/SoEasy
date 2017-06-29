@@ -176,6 +176,8 @@
     <string name="empty_input">输入不能为空！</string>
     <string name="math_input_too_large">您输入的数据太大了！</string>
     <string name="calculating">正在计算中......</string>
+    <string name="math_switch_on">显示确切的进度条（这可能降低速度）</string>
+    <string name="math_switch_off">不显示确切的进度条</string>
     <string name="math_not_zero">输入不能为0，请重新输入！</string>
     <string name="time_cost">此次运算耗时：%s ms</string>
 </resources>

@@ -3,17 +3,19 @@ package test.xjl12.soeasy;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.math.BigInteger;
@@ -24,6 +26,10 @@ public class MathActivity extends AppCompatActivity {
 
     //定义计算模式
     int mode_selected = 0;
+
+    boolean show_exact_progress = false;
+
+    ProgressBar progressBar_exact;
 
     private static Handler mHandle = new Handler();
     @Override
@@ -40,8 +46,11 @@ public class MathActivity extends AppCompatActivity {
         final TextView output_point_textview = (TextView) findViewById(R.id.math_output_point_textview);
         final TextView point_textview = (TextView) findViewById(R.id.math_point_textview);
         final TextView time_cost_textview = (TextView) findViewById(R.id.math_time_cost_view);
+        final TextView swith_textview = (TextView) findViewById(R.id.math_switch_textview);
         AppCompatSpinner spi = (AppCompatSpinner) findViewById(R.id.math_spinner);
         final MaterialProgressBar progressBar = (MaterialProgressBar) findViewById(R.id.math_progressbar);
+        final SwitchCompat switchCompat = (SwitchCompat) findViewById(R.id.math_switch);
+        progressBar_exact = (ProgressBar) findViewById(R.id.math_progressbar_exact);
 
         Others.initActivity(this,toolbar,mCl);
 
@@ -84,7 +93,12 @@ public class MathActivity extends AppCompatActivity {
                 else {
                     output_textview.setText(R.string.calculating);
                     output_textview.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.VISIBLE);
+                    if (show_exact_progress) {
+                        progressBar_exact.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
                     calculate_button.setClickable(false);
                     clear_button.setVisibility(View.GONE);
                     output_point_textview.setVisibility(View.GONE);
@@ -107,6 +121,10 @@ public class MathActivity extends AppCompatActivity {
                                     output_point_textview.setVisibility(View.VISIBLE);
                                     output_textview.setText(output);
                                     progressBar.setVisibility(View.GONE);
+                                    if (show_exact_progress) {
+                                        progressBar_exact.setVisibility(View.GONE);
+                                        progressBar_exact.setProgress(0);
+                                    }
                                     clear_button.setVisibility(View.VISIBLE);
                                     calculate_button.setClickable(true);
                                     time_cost_textview.setText(getString(R.string.time_cost,String.valueOf(time_1 - time_0)));
@@ -129,6 +147,18 @@ public class MathActivity extends AppCompatActivity {
             }
         });
 
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                show_exact_progress = b;
+                if (show_exact_progress) {
+                    swith_textview.setText(R.string.math_switch_on);
+                }
+                else {
+                    swith_textview.setText(R.string.math_switch_off);
+                }
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
@@ -141,11 +171,19 @@ public class MathActivity extends AppCompatActivity {
     private String calculateRun (int input,int mode)
     {
         String output = new String();
+        int percent = 0;
         switch (mode) {
             case 0:
                 long out_result = 0;
                 for (int i = 1; i <= input; i++) {
                     out_result += i;
+                    if (show_exact_progress) {
+                        int percent_now = (int) Math.floor( (float) i / input * 100);
+                        if (percent_now > percent) {
+                            setExactProgressInThread(percent_now);
+                            percent = percent_now;
+                        }
+                    }
                 }
                 output = String.valueOf(out_result);
                 break;
@@ -153,6 +191,13 @@ public class MathActivity extends AppCompatActivity {
                 BigInteger big_out_one = BigInteger.ONE;
                 for (int i = 1;i <= input;i++) {
                     big_out_one = big_out_one.multiply(BigInteger.valueOf(i));
+                    if (show_exact_progress) {
+                        int percent_now = (int) Math.floor((float) i / input * 100);
+                        if (percent_now > percent) {
+                            setExactProgressInThread(percent_now);
+                            percent = percent_now;
+                        }
+                    }
                 }
                 output = big_out_one.toString();
                 break;
@@ -168,6 +213,13 @@ public class MathActivity extends AppCompatActivity {
                         }
                     }
                     big_out_three = big_out_three.add(big_tmp_one);
+                    if (show_exact_progress) {
+                        int percent_now = (int) Math.floor((float) i / input * 100);
+                        if (percent_now > percent) {
+                            setExactProgressInThread(percent_now);
+                            percent = percent_now;
+                        }
+                    }
                 }
                 output = big_out_three.toString();
                 break;
@@ -178,18 +230,37 @@ public class MathActivity extends AppCompatActivity {
                     big_out_two[1] = BigInteger.ONE;
                     for (int l = 3; l <= input; l++) {
                         big_out_two[l - 1] = big_out_two[l - 3].add(big_out_two[l - 2]);
+                        if (show_exact_progress) {
+                            int percent_now = (int) Math.floor((float) l / input * 100);
+                            if (percent_now > percent) {
+                                setExactProgressInThread(percent_now);
+                                percent = percent_now;
+                            }
+                        }
                     }
                     output = big_out_two[input - 1].toString();
                 }
                 else if (input == 1) {
                     output = "0";
+                    setExactProgressInThread(1);
                 }
                 else if (input == 2) {
                     output = "1";
+                    setExactProgressInThread(2);
                 }
                 break;
         }
         return  output;
+    }
+
+    //线程中设置确切进度
+    private void setExactProgressInThread (final int status) {
+        mHandle.post(new Runnable() {
+            @Override
+            public void run() {
+                progressBar_exact.setProgress(status);
+            }
+        });
     }
 
 }
