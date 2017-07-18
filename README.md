@@ -2,6 +2,8 @@
 
 SoEasy——我的第一个Android App!
 
+<img src="app/src/main/res/mipmap/ic_launcher.png" width=100 height=100 />
+
 ### 【最新APP安装包下载】
 
 https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/SoEasy.apk
