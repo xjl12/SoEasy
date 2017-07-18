@@ -180,4 +180,6 @@
     <string name="math_switch_off">不显示确切的进度条</string>
     <string name="math_not_zero">输入不能为0，请重新输入！</string>
     <string name="time_cost">此次运算耗时：%s ms</string>
+    <string name="math_stop">停止</string>
+    <string name="math_stop_point">计算过程已停止！</string>
 </resources>

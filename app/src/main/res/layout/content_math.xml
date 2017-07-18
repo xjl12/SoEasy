@@ -104,13 +104,20 @@
             android:id="@+id/math_clear_button"
             android:text="@string/clear" />
 
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/math_stop_button"
+            android:text="@string/math_stop"
+            android:visibility="gone"
+            android:layout_below="@id/math_clear_button"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/math_output_point_textview"
-            android:layout_below="@id/math_clear_button"
+            android:layout_below="@id/math_stop_button"
             android:text="@string/math_result_point"
-            android:layout_marginBottom="@dimen/widget_space"
             android:gravity="center"
             android:visibility="gone"
             android:layout_margin="@dimen/widget_space"
@@ -120,6 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/math_scrollvew"
+            android:layout_marginTop="@dimen/widget_space"
             android:fillViewport="true"
             android:layout_below="@id/math_output_point_textview">
 

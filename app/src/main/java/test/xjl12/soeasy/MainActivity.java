@@ -8,6 +8,7 @@ import android.support.design.widget.*;
 import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
+import android.util.DisplayMetrics;
 import android.view.*;
 import android.widget.*;
 import android.support.v7.widget.Toolbar;
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity
 		final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab);
 		mCl = (CoordinatorLayout) findViewById(R.id.main_mdCoordinatorLayout);
 		input = (EditText) findViewById(R.id.main_m_input);
+		//ImageView imageView = (ImageView) findViewById(R.id.main_content_ImageView1);
 		//final TextInputLayout inputLayout = (TextInputLayout) findViewById(R.id.main_TextInputLayout);
 		final Typeface light_typeface = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
 		//final Typeface medium_italic = Typeface.createFromAsset(getAssets(),"fonts/Roboto-MediumItalic.ttf");
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity
 		Others.initActivity(this,toolbar,mCl);
 
 		//mNavigation.setItemIconTintList(null);
-		input.setText(R.string.happy_new_year);
+		//input.setText(R.string.happy_new_year);
 		View header = mNavigation.getHeaderView(0);
 		TextView mNavigation_header_version = (TextView) header.findViewById(R.id.navigation_header_app_version);
 		TextView app_name = (TextView) header.findViewById(R.id.navigation_header_m_app_name);
@@ -77,7 +79,12 @@ public class MainActivity extends AppCompatActivity
 		app_name.setTypeface(light_typeface);
 		FireworkView mFireworkview = (FireworkView) findViewById(R.id.fire_work);
 		mFireworkview.bindEditText(input);
-
+/*
+		int width = imageView.getWidth();
+		final float ratio= 405 / 720 ;
+		int height = (int) Math.floor(width * ratio);
+		imageView.setMaxHeight(height);
+*/
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
 			public void onDrawerOpened(View view)
 			{
