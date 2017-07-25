@@ -1,51 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:paddingBottom="@dimen/md_16"
-	android:paddingLeft="@dimen/md_16"
-	android:paddingRight="@dimen/md_16"
-	android:paddingTop="@dimen/md_16"
-	tools:context="test.xjl12.soeasy.MainActivity"
-	tools:showIn="@layout/main_md">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/beautiful_background"
+    android:paddingBottom="@dimen/md_16"
+    android:paddingLeft="@dimen/md_16"
+    android:paddingRight="@dimen/md_16"
+    android:paddingTop="@dimen/md_16"
+    tools:context="test.xjl12.soeasy.MainActivity"
+    tools:showIn="@layout/main_md">
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content"
-		android:text="@string/welcome"
-		android:layout_marginBottom="@dimen/md_16"
-		android:id="@+id/main_welcome_TextView"
-		android:textColor="@color/material_black"
-		android:layout_marginTop="@dimen/md_16"
-		android:layout_centerHorizontal="true"/>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_edittext_layout"
+        android:layout_marginTop="@dimen/md_24"
+        android:paddingBottom="@dimen/main_padding_bottom_textview"
+        android:gravity="top"
+        android:layout_centerVertical="true">
 
-	<ImageView
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:src="@drawable/beautiful_soeasy_special"
-		android:scaleType="centerInside"
-		android:adjustViewBounds="true"
-		android:layout_below="@id/main_welcome_TextView"
-		android:id="@+id/main_content_ImageView1"/>
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="@string/main_edit_hint"
+            android:gravity="center"
+            android:id="@+id/main_m_input"
+            android:layout_centerVertical="true"
+            android:textColor="@color/material_black" />
 
-	
-	<EditText
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:hint="@string/main_edit_hint"
-		android:gravity="center"
-		android:id="@+id/main_m_input"
-		android:layout_marginTop="@dimen/md_16"
-		android:layout_below="@id/main_content_ImageView1"
-		android:textColor="@color/material_black"/>
+    </android.support.design.widget.TextInputLayout>
 
-	<com.wayww.edittextfirework.FireworkView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:id="@+id/fire_work"/>
+    <TextView
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:text="@string/welcome"
+        android:layout_marginBottom="@dimen/main_margin_textview"
+        android:id="@+id/main_welcome_TextView"
+        android:textColor="@color/material_black"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/main_edittext_layout" />
+    <!--
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/beautiful_soeasy_special"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:layout_below="@id/main_welcome_TextView"
+            android:id="@+id/main_content_ImageView1"/>
+
+            android:layout_below="@id/main_welcome_TextView"
+    -->
 
 </RelativeLayout>
 

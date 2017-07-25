@@ -9,13 +9,11 @@ import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v7.app.*;
-import android.support.v7.widget.*;
-import android.util.*;
+import android.support.v7.app.AlertDialog;
 import android.view.*;
 import android.view.inputmethod.*;
 import android.widget.*;
 import java.io.*;
-import java.lang.reflect.*;
 import java.net.*;
 import java.util.*;
 import java.util.zip.*;
@@ -186,6 +184,24 @@ public class Others
         String contextString = context.toString();
         return contextString.substring(contextString.lastIndexOf(".") + 1, contextString.indexOf("@"));
 	}
+
+	public static AlertDialog.Builder errorDialogBuilder(final String error_info,final Context context,final Handler mHandle) {
+		AlertDialog.Builder error_can_not_write = new AlertDialog.Builder(context);
+		error_can_not_write.setTitle(R.string.error);
+		error_can_not_write.setMessage(R.string.sdcard_error);
+		error_can_not_write.setPositiveButton(R.string.ok,null);
+		error_can_not_write.setNeutralButton(R.string.feebback, new DialogInterface.OnClickListener(){
+
+			@Override
+			public void onClick(DialogInterface p1, int p2)
+			{
+				feebbackErrorInfo(error_info,context,mHandle);
+				p1.dismiss();
+			}
+		});
+		error_can_not_write.setIcon(R.drawable.ic_warning);
+		return error_can_not_write;
+	}
 	//反馈
 	public static void feebbackErrorInfo (final String info,final Context context,final Handler mHandle)
 	{
@@ -243,6 +259,7 @@ public class Others
 		}
 		catch (IOException e)
 		{
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -484,16 +501,17 @@ public class Others
 	//删除目录内所有文件文件
 	public static boolean DeleteDirAllFile(File dir)
 	{
-		if (dir.isDirectory())
-		{
-			File[] list_files = dir.listFiles();
-			for (File file : list_files)
-			{
-				DeleteDirAllFile(file);
+		if (dir != null) {
+			if (dir.isDirectory()) {
+				File[] list_files = dir.listFiles();
+				for (File file : list_files) {
+					DeleteDirAllFile(file);
+				}
+
 			}
-			
+			return dir.delete();
 		}
-		return dir.delete();
+		return false;
 	}
 	//测试
 	public static void test(Context context)
@@ -535,20 +553,15 @@ public class Others
 		{
 			FileOutputStream shot_fos = new FileOutputStream(shot_file);
 			bitmap.compress(Bitmap.CompressFormat.PNG, 100, shot_fos);
-			try
-			{
-				shot_fos.flush();
-				shot_fos.close();
-			}
-			catch (IOException e)
-			{}
+			shot_fos.flush();
 		}
-		catch (FileNotFoundException e)
-		{}
-
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		return Intent.createChooser(isQQInstalled(activity.getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_STREAM, Uri.fromFile(shot_file)).setType("image/png")), activity.getString(R.string.share_point));
 	}
-
+/*
 	public static Activity getGlobleActivity() throws ClassNotFoundException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, NoSuchFieldException
 	{
         Class activityThreadClass = Class.forName("android.app.ActivityThread");
@@ -571,5 +584,6 @@ public class Others
         }
         return null;
     }
+    */
 
 }

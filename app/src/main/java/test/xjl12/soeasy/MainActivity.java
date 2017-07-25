@@ -2,17 +2,16 @@ package test.xjl12.soeasy;
 
 import android.content.*;
 import android.graphics.*;
-import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
-import android.util.DisplayMetrics;
+import android.support.v7.widget.*;
+import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.*;
-import android.support.v7.widget.Toolbar;
-import com.wayww.edittextfirework.*;
+
 import com.maddog05.maddogdialogs.MaddogProgressDialog;
 import java.net.*;
 
@@ -29,7 +28,9 @@ public class MainActivity extends AppCompatActivity
 	AlertDialog.Builder not_new_version;
 	AlertDialog.Builder error_dialog;
 	HttpURLConnection connection;
-	
+	MenuItem dev_sub_info;
+	MenuItem dev_sub_test;
+	AppCompatImageView nav_dev_imageView;
 	//LongTermActionService mService;
 	//boolean mBound = false;
 
@@ -77,14 +78,17 @@ public class MainActivity extends AppCompatActivity
 		TextView app_name = (TextView) header.findViewById(R.id.navigation_header_m_app_name);
 		mNavigation_header_version.setText(Others.getAppVersionName(getApplicationContext()));
 		app_name.setTypeface(light_typeface);
-		FireworkView mFireworkview = (FireworkView) findViewById(R.id.fire_work);
-		mFireworkview.bindEditText(input);
-/*
-		int width = imageView.getWidth();
-		final float ratio= 405 / 720 ;
-		int height = (int) Math.floor(width * ratio);
-		imageView.setMaxHeight(height);
-*/
+		Menu navigation_menu = mNavigation.getMenu();
+		dev_sub_info = navigation_menu.findItem(R.id.main_develop_sub_info);
+		dev_sub_test = navigation_menu.findItem(R.id.main_develop_sub_test);
+		nav_dev_imageView = (AppCompatImageView) navigation_menu.findItem(R.id.navigation_item_develop).getActionView().findViewById(R.id.navigation_dev_imgview);
+
+		nav_dev_imageView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				changeNavigationDevSubState();
+			}
+		});
 		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
 			public void onDrawerOpened(View view)
 			{
@@ -168,14 +172,17 @@ public class MainActivity extends AppCompatActivity
 							Intent url_list_intent = new Intent(getApplicationContext(), URLListActivity.class);
 							startActivity(url_list_intent);
 							break;
-						case R.id.navigation_item_test:
+						case R.id.navigation_item_develop:
+							changeNavigationDevSubState();
+							break;
+						case R.id.main_develop_sub_test:
 							Intent test_intent = new Intent(getApplicationContext(), TestActivity.class);
 							startActivity(test_intent);
 							break;
-						case R.id.navigation_item_debug:
+						case R.id.main_develop_sub_info:
 							Intent debug_intent = new Intent(getApplicationContext(), DebugActivity.class);
 							debug_intent.putExtra(EXTRA_MESSAGE, Others.getAppVersionName(getApplicationContext()));
-        					startActivity(debug_intent);
+							startActivity(debug_intent);
 							break;
                         case R.id.navigation_item_math:
                             Intent math_intent = new Intent(getApplicationContext(),MathActivity.class);
@@ -238,11 +245,27 @@ public class MainActivity extends AppCompatActivity
 	@Override
 	protected void onStop()
 	{
+		if (dev_sub_info.isVisible() || dev_sub_test.isVisible()) {
+			changeNavigationDevSubState();
+		}
 		if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) 
 		{
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }
 		super.onStop();
+	}
+
+	private void changeNavigationDevSubState() {
+		if (dev_sub_info.isVisible() || dev_sub_test.isVisible()) {
+			dev_sub_info.setVisible(false);
+			dev_sub_test.setVisible(false);
+			nav_dev_imageView.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
+		}
+		else {
+			dev_sub_info.setVisible(true);
+			dev_sub_test.setVisible(true);
+			nav_dev_imageView.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
+		}
 	}
 }
 	/*private ServiceConnection mConnection = new ServiceConnection(){

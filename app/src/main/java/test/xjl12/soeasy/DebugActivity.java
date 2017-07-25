@@ -137,6 +137,6 @@ public class DebugActivity extends AppCompatActivity
 	}
 	public void SaveAndShare (View view) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, ClassNotFoundException, NoSuchFieldException, InvocationTargetException, IOException
 	{
-		startActivity(Intent.createChooser(Others.getShot(Others.getGlobleActivity()),getString(R.string.share_point)));
+		startActivity(Intent.createChooser(Others.getShot(this),getString(R.string.share_point)));
 	}
 }

@@ -4,6 +4,9 @@
     <dimen name="md_6">6dp</dimen>
     <dimen name="md_24">24dp</dimen>
 
+    <dimen name="main_margin_textview">32dp</dimen>
+    <dimen name="main_padding_bottom_textview">48dp</dimen>
+
     <dimen name="normal_10">10dp</dimen>
     <dimen name="height_0">0dp</dimen>
     <dimen name="icon_show">80dp</dimen>

@@ -27,8 +27,8 @@
     <string name="app_name">SoEasy</string>
     <string name="title_second_activity">你成功了！</string>
     <string name="title_games_activity">猜数游戏</string>
-    <string name="title_debug">信息</string>
-    <string name="title_test">测试</string>
+    <string name="title_debug">调试信息</string>
+    <string name="title_test">测试功能</string>
     <string name="title_urllist">网址</string>
     <string name="title_my_world">我的世界存档</string>
     <!-- Main -->
@@ -182,4 +182,6 @@
     <string name="time_cost">此次运算耗时：%s ms</string>
     <string name="math_stop">停止</string>
     <string name="math_stop_point">计算过程已停止！</string>
+    <string name="title_develop">开发</string>
+    <string name="debug_message_error_storage_unusable">存储设备不可用！\n在getExternalCacheDir()方法中返回null</string>
 </resources>

@@ -3,9 +3,11 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/oldpic
 .DS_Store
 /build
 /captures
 /app/build
 *.iml
 .externalNativeBuild
+/APKs

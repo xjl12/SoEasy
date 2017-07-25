@@ -102,10 +102,7 @@ public class MyWorldActivity extends AppCompatActivity
 		{
 			help_builder.show();
 		}
-		
-		error_can_not_write = new AlertDialog.Builder(this);
-		error_can_not_write.setTitle(R.string.error);
-		error_can_not_write.setMessage(R.string.sdcard_error);
+		error_can_not_write = Others.errorDialogBuilder(error_info,this,mHandle);
 		error_can_not_write.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
 
 				@Override
@@ -115,17 +112,7 @@ public class MyWorldActivity extends AppCompatActivity
 					p1.dismiss();
 				}
 			});
-		error_can_not_write.setNeutralButton(R.string.feebback, new DialogInterface.OnClickListener(){
-
-				@Override
-				public void onClick(DialogInterface p1, int p2)
-				{
-					Others.feebbackErrorInfo(error_info,MyWorldActivity.this,mHandle);
-					p1.dismiss();
-				}
-			});
 		error_can_not_write.setOnDismissListener(errorDialogDismiss());
-		error_can_not_write.setIcon(R.drawable.ic_warning);
 		
 		error_phone_has_version_bigger = new AlertDialog.Builder(MyWorldActivity.this);
 		error_phone_has_version_bigger.setTitle(R.string.warn);
@@ -668,7 +655,7 @@ public class MyWorldActivity extends AppCompatActivity
 		}
 		return -1;
 	}
-	
+
 	private void errorCanNotWrite(String error)
 	{
 		if (error != null)

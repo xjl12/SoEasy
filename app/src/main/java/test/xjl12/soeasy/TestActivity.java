@@ -1,6 +1,9 @@
 package test.xjl12.soeasy;
 
 import android.content.*;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
@@ -16,6 +19,7 @@ public class TestActivity extends AppCompatActivity
 {
     TextView test_textview1;
 	Button fc_button;
+	private Handler handler = new Handler();
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -23,7 +27,7 @@ public class TestActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
         //Test Fragment
-        /**if (findViewById(R.id.testFrameLayout) != null)
+        /*if (findViewById(R.id.testFrameLayout) != null)
         {
             if (savedInstanceState != null)
             {
@@ -133,7 +137,7 @@ public class TestActivity extends AppCompatActivity
         web.setData(baidu);
         startActivity(web);
     }
-    public void TestFileWrite (View view) throws FileNotFoundException, IOException
+    public void TestFileWrite (View view) throws IOException
     {
         Log.i("Test","TestFileWrite button on click");
         FileOutputStream outstream = this.openFileOutput("test.txt",Context.MODE_APPEND);
@@ -171,23 +175,36 @@ public class TestActivity extends AppCompatActivity
 				}
 			}).start();
 	}
-	public void OpenRawTestImage (View view) throws IOException
+	public void OpenRawTestImage (View view)
 	{
-		File cache_file = new File(this.getExternalCacheDir(),Others.RandomString(8));
-		InputStream test_is = getResources().openRawResource(R.raw.ic_launcher_raw);
-		FileOutputStream test_fos = new FileOutputStream(cache_file);
-		byte[] buffer = new byte[1024];
-		int byte_count = 0;
-		while ((byte_count = test_is.read(buffer)) != -1)
-		{
-			test_fos.write(buffer,0,byte_count);
+		if (getExternalCacheDir() != null) {
+			final File cache_file = new File(getExternalCacheDir(), Others.RandomString(8));
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.beautiful_background);
+					try {
+						FileOutputStream test_fos = new FileOutputStream(cache_file);
+						bitmap.compress(Bitmap.CompressFormat.JPEG, 100, test_fos);
+						test_fos.flush();
+						test_fos.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					handler.post(new Runnable() {
+						@Override
+						public void run() {
+							Uri test_image = Uri.fromFile(cache_file);
+							Intent open_test_image = new Intent(Intent.ACTION_VIEW);
+							open_test_image.setDataAndType(test_image, "image/*");
+							startActivity(open_test_image);
+						}
+					});
+				}
+			}).start();
 		}
-		test_fos.flush();
-		test_is.close();
-		test_fos.close();
-		Uri test_image = Uri.fromFile(cache_file);
-		Intent open_test_image = new Intent(Intent.ACTION_VIEW);
-		open_test_image.setDataAndType(test_image,"image/*");
-		startActivity(open_test_image);
+		else {
+			Others.errorDialogBuilder(getString(R.string.debug_message_error_storage_unusable),this,handler).show();
+		}
 	}
 }

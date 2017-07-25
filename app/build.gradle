@@ -15,9 +15,9 @@ android {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 80
-        versionName "1.8"
-        resConfigs "zh", "en"
+        versionCode 85
+        versionName "1.8.5"
+        resConfigs ("zh", "en")
         signingConfig signingConfigs.appkey
     }
     buildTypes {
@@ -34,7 +34,6 @@ android {
 
 dependencies {
     compile project(':maddogdialogs')
-    compile project(':edittextfirework')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:design:26.0.0-alpha1'
 }

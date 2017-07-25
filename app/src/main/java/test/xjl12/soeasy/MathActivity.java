@@ -161,10 +161,9 @@ public class MathActivity extends AppCompatActivity {
                 stop_button.setVisibility(View.GONE);
                 calculate_button.setVisibility(View.VISIBLE);
                 output_textview.setVisibility(View.GONE);
-                if (show_exact_progress) {
-                    progressBar_exact.setVisibility(View.GONE);
-                    progressBar_exact.setProgress(0);
-                }
+                progressBar_exact.setVisibility(View.GONE);
+                progressBar_exact.setProgress(0);
+                progressBar.setVisibility(View.GONE);
                 Snackbar.make(mCl,R.string.math_stop_point,Snackbar.LENGTH_SHORT).show();
             }
         });
