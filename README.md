@@ -2,6 +2,8 @@
 
 SoEasy——我的第一个Android App!
 
+[![Build Status](https://travis-ci.org/xjl12/SoEasy.svg?branch=master)](https://travis-ci.org/xjl12/SoEasy)
+
 <img src="app/src/main/res/mipmap/ic_launcher.png" width=100 height=100 />
 
 ## 欢迎访问项目首页
