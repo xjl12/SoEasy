@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        appkey {
-            keyAlias 'appkey'
-            keyPassword 'zxcvbnm'
-            storeFile file('/home/xjl/AndroidStudioProjects/publish.keystore')
-            storePassword 'zxcvbnm'
+        release {
+            keyAlias System.getenv("ALIAS_NAME")
+            keyPassword System.getenv("ALIAS_PASSWD")
+            storeFile file('publish.keystore')
+            storePassword System.getenv("ALIAS_PASSWD")
         }
     }
     compileSdkVersion 26
@@ -18,7 +18,7 @@ android {
         versionCode 85
         versionName "1.8.5"
         resConfigs ("zh", "en")
-        signingConfig signingConfigs.appkey
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
