@@ -11,4 +11,4 @@
 *.iml
 .externalNativeBuild
 /APKs
-/publish.keystore
+/app/publish.keystore
