@@ -10,14 +10,23 @@ android:
   - android-26
   - extra-android-m2repository
 before_install:
+- openssl aes-256-cbc -K $encrypted_4c682e74c72e_key -iv $encrypted_4c682e74c72e_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - openssl aes-256-cbc -K $encrypted_c84f371e8e95_key -iv $encrypted_c84f371e8e95_iv
   -in publish.keystore.enc -out app/publish.keystore -d
 - chmod +x gradlew
 script:
 - "./gradlew assembleRelease"
+after_success:
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host my_server\n\tHostName $SERVER_ADDR\n\tPort $SERVER_PORT\n\tUser root\n\tStrictHostKeyChecking
+  no\n" >> ~/.ssh/config
+- scp app/build/outputs/apk/app-release.apk my_server:/var/www/html/downloads/soeasy-auto.apk
 deploy:
   provider: releases
   api_key:
     secure: fb256dfe5d20e5e96d118c46356801fb6797d04c
-  file: app/build/outputs/apk/app-releases.apk
+  file: app/build/outputs/apk/app-release.apk
   skip_cleanup: true
+  on:
+    tags: true
