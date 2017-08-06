@@ -1,119 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:paddingLeft="@dimen/md_16"
-	android:paddingTop="@dimen/md_16"
-	android:paddingRight="@dimen/md_16"
-	android:paddingBottom="@dimen/md_16"
-	tools:context="test.xjl12.soeasy.MyWorldActivity"
-	tools:showIn="@layout/my_world"
-	android:layout_margin="@dimen/normal_10">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="test.xjl12.soeasy.MyWorldActivity"
+    tools:showIn="@layout/my_world">
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_soeasy_has_version"
-		android:layout_width="wrap_content"
-		android:layout_alignParentTop="true"
-		android:layout_alignParentLeft="true"
-		android:id="@+id/my_world_content_soeasy_has_version_TextView"
-		android:layout_marginBottom="@dimen/md_16"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/md_16"
+        android:paddingTop="@dimen/md_16"
+        android:paddingRight="@dimen/md_16"
+        android:paddingBottom="@dimen/md_16">
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_read_failed"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content"
-		android:layout_below="@id/my_world_content_soeasy_has_version_TextView"
-		android:layout_centerHorizontal="true"
-		android:id="@+id/my_world_content_soeaay_version_show_TextView"
-		android:layout_margin="@dimen/normal_10"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="@string/my_world_internet_version"
+            android:layout_width="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/my_world_content_soeasy_has_version_TextView"
+            android:layout_marginBottom="@dimen/md_16" />
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_phone_has_version"
-		android:layout_width="wrap_content"
-		android:layout_below="@id/my_world_content_soeaay_version_show_TextView"
-		android:id="@+id/my_world_content_phone_has_version_TextView"
-		android:layout_alignParentLeft="true"
-		android:layout_marginBottom="@dimen/md_16"
-		android:visibility="gone"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="@string/reading"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/my_world_content_soeasy_has_version_TextView"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/my_world_content_soeaay_version_show_TextView"
+            android:layout_margin="@dimen/normal_10" />
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_read_failed"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content"
-		android:layout_below="@id/my_world_content_phone_has_version_TextView"
-		android:layout_centerHorizontal="true"
-		android:layout_margin="@dimen/normal_10"
-		android:id="@+id/my_world_content_phone_version_show_TextView"
-		android:visibility="gone"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="@string/my_world_phone_has_version"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/my_world_content_soeaay_version_show_TextView"
+            android:id="@+id/my_world_content_phone_has_version_TextView"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="@dimen/md_16"
+            android:visibility="gone" />
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_backup_version"
-		android:layout_width="wrap_content"
-		android:layout_below="@id/my_world_content_phone_version_show_TextView"
-		android:layout_marginBottom="@dimen/md_16"
-		android:id="@+id/my_world_content_backup_version_TextView"
-		android:visibility="gone"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="@string/my_world_read_failed"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/my_world_content_phone_has_version_TextView"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/normal_10"
+            android:id="@+id/my_world_content_phone_version_show_TextView"
+            android:visibility="gone" />
 
-	<TextView
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_read_failed"
-		android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content"
-		android:layout_below="@id/my_world_content_backup_version_TextView"
-		android:layout_centerHorizontal="true"
-		android:id="@+id/my_world_content_backup_version_shoe_TextView"
-		android:layout_margin="@dimen/normal_10"
-		android:visibility="gone"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="@string/my_world_backup_version"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/my_world_content_phone_version_show_TextView"
+            android:layout_marginBottom="@dimen/md_16"
+            android:id="@+id/my_world_content_backup_version_TextView"
+            android:visibility="gone" />
 
-	<Button
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_unzip_to_phone"
-		android:layout_width="match_parent"
-		android:id="@+id/my_world_content_unzip_Button"
-		android:layout_centerHorizontal="true"
-		android:layout_marginTop="@dimen/normal_10"
-		android:layout_below="@id/my_world_content_backup_version_shoe_TextView"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="@string/my_world_read_failed"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/my_world_content_backup_version_TextView"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/my_world_content_backup_version_shoe_TextView"
+            android:layout_margin="@dimen/normal_10"
+            android:visibility="gone" />
 
-	<Button
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_send"
-		android:layout_width="match_parent"
-		android:layout_below="@id/my_world_content_unzip_Button"
-		android:id="@+id/my_world_content_send_Button"
-		android:visibility="gone"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_world_content_retry_button"
+            android:text="@string/retry"
+            android:layout_below="@id/my_world_content_backup_version_shoe_TextView"
+            android:layout_marginTop="@dimen/normal_10"
+            android:visibility="gone" />
 
-	<Button
-		android:layout_height="wrap_content"
-		android:text="@string/revoke"
-		android:layout_width="match_parent"
-		android:id="@+id/my_world_content_revoke_Button"
-		android:layout_below="@id/my_world_content_send_Button"
-		android:visibility="gone"/>
+        <Button
+            android:layout_height="wrap_content"
+            android:text="@string/my_world_download_to_phone"
+            android:layout_width="match_parent"
+            android:id="@+id/my_world_content_download_Button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/normal_10"
+            android:visibility="gone"
+            android:layout_below="@id/my_world_content_retry_button" />
 
-	<Button
-		android:layout_height="wrap_content"
-		android:text="@string/my_world_delete"
-		android:layout_width="match_parent"
-		android:layout_below="@id/my_world_content_revoke_Button"
-		android:textColor="@color/red"
-		android:id="@+id/my_world_content_delete_Button"
-		android:visibility="gone"/>
+        <Button
+            android:layout_height="wrap_content"
+            android:text="@string/my_world_send"
+            android:layout_width="match_parent"
+            android:layout_below="@id/my_world_content_download_Button"
+            android:id="@+id/my_world_content_send_Button"
+            android:visibility="gone" />
 
-	<Button
-		android:layout_height="wrap_content"
-		android:text="@string/delete_backup"
-		android:layout_width="match_parent"
-		android:layout_below="@id/my_world_content_delete_Button"
-		android:textColor="@color/red"
-		android:id="@+id/my_world_content_delete_backup_Button"
-		android:visibility="gone"/>
+        <Button
+            android:layout_height="wrap_content"
+            android:text="@string/revoke"
+            android:layout_width="match_parent"
+            android:id="@+id/my_world_content_revoke_Button"
+            android:layout_below="@id/my_world_content_send_Button"
+            android:visibility="gone" />
 
-</RelativeLayout>
+        <Button
+            android:layout_height="wrap_content"
+            android:text="@string/my_world_delete"
+            android:layout_width="match_parent"
+            android:layout_below="@id/my_world_content_revoke_Button"
+            android:textColor="@color/red"
+            android:id="@+id/my_world_content_delete_Button"
+            android:visibility="gone" />
 
+        <Button
+            android:layout_height="wrap_content"
+            android:text="@string/delete_backup"
+            android:layout_width="match_parent"
+            android:layout_below="@id/my_world_content_delete_Button"
+            android:textColor="@color/red"
+            android:id="@+id/my_world_content_delete_backup_Button"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</ScrollView>

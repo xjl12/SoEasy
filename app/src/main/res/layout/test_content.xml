@@ -1,95 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:paddingLeft="@dimen/md_16"
-	android:paddingTop="@dimen/md_16"
-	android:paddingRight="@dimen/md_16"
-	android:paddingBottom="@dimen/md_16"
-	tools:context="test.xjl12.soeasy.TestActivity"
-	tools:showIn="@layout/test"
-	android:orientation="vertical"
-	android:gravity="top|center">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="test.xjl12.soeasy.TestActivity"
+    tools:showIn="@layout/test"
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-	<RelativeLayout
-		android:layout_height="0dp"
-		android:layout_width="match_parent"
-		android:orientation="vertical"
-		android:layout_weight="1"
-		android:layout_gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/md_16"
+        android:paddingTop="@dimen/md_16"
+        android:paddingRight="@dimen/md_16"
+        android:paddingBottom="@dimen/md_16"
+        android:orientation="vertical"
+        android:gravity="top|center">
 
-		<ScrollView
-			android:layout_height="match_parent"
-			android:layout_width="match_parent"
-			android:layout_gravity="center"
-			android:layout_centerInParent="true">
+        <RelativeLayout
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_gravity="center">
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:text="@string/test_wrong"
-				android:textAppearance="?android:attr/textAppearanceLarge"
-				android:layout_width="wrap_content"
-				android:textStyle="bold"
-				android:id="@+id/testTextView1"/>
+            <ScrollView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true">
 
-		</ScrollView>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:text="@string/test_wrong"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:id="@+id/testTextView1" />
 
-	</RelativeLayout>
+            </ScrollView>
 
-	<LinearLayout
-		android:gravity="center"
-		android:layout_height="0dp"
-		android:layout_width="match_parent"
-		android:orientation="vertical"
-		android:layout_weight="4">
+        </RelativeLayout>
 
-		<Button
-			android:layout_height="wrap_content"
-			android:text="@string/test1"
-			android:layout_width="wrap_content"
-			android:onClick="test1"
-			android:ems="10"/>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="4">
 
-		<Button
-			android:layout_height="wrap_content"
-			android:text="@string/open_test_raw_image"
-			android:layout_width="wrap_content"
-			android:onClick="OpenRawTestImage"
-			android:ems="10"/>
+            <Button
+                android:layout_height="wrap_content"
+                android:text="@string/test1"
+                android:layout_width="wrap_content"
+                android:onClick="test1"
+                android:ems="10" />
 
-		<Button
-			android:layout_height="wrap_content"
-			android:text="@string/test_file_write"
-			android:layout_width="wrap_content"
-			android:ems="10"
-			android:onClick="TestFileWrite"/>
+            <Button
+                android:layout_height="wrap_content"
+                android:text="@string/open_test_raw_image"
+                android:layout_width="wrap_content"
+                android:onClick="OpenRawTestImage"
+                android:ems="10" />
 
-		<Button
-			android:layout_height="wrap_content"
-			android:text="@string/test_file_read"
-			android:layout_width="wrap_content"
-			android:ems="10"
-			android:onClick="TestFileRead"/>
+            <Button
+                android:layout_height="wrap_content"
+                android:text="@string/test_file_write"
+                android:layout_width="wrap_content"
+                android:ems="10"
+                android:onClick="TestFileWrite" />
 
-		<Button
-			android:layout_height="wrap_content"
-			android:text="@string/delete_test_file"
-			android:layout_width="wrap_content"
-			android:ems="10"
-			android:onClick="DeleteTestFile"/>
+            <Button
+                android:layout_height="wrap_content"
+                android:text="@string/test_file_read"
+                android:layout_width="wrap_content"
+                android:ems="10"
+                android:onClick="TestFileRead" />
 
-		<Button
-			android:layout_height="wrap_content"
-			android:text="@string/test_fc"
-			android:layout_width="wrap_content"
-			android:ems="10"
-			android:textColor="@color/red"
-			android:onClick="TestFC"
-			android:id="@+id/test_fc_Button"/>
+            <Button
+                android:layout_height="wrap_content"
+                android:text="@string/delete_test_file"
+                android:layout_width="wrap_content"
+                android:ems="10"
+                android:onClick="DeleteTestFile" />
 
-	</LinearLayout>
+            <Button
+                android:layout_height="wrap_content"
+                android:text="@string/test_fc"
+                android:layout_width="wrap_content"
+                android:ems="10"
+                android:textColor="@color/red"
+                android:onClick="TestFC"
+                android:id="@+id/test_fc_Button" />
 
-</LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
 

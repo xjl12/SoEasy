@@ -23,7 +23,7 @@ public class URLListActivity extends AppCompatActivity
 		Toolbar toolbar = (Toolbar) findViewById(R.id.urllist_mdToolbar);
 		ListView url_ls = (ListView) findViewById(R.id.urllist);
 		//FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.urllist_fab);
-		final CoordinatorLayout mCl = (CoordinatorLayout) findViewById(R.id.urllist_mdCoordinatorLayout);
+		CoordinatorLayout mCl = (CoordinatorLayout) findViewById(R.id.urllist_mdCoordinatorLayout);
 		
 		Others.initActivity(this,toolbar,mCl);
 
@@ -33,7 +33,6 @@ public class URLListActivity extends AppCompatActivity
 		RecyclerView.Adapter mAdapter = new MyAdapter (this.getResources().getStringArray(R.array.web_url_title));*/
 		
 		ListAdapter url_la = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_1,this.getResources().getStringArray(R.array.web_url_title));
-		
 		url_ls.setAdapter(url_la);
 		url_ls.setOnItemClickListener(new OnItemClickListener() {
 

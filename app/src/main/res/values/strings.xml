@@ -25,6 +25,7 @@
     <string name="running_mesage">正在执行操作，请耐心等待</string>
     <!-- Title-->
     <string name="app_name">SoEasy</string>
+    <string name="fileprovider_authorities">test.xjl12.soeasy.fileprovider</string>
     <string name="title_second_activity">你成功了！</string>
     <string name="title_games_activity">猜数游戏</string>
     <string name="title_debug">调试信息</string>
@@ -47,10 +48,9 @@
     <string name="happy_new_year">新年快乐！</string>
     <string name="main_point_to_set_theme">看到右上角的按钮了吗？在那里面可以设置本界面的布局和背景颜色哦！</string>
     <!-- Update -->
-    <string name="updating_message">正在检查更新，请君耐心等会儿～</string>
-    <string name="find_new_version">发现新版本！(^_^) 请立即更新！</string>
+    <string name="updating_message">正在检查更新，请耐心等会儿～</string>
+    <string name="find_new_version">发现新版本%s！(^_^) 请立即更新！</string>
     <string name="find_new_version_title">发现新版本！</string>
-    <string name="check_update_failed">Oh no! :-) 网络开小差咯，检查更新失败！\n也许再试一次就能行啦！(^_^)\n\n如果多次尝试不成功，请向我反馈！\n错误代码：%s</string>
     <string name="soeasy_version_newest">恭喜 ^_^ SoEasy 已是最新版本，感谢您的使用！</string>
     <!-- Navigation Menu -->
     <string name="navigation_item_home">主页</string>
@@ -82,10 +82,10 @@
     <string name="games_times">你这次共猜了</string>
     <string name="games_times_more">次，再接再厉哦！</string>
     <string name="games_times_less">次，你太厉害了！</string>
+    <string name="games_point_info">这个数在 %1$d ~ %2$d 范围内</string>
     <string name="games_share">来自SoEasy猜数游戏的分享: \n \n我共猜了%s次，不服来战！</string>
     <string name="games_not_see_answers">你似乎还没有猜过呢！不能看答案哦，快去猜猜吧！</string>
     <!-- MyWorld -->
-    <string name="my_world_soeasy_has_version">SoEasy自带版本:</string>
     <string name="my_world_phone_has_version">手机上的版本:</string>
     <string name="my_world_backup_version">备份区版本:</string>
     <string name="my_world_unzip_to_phone">解压到手机</string>
@@ -96,11 +96,10 @@
     <string name="my_world_hurt">存档已损坏，请更新存档！</string>
     <string name="my_world_read_failed">读取失败，请稍后再试</string>
     <string name="my_world_development_option">开发者选项</string>
-    <string name="my_world_package">打包存档并打开AIDE</string>
     <string name="my_world_starting">正在启动我的世界……\n稍后请选择xjl_lyy_git存档进入</string>
     <string name="my_world_not_installed">我的世界没有安装，请下载0.16.0.5版本的我的世界！</string>
     <string name="my_world_not_version">我的世界版本不对，请卸载后重新安装0.16.0.5版本的我的世界</string>
-    <string name="my_world_phone_version_bigger">您手机上的我的世界存档版本比SoEasy自带版本更高，继续操作将会使您的修改失效，但如果您仅仅是为了还原存档，请继续，否则为保护您的数据，请取消！\n\n小提示:本操作可使用下面的撤销按钮撤销。</string>
+    <string name="my_world_phone_version_bigger">您手机上的我的世界存档版本比网络版本更高，继续操作将会使您的修改失效，但如果您仅仅是为了还原存档，请继续，否则为保护您的数据，请取消！\n\n小提示:本操作可使用下面的撤销按钮撤销。</string>
     <string name="my_world_help">\n我的世界存档管理功能集解压、更新、发送、删除等功能于一体，旨在方便xjl_lyy_git存档的同步，共同建设美好明天！\n\n以下是各功能要点说明:\n
 	1、存档版本\n存档版本是由一串数字组成，每进入一次存档，数字便会往高处增长，增长的多少是由我的世界游戏决定的，与SoEasy无关，SoEasy只是通过记录存档来方便管理罢。\n
 	2、解压/更新\nSoEasy自带一份完整的存档，使用该功能可以将SoEasy内的存档解压到手机上。\n注意:请不要将低版本存档解压到手机，这会覆盖掉手机上的高版本存档,如执意操作，则SoEasy会自动备份手机上的高版本存档，用户可随时还原。\n
@@ -156,7 +155,6 @@
     <string name="error_message_with_infomation">操作失败，请稍后重试，如多次发生此错误，欢迎反馈给我！\n\n以下是有关此错误的详细信息：\n\n %s</string>
     <string name="sdcard_error">您的存储设备似乎不可用。\n\n请按照如下步骤检查您的设备:\n1.您是否授予SoEasy存储权限？\n2.您是否挂载USB存储设备到电脑上？\n3.您的存储设备可用空间（至少要5MB）是否充足？\n4.也许您应该重新启动一下手机？\n\n如果您排除了这些问题，请再试一次，如果多次出现此情况请及时向我反馈！</string>
     <string name="sdcard_error_with_info">您的存储设备似乎不可用。\n\n请按照如下步骤检查您的设备:\n1.您是否授予SoEasy存储权限？\n2.您是否挂载USB存储设备到电脑上？\n3.您的存储设备可用空间（至少要5MB）是否充足？\n4.也许您应该重新启动一下手机？\n\n如果您排除了这些问题，请再试一次，如果多次出现此情况请及时向我反馈！\n以下是错误信息:\n\n%s</string>
-    <string name="error_web">网络似乎出了点小问题(≧▽≦)\n错误代码：%s</string>
     <string name="Error_cannot_shot">无法截图!请及时反馈！</string>
     <string name="send_error">反馈</string>
     <string name="Error_no_file">致命错误:测试文件不存在！</string>
@@ -184,4 +182,29 @@
     <string name="math_stop_point">计算过程已停止！</string>
     <string name="title_develop">开发</string>
     <string name="debug_message_error_storage_unusable">存储设备不可用！\n在getExternalCacheDir()方法中返回null</string>
+    <string name="my_world_web_version_url">http://xjl12.imwork.net/my_world_version</string>
+    <string name="network_error">网络错误！</string>
+    <string name="my_world_internet_version">网络版本</string>
+    <string name="my_world_download_to_phone">下载到手机</string>
+    <string name="downloading">正在下载……</string>
+    <string name="my_world_archive_url">http://xjl12.imwork.net/downloads/MyWorld_xjl_lyy.zip</string>
+    <string name="canceled">已取消</string>
+    <string name="download_canceled">下载已取消！</string>
+    <string name="my_world_downloaded_archive_delete">删除已下载的存档</string>
+    <string name="network_error_message">您的网络出现错误啦！\n\n通常再试一次应该能解决问题，但如果您已经多次看到此对话框，请按照以下步骤排查错误：\n1、请检查您的网络是否可用，是否打开Wifi或数据流量，检查飞行模式开关是否关闭，能否正常打开网页。\n2、请检查你手机的系统管家和设置应用程序是否授予SoEasy网络使用权限。\n3、如果尝试上面两个步骤还是不行，请重启你的设备再次尝试。\n\n以上解决方案仍不能解决您的问题吗？请点击下面的反馈按钮将情况反映给开发者寻求帮助。</string>
+    <string name="network_error_message_with_info">您的网络出现错误啦！\n\n通常再试一次应该能解决问题，但如果您已经多次看到此对话框，请按照以下步骤排查错误：\n1、请检查您的网络是否可用，是否打开Wifi或数据流量，检查飞行模式开关是否关闭，能否正常打开网页。\n2、请检查你手机的系统管家和设置应用程序是否授予SoEasy网络使用权限。\n3、如果尝试上面两个步骤还是不行，请重启你的设备再次尝试。\n\n以上解决方案仍不能解决您的问题吗？请点击下面的反馈按钮将情况反映给开发者寻求帮助。\n\n以下是错误的详细信息：\n\n%s</string>
+    <string name="apk_url">http://xjl12.imwork.net/downloads/SoEasy.apk</string>
+    <string name="downloaded_update_file_name">SoEasyUpdate.apk</string>
+    <string name="apk_version_code_url">http://xjl12.imwork.net/version_code</string>
+    <string name="apk_url_2">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/SoEasy.apk</string>
+    <string name="apk_version_code_url_2">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/version</string>
+    <string name="update_later">稍后更新</string>
+    <string name="view_update_log">查看更新记录</string>
+    <string name="update_log_url">http://xjl12.imwork.net/update_logs.html</string>
+    <string name="update_log_url_2">https://xjl12.github.io/SoEasy/update_logs.html</string>
+    <string name="update_download_complete">更新下载完毕，即将安装更新……</string>
+    <string name="my_world_web_version_url_2">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/myworld_version</string>
+    <string name="my_world_archive_url_2">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/MyWorld_xjl_lyy.zip</string>
+    <string name="check_update">检查更新</string>
+    <string name="games_show_point_info">显示提示信息</string>
 </resources>

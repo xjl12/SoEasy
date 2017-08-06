@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SoEasyPreview</string>
+    <string name="fileprovider_authorities">test.xjl12.soeasy.preview.fileprovider</string>
+</resources>

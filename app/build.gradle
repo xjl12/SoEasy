@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 android {
     signingConfigs {
         release {
-            keyAlias System.getenv("ALIAS_NAME")
-            keyPassword System.getenv("ALIAS_PASSWD")
+            keyAlias properties.getProperty("keystore.ALIAS_NAME",System.getenv("ALIAS_NAME"))
+            keyPassword properties.getProperty("keystore.ALIAS_PASSWD",System.getenv("ALIAS_PASSWD"))
             storeFile file('publish.keystore')
-            storePassword System.getenv("ALIAS_PASSWD")
+            storePassword properties.getProperty("keystore.ALIAS_PASSWD",System.getenv("ALIAS_PASSWD"))
         }
     }
     compileSdkVersion 26
@@ -15,8 +17,8 @@ android {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 85
-        versionName "1.8.5"
+        versionCode 90
+        versionName "1.9"
         resConfigs ("zh", "en")
         signingConfig signingConfigs.release
     }
@@ -29,6 +31,13 @@ android {
         }
     }
     productFlavors {
+        debugFor21 {
+            minSdkVersion 21
+            applicationId 'test.xjl12.soeasy.preview'
+            targetSdkVersion 26
+            versionCode 90
+            versionName 'Preview'
+        }
     }
 }
 

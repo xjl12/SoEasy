@@ -1,11 +1,15 @@
 package test.xjl12.soeasy;
-import android.app.*;
+
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.*;
+import android.content.pm.PackageManager;
 import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.*;
-import android.support.v7.widget.*;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -14,40 +18,87 @@ import java.io.*;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import com.maddog05.maddogdialogs.*;
-import android.widget.AutoCompleteTextView.*;
 
 public class MyWorldActivity extends AppCompatActivity
 {
-	boolean is_storage_write_able;
-	int phone_version = -1;
-	int soeasy_version = -1;
-	int backup_version = -1;
-	File my_world_archive_dir;
-	File backup_file;
-	private static String archive_name = "MyWorld_xjl_lyy";
-	private static String help_show_key = "show_help_dialog";
-	String error_info = null;
-	CoordinatorLayout mCl;
-	TextView soeasy_has_version_show;
-	TextView phone_has_version;
-	TextView phone_has_version_show;
-	TextView backup_has_version;
-	TextView backup_has_version_show;
-	Button unzip_button;
-	Button revoke_button;
-	Button delete_button;
-	Button send_button;
-	Button delete_backup_button;
-	MaddogProgressDialog mProgressDialog;
-	AlertDialog.Builder success_builder;
-	AlertDialog.Builder error_can_not_write;
-	AlertDialog.Builder error_builder;
-	AlertDialog.Builder error_phone_has_version_bigger;
-	AlertDialog.Builder help_builder;
-	SharedPreferences help_sp;
-	SharedPreferences.Editor help_edit;
+	private boolean is_storage_write_able;
+	private int phone_version,internet_version,backup_version,downloaded_version = -1;
+	private File my_world_archive_dir,backup_file;
+    public static File downloaded_archive;
+	private static final String archive_name = "MyWorld_xjl_lyy";
+	private static final String help_show_key = "show_help_dialog";
+	private static final String downloaded_version_key = "downloaded_archive_version";
+	private String get_internet_version_result = null;
+	private CoordinatorLayout mCl;
+	private TextView internet_version_show,phone_has_version,phone_has_version_show,backup_has_version,backup_has_version_show;
+	private Button download_button,revoke_button,delete_button,send_button,delete_backup_button,retry_button;
+	private MaddogProgressDialog mProgressDialog;
+	private AlertDialog.Builder success_builder,error_phone_has_version_bigger,help_builder;
+	private ProgressDialog download_dialog;
+	private SharedPreferences help_sp;
+	private SharedPreferences.Editor help_edit;
+	private Context context = this;
+	private String check_internet_version_url,download_url;
+    private Toolbar mToolbar;
+	private boolean is_again = false;
 	
-	private static Handler mHandle = new Handler();
+	private Handler mHandle = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+				case Others.DOWNLOAD_PROGRESS:
+					if (msg.arg1 == 1) {
+						download_dialog.setIndeterminate(false);
+						download_dialog.setMax(100);
+					}
+					download_dialog.setProgress(msg.arg1);
+					break;
+				case Others.DOWNLOAD_SUCCESS:
+					downloadSuccess();
+					break;
+				case Others.DOWNLOAD_FAILED:
+					download_dialog.dismiss();
+					Others.errorDialog((String) msg.obj, context, mHandle, true, false, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialogInterface, int i) {
+							dialogInterface.dismiss();
+							downloadArchive();
+						}
+					});
+					break;
+				case Others.GET_NETWORK_STRING_SUCCESS:
+					get_internet_version_result = (String) msg.obj;
+					internet_version_show.setText(get_internet_version_result);
+					download_button.setVisibility(View.VISIBLE);
+					break;
+				case Others.GET_NETWORK_STRING_FAILED:
+					if (is_again) {
+						get_internet_version_result = getString(R.string.network_error);
+						internet_version_show.setText(get_internet_version_result);
+						Others.errorDialog((String) msg.obj, context, mHandle, true, false, new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialogInterface, int i) {
+								dialogInterface.dismiss();
+								Others.getStringFromInternet(getString(R.string.my_world_web_version_url), mHandle);
+							}
+						});
+						retry_button.setVisibility(View.VISIBLE);
+					}
+					else {
+						download_url = getString(R.string.my_world_archive_url_2);
+						check_internet_version_url = getString(R.string.my_world_web_version_url_2);
+						Others.getStringFromInternet(check_internet_version_url,mHandle);
+					}
+					break;
+				case Others.TASK_FAILED:
+					mProgressDialog.dismiss();
+					Others.errorDialog((String) msg.obj,context,mHandle,false,false,null);
+					break;
+			}
+		}
+	};
+
+	private final int MY_REQUEST_CODE = 1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -55,36 +106,38 @@ public class MyWorldActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_world);
 
-		soeasy_has_version_show = (TextView) findViewById(R.id.my_world_content_soeaay_version_show_TextView);
+		internet_version_show = (TextView) findViewById(R.id.my_world_content_soeaay_version_show_TextView);
 		phone_has_version_show = (TextView) findViewById(R.id.my_world_content_phone_version_show_TextView);
 		phone_has_version = (TextView) findViewById(R.id.my_world_content_phone_has_version_TextView);
 		backup_has_version = (TextView) findViewById(R.id.my_world_content_backup_version_TextView);
 		backup_has_version_show = (TextView) findViewById(R.id.my_world_content_backup_version_shoe_TextView);
-		unzip_button = (Button) findViewById(R.id.my_world_content_unzip_Button);
+		download_button = (Button) findViewById(R.id.my_world_content_download_Button);
 		send_button = (Button) findViewById(R.id.my_world_content_send_Button);
 		revoke_button = (Button) findViewById(R.id.my_world_content_revoke_Button);
 		delete_button = (Button) findViewById(R.id.my_world_content_delete_Button);
 		delete_backup_button = (Button) findViewById(R.id.my_world_content_delete_backup_Button);
+		retry_button = (Button) findViewById(R.id.my_world_content_retry_button);
 		mCl = (CoordinatorLayout) findViewById(R.id.my_world_mdCoordinatorLayout);
-		Toolbar mToolbar = (Toolbar) findViewById(R.id.my_world_mdToolbar);
+        mToolbar = (Toolbar) findViewById(R.id.my_world_mdToolbar);
 		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.my_world_fab);
 
 		Others.initActivity(this, mToolbar,mCl);
 
-		help_sp = getSharedPreferences(Others.getRunningActivityName(this),MODE_APPEND);
+		help_sp = getSharedPreferences(Others.getRunningActivityName(context),MODE_APPEND);
 		help_edit = help_sp.edit();
 		
 		my_world_archive_dir = new File(Environment.getExternalStorageDirectory().getPath() + "/games/com.mojang/minecraftWorlds/" + archive_name);
 		backup_file = new File(getExternalFilesDir("Backup"), archive_name);
+		downloaded_archive = new File(getExternalFilesDir("Download"),archive_name + ".zip");
 
-		mProgressDialog = new MaddogProgressDialog(this);
+		mProgressDialog = new MaddogProgressDialog(context);
 		mProgressDialog.setTitle(R.string.running);
 		mProgressDialog.setMessage(getString(R.string.running_mesage));
 		mProgressDialog.setCancelable(false);
 
 		//初始化对话框
 		
-		help_builder  = new AlertDialog.Builder(this);
+		help_builder  = new AlertDialog.Builder(context);
 		help_builder.setTitle(R.string.help);
 		help_builder.setMessage(R.string.my_world_help);
 		help_builder.setIcon(R.drawable.ic_lightbulb_outline);
@@ -94,7 +147,7 @@ public class MyWorldActivity extends AppCompatActivity
 				public void onClick(DialogInterface p1, int p2)
 				{
 					help_edit.putBoolean(help_show_key,false);
-					help_edit.commit();
+					help_edit.apply();
 				}
 			});
 			
@@ -102,19 +155,9 @@ public class MyWorldActivity extends AppCompatActivity
 		{
 			help_builder.show();
 		}
-		error_can_not_write = Others.errorDialogBuilder(error_info,this,mHandle);
-		error_can_not_write.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
+		downloaded_version = help_sp.getInt(downloaded_version_key,-1);
 
-				@Override
-				public void onClick(DialogInterface p1, int p2)
-				{
-					is_storage_write_able = Others.checkIsStorageWritable(getApplicationContext());
-					p1.dismiss();
-				}
-			});
-		error_can_not_write.setOnDismissListener(errorDialogDismiss());
-		
-		error_phone_has_version_bigger = new AlertDialog.Builder(MyWorldActivity.this);
+		error_phone_has_version_bigger = new AlertDialog.Builder(context);
 		error_phone_has_version_bigger.setTitle(R.string.warn);
 		error_phone_has_version_bigger.setMessage(R.string.my_world_phone_version_bigger);
 		error_phone_has_version_bigger.setPositiveButton(R.string.continue_str, new DialogInterface.OnClickListener(){
@@ -136,30 +179,7 @@ public class MyWorldActivity extends AppCompatActivity
 			});
 		error_phone_has_version_bigger.setIcon(R.drawable.ic_warning);
 
-		error_builder = new AlertDialog.Builder(this);
-		error_builder.setTitle(R.string.error);
-		error_builder.setMessage(R.string.error_message);
-		error_builder.setPositiveButton(R.string.good, new DialogInterface.OnClickListener(){
-
-				@Override
-				public void onClick(DialogInterface p1, int p2)
-				{
-					p1.dismiss();
-				}
-
-			});
-		error_builder.setNeutralButton(R.string.feebback, new DialogInterface.OnClickListener(){
-
-				@Override
-				public void onClick(DialogInterface p1, int p2)
-				{
-					Others.feebbackErrorInfo(error_info,MyWorldActivity.this,mHandle);
-				}
-			});
-		error_builder.setOnDismissListener(errorDialogDismiss());
-		error_builder.setIcon(R.drawable.ic_error);
-		
-		success_builder = new AlertDialog.Builder(this);
+		success_builder = new AlertDialog.Builder(context);
 		success_builder.setTitle(R.string.finish_process);
 		success_builder.setMessage(R.string.finish_if_start_myworld);
 		success_builder.setIcon(R.drawable.ic_check_black);
@@ -216,35 +236,43 @@ public class MyWorldActivity extends AppCompatActivity
 				@Override
 				public void onDismiss(DialogInterface p1)
 				{
-					try
-					{
-						updateView();
-					}
-					catch (IOException e)
-					{errorDialog(e.toString());}
+					updateView();
 				}
 			});
 
+		download_dialog = new ProgressDialog(context);
+		download_dialog.setIndeterminate(true);
+		download_dialog.setTitle(R.string.downloading);
+		download_dialog.setIcon(R.drawable.ic_file_download_black_24dp);
+		download_dialog.setCancelable(true);
+		download_dialog.setCanceledOnTouchOutside(true);
+		download_dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		download_dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			@Override
+			public void onCancel(DialogInterface dialogInterface) {
+				Others.downloadStop();
+				Toast.makeText(getApplicationContext(),R.string.download_canceled,Toast.LENGTH_SHORT).show();
+			}
+		});
 
 		//初始化各个按钮
 		
-		unzip_button.setOnClickListener(new View.OnClickListener(){
+		download_button.setOnClickListener(new View.OnClickListener(){
 
 				@Override
 				public void onClick(View p1)
 				{
-					if (phone_version > soeasy_version)
+					if (phone_version > internet_version)
 					{
 						error_phone_has_version_bigger.show();
 					}
 					else if (is_storage_write_able)
 					{
-						mProgressDialog.show();
-						unzipArchive();
+						downloadArchive();
 					}
 					else
 					{
-						errorCanNotWrite(Others.checkStorageWritableWithInfo(MyWorldActivity.this));
+						Others.errorDialog(Others.checkStorageWritableWithInfo(context),context,mHandle,false,true,null);
 					}
 				}
 			});
@@ -269,21 +297,17 @@ public class MyWorldActivity extends AppCompatActivity
 									}
 									catch (final IOException e)
 									{
-										mHandle.post(new Runnable(){
-
-												@Override
-												public void run()
-												{
-													errorDialog(e.toString());
-												}
-											});
+										Message msg = Message.obtain();
+										msg.what = Others.TASK_FAILED;
+										msg.obj = e.toString();
+										mHandle.sendMessage(msg);
 									}
 								}
 							}).start();
 					}
 					else
 					{
-						errorCanNotWrite(Others.checkStorageWritableWithInfo(MyWorldActivity.this));
+						Others.errorDialog(Others.checkStorageWritableWithInfo(context),context,mHandle,false,true,null);
 					}
 				}
 			});
@@ -306,21 +330,17 @@ public class MyWorldActivity extends AppCompatActivity
 									}
 									else
 									{
-										mHandle.post(new Runnable(){
-
-												@Override
-												public void run()
-												{
-													errorDialog(null);
-												}
-											});
+										Message msg = Message.obtain();
+										msg.what = Others.TASK_FAILED;
+										msg.obj = null;
+										mHandle.sendMessage(msg);
 									}
 								}
 							}).start();
 					}
 					else
 					{
-						errorCanNotWrite(Others.checkStorageWritableWithInfo(MyWorldActivity.this));
+						Others.errorDialog(Others.checkStorageWritableWithInfo(context),context,mHandle,false,true,null);
 					}
 				}
 			});
@@ -352,21 +372,17 @@ public class MyWorldActivity extends AppCompatActivity
 									}
 									catch (final IOException e)
 									{
-										mHandle.post(new Runnable(){
-
-												@Override
-												public void run()
-												{
-													errorDialog(e.toString());
-												}
-											});
+										Message msg = Message.obtain();
+										msg.what = Others.TASK_FAILED;
+										msg.obj = e.toString();
+										mHandle.sendMessage(msg);
 									}
 								}
 							}).start();
 					}
 					else
 					{
-						errorCanNotWrite(Others.checkStorageWritableWithInfo(MyWorldActivity.this));
+						Others.errorDialog(Others.checkStorageWritableWithInfo(context),context,mHandle,false,true,null);
 					}
 				}
 			});
@@ -388,26 +404,29 @@ public class MyWorldActivity extends AppCompatActivity
 									{
 										finishProgressAtThread();
 									}
-									else
-									{
-										mHandle.post(new Runnable(){
-
-												@Override
-												public void run()
-												{
-													errorDialog(null);
-												}
-											});
+									else {
+										Message msg = Message.obtain();
+										msg.what = Others.TASK_FAILED;
+										msg.obj = null;
+										mHandle.sendMessage(msg);
 									}
 								}
 							}).start();
 					}
 					else
 					{
-						errorCanNotWrite(Others.checkStorageWritableWithInfo(MyWorldActivity.this));
+						Others.errorDialog(Others.checkStorageWritableWithInfo(context),context,mHandle,false,true,null);
 					}
 				}
 			});
+		retry_button.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				retry_button.setVisibility(View.GONE);
+				internet_version_show.setText(R.string.reading);
+				Others.getStringFromInternet(getString(R.string.my_world_web_version_url),mHandle);
+			}
+		});
 
 		fab.setOnClickListener(new View.OnClickListener(){
 
@@ -417,99 +436,66 @@ public class MyWorldActivity extends AppCompatActivity
 					help_builder.show();
 				}
 			});
-			
-		mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
-
-				@Override
-				public boolean onMenuItemClick(final MenuItem item)
-				{
-					switch (item.getItemId())
-					{
-						case R.id.help_development:
-							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
-							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
-							startActivity(help_development_web);
-							break;
-						case R.id.source_item:
-							Intent source_web = new Intent(Intent.ACTION_VIEW);
-							source_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[0]));
-							startActivity(source_web);
-							break;
-						case R.id.shot_item:
-							new Thread(new Runnable(){
-
-									@Override
-									public void run()
-									{
-										Intent shot_share = Others.SendShot(getApplicationContext());
-										if (shot_share != null)
-										{
-											startActivity(shot_share);
-										}
-										else
-										{
-											Snackbar.make(mCl, R.string.Error_shot_error, Snackbar.LENGTH_LONG)
-												.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-												.setAction(R.string.retry, new View.OnClickListener(){
-
-													@Override
-													public void onClick(View p1)
-													{
-														Intent intent = Others.getShot(MyWorldActivity.this);
-														if (intent != null)
-														{
-															startActivity(intent);
-														}
-														else
-														{
-															Toast.makeText(MyWorldActivity.this, getString(R.string.Error_cannot_shot), Toast.LENGTH_LONG);
-														}
-													}
-												}).show();
-										}	
-									}
-								}).start();
-							break;
-						default:
-							Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
-								.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-								.setAction(R.string.send_error, new View.OnClickListener(){
-
-									@Override
-									public void onClick(View p1)
-									{startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, getString(R.string.send_error_message, Others.getAppVersionName(getApplicationContext()), Others.getRunningActivityName(MyWorldActivity.this), item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));}
-								}).show();
-							break;
-					}
-					return true;
-				}
-			});
 	}
 
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
-		try
-		{
-			updateView();
+		updateView();
+		is_storage_write_able = Others.checkIsStorageWritable(context);
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},MY_REQUEST_CODE);
 		}
-		catch (IOException e)
-		{
-			errorDialog(e.toString());
-		}
-		is_storage_write_able = Others.checkIsStorageWritable(this);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
-    {
+	{
         getMenuInflater().inflate(R.menu.activity_actions, menu);
-        return super.onCreateOptionsMenu(menu);
+		if (downloaded_archive.exists()) {
+            menu.findItem(R.id.my_world_delete_downloaded).setVisible(true);
+		}
+		return super.onCreateOptionsMenu(menu);
     }
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode,String[] permissions,int[] grantResults) {
+		switch (requestCode) {
+			case MY_REQUEST_CODE:
+				if (grantResults.length == 0) {
+					is_storage_write_able = false;
+				}
+		}
+	}
+	//下载存档
+	private void downloadArchive() {
+		if (downloaded_archive.exists() && downloaded_version == internet_version) {
+			unzipArchive();
+		}
+		else {
+			download_dialog.show();
+			download_dialog.onStart();
+			download_dialog.setProgress(0);
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					Others.downloadFileFromHttp(download_url, downloaded_archive, mHandle);
+				}
+			}).start();
+		}
+	}
+	private void downloadSuccess() {
+		help_edit.putInt(downloaded_version_key,internet_version);
+		help_edit.apply();
+		download_dialog.dismiss();
+        mToolbar.getMenu().findItem(R.id.my_world_delete_downloaded).setVisible(true);
+		unzipArchive();
+	}
 	//解压与更新
 	private void unzipArchive()
 	{
+		mProgressDialog.show();
 		new Thread(new Runnable(){
 
 				@Override
@@ -526,19 +512,15 @@ public class MyWorldActivity extends AppCompatActivity
 						{
 							my_world_archive_dir.mkdirs();
 						}
-						Others.assetsCopy(getAssets(), "MyWorld_xjl_lyy", my_world_archive_dir);
+						Others.uncompressZip(downloaded_archive,my_world_archive_dir.getParentFile());
 						finishProgressAtThread();
 					}
 					catch (final IOException e)
 					{
-						mHandle.post(new Runnable(){
-
-								@Override
-								public void run()
-								{
-									errorDialog(e.toString());
-								}
-							});
+						Message msg = Message.obtain();
+						msg.what = Others.TASK_FAILED;
+						msg.obj = e.toString();
+						mHandle.sendMessage(msg);
 					}
 				}
 			}).start();
@@ -563,14 +545,7 @@ public class MyWorldActivity extends AppCompatActivity
 				public void run()
 				{
 					mProgressDialog.dismiss();
-					try
-					{
-						updateView();
-					}
-					catch (IOException e)
-					{
-						errorDialog(e.toString());
-					}
+					updateView();
 					Intent send = new Intent();
 					send.setAction(Intent.ACTION_SEND);
 					send.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(zipPackage));
@@ -580,65 +555,63 @@ public class MyWorldActivity extends AppCompatActivity
 				}
 			});
 	}
-	private void updateView() throws IOException
+	private void updateView()
 	{
-		//读取SoEasy自带版本
-		InputStream soeasy_is = getAssets().open("MyWorld_xjl_lyy/db/CURRENT");
-		int soeasy_has_my_world_version = readVersion(soeasy_is);
-		if (soeasy_has_my_world_version != -1)
-		{
-			soeasy_version = soeasy_has_my_world_version;
-			soeasy_has_version_show.setText(Integer.toString(soeasy_has_my_world_version));
-		}
-		//读取手机内存档版本
-		File my_world_file = new File(Environment.getExternalStorageDirectory().getPath() + "/games/com.mojang/minecraftWorlds/MyWorld_xjl_lyy/db/CURRENT");
-		if (my_world_file.exists())
-		{
-			phone_has_version_show.setVisibility(View.VISIBLE);
-			phone_has_version.setVisibility(View.VISIBLE);
-			send_button.setVisibility(View.VISIBLE);
-			delete_button.setVisibility(View.VISIBLE);
-			unzip_button.setText(R.string.my_world_update);
+		///读取网络版本
+		Others.getStringFromInternet(check_internet_version_url,mHandle);
+		try {
+			//读取手机内存档版本
 
-			InputStream phone_is = new FileInputStream(my_world_file);
-			int phone_has_my_world_version = readVersion(phone_is);
-			if (phone_has_my_world_version != -1)
-			{
-				phone_version = phone_has_my_world_version;
-				phone_has_version_show.setText(Integer.toString(phone_has_my_world_version));
+			File my_world_file = new File(Environment.getExternalStorageDirectory().getPath() + "/games/com.mojang/minecraftWorlds/MyWorld_xjl_lyy/db/CURRENT");
+			if (my_world_file.exists()) {
+				phone_has_version_show.setVisibility(View.VISIBLE);
+				phone_has_version.setVisibility(View.VISIBLE);
+				send_button.setVisibility(View.VISIBLE);
+				delete_button.setVisibility(View.VISIBLE);
+				download_button.setText(R.string.my_world_update);
+
+				InputStream phone_is = new FileInputStream(my_world_file);
+				int phone_has_my_world_version = readVersion(phone_is);
+				if (phone_has_my_world_version != -1) {
+					phone_version = phone_has_my_world_version;
+					phone_has_version_show.setText(Integer.toString(phone_has_my_world_version));
+				}
+			} else {
+				phone_version = -1;
+				phone_has_version.setVisibility(View.GONE);
+				phone_has_version_show.setVisibility(View.GONE);
+				send_button.setVisibility(View.GONE);
+				delete_button.setVisibility(View.GONE);
+				download_button.setText(R.string.my_world_download_to_phone);
+			}
+			//读取备份区版本
+			File backup_core_file = new File(backup_file, "db/CURRENT");
+			if (backup_core_file.exists()) {
+				revoke_button.setVisibility(View.VISIBLE);
+				delete_backup_button.setVisibility(View.VISIBLE);
+				backup_has_version.setVisibility(View.VISIBLE);
+				backup_has_version_show.setVisibility(View.VISIBLE);
+
+				backup_version = readVersion(new FileInputStream(backup_core_file));
+				if (backup_version != -1) {
+					backup_has_version_show.setText(Integer.toString(backup_version));
+				}
+			} else {
+				revoke_button.setVisibility(View.GONE);
+				delete_backup_button.setVisibility(View.GONE);
+				backup_has_version.setVisibility(View.GONE);
+				backup_has_version_show.setVisibility(View.GONE);
+				backup_version = -1;
 			}
 		}
-		else
-		{
-			phone_version = -1;
-			phone_has_version.setVisibility(View.GONE);
-			phone_has_version_show.setVisibility(View.GONE);
-			send_button.setVisibility(View.GONE);
-			delete_button.setVisibility(View.GONE);
-			unzip_button.setText(R.string.my_world_unzip_to_phone);
-		}
-		//读取备份区版本
-		File backup_core_file = new File(backup_file,"db/CURRENT");
-		if (backup_core_file.exists())
-		{
-			revoke_button.setVisibility(View.VISIBLE);
-			delete_backup_button.setVisibility(View.VISIBLE);
-			backup_has_version.setVisibility(View.VISIBLE);
-			backup_has_version_show.setVisibility(View.VISIBLE);
-
-			backup_version = readVersion(new FileInputStream(backup_core_file));
-			if (backup_version != -1)
-			{
-				backup_has_version_show.setText(Integer.toString(backup_version));
-			}
-		}
-		else
-		{
-			revoke_button.setVisibility(View.GONE);
-			delete_backup_button.setVisibility(View.GONE);
-			backup_has_version.setVisibility(View.GONE);
-			backup_has_version_show.setVisibility(View.GONE);
-			backup_version = -1;
+		catch (IOException e) {
+			Others.errorDialog(e.toString(), context, mHandle, false, true, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialogInterface, int i) {
+					dialogInterface.dismiss();
+					updateView();
+				}
+			});
 		}
 	}
 	private int readVersion(InputStream is) throws IOException
@@ -654,37 +627,6 @@ public class MyWorldActivity extends AppCompatActivity
 			return Integer.parseInt(cat_CURRENT.toString());
 		}
 		return -1;
-	}
-
-	private void errorCanNotWrite(String error)
-	{
-		if (error != null)
-		{
-			error_info = error;
-			error_can_not_write.setMessage(getString(R.string.sdcard_error_with_info, error));
-		}
-		error_can_not_write.show();
-	}
-	private void errorDialog(String error)
-	{
-		mProgressDialog.dismiss();
-		if (error != null)
-		{
-			error_info = error;
-			error_builder.setMessage(getString(R.string.error_message_with_infomation, error));
-		}
-		error_builder.show();
-	}
-	private DialogInterface.OnDismissListener errorDialogDismiss()
-	{
-		return new DialogInterface.OnDismissListener(){
-
-			@Override
-			public void onDismiss(DialogInterface p1)
-			{
-				error_info = null;
-			}
-		};
 	}
 }
 

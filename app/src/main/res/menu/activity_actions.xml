@@ -1,22 +1,40 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto" 
-	xmlns:tools="http://schemas.android.com/tools"> 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-	<item
-		android:id="@+id/shot_item"
-		android:title="@string/debug_save_share"
-		android:icon="@drawable/menu_gallery"
-		app:showAsAction="ifRoom"/>
-	<item
-		android:id="@+id/help_development"
-		android:title="@string/help_development"
-		app:showAsAction="never"/>
-	<item
-		android:id="@+id/source_item"
-		app:showAsAction="never"
-		android:title="@string/source_string"/>
-</menu>
-<!--
+    <group
+        android:id="@+id/activity_main_group"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/shot_item"
+            android:title="@string/debug_save_share"
+            android:icon="@drawable/menu_gallery"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/help_development"
+            android:title="@string/help_development"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/source_item"
+            app:showAsAction="never"
+            android:title="@string/source_string" />
+        <item
+            android:id="@+id/force_exit_item"
+            android:title="@string/force_exit"
+            android:visible="false"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/my_world_delete_downloaded"
+            android:title="@string/my_world_downloaded_archive_delete"
+            android:visible="false"
+            app:showAsAction="never"/>
+        <item
+            android:id="@+id/games_show_point_info_item"
+            android:title="@string/games_show_point_info"
+            android:visible="false"
+            app:showAsAction="never" />
+    </group>
+</menu><!--
     <item
         android:id="@+id/search_action"
         android.icon="@drawable/ic_action_search"

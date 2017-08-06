@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.*;
 import android.util.*;
 import android.view.*;
@@ -41,79 +42,8 @@ public class TestActivity extends AppCompatActivity
 		fc_button = (Button) findViewById(R.id.test_fc_Button);
         test_textview1 = (TextView) findViewById(R.id.testTextView1);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.test_mdToolbar);
-		final CoordinatorLayout mCl = (CoordinatorLayout) findViewById(R.id.test_mdCoordinatorLayout);
-		
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setHomeButtonEnabled(true);
-		
-		toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
-
-				@Override
-				public boolean onMenuItemClick(final MenuItem item)
-				{
-					switch (item.getItemId())
-					{
-						case R.id.help_development:
-							Intent help_development_web = new Intent(Intent.ACTION_VIEW);
-							help_development_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[1]));
-							startActivity(help_development_web);
-							break;
-						case R.id.source_item:
-							Intent source_web = new Intent(Intent.ACTION_VIEW);
-							source_web.setData(Uri.parse(getResources().getStringArray(R.array.web_url)[0]));
-							startActivity(source_web);
-							break;
-						case R.id.shot_item:
-							new Thread(new Runnable(){
-
-									@Override
-									public void run()
-									{
-										Intent shot_share = Others.SendShot(getApplicationContext());
-										if (shot_share != null)
-										{
-											startActivity(shot_share);
-										}
-										else
-										{
-											Snackbar.make(mCl, R.string.Error_shot_error, Snackbar.LENGTH_LONG)
-												.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-												.setAction(R.string.retry, new View.OnClickListener(){
-
-													@Override
-													public void onClick(View p1)
-													{
-														Intent intent = Others.getShot(TestActivity.this);
-														if (intent != null)
-														{
-															startActivity(intent);
-														}
-														else
-														{
-															Toast.makeText(TestActivity.this,getString(R.string.Error_cannot_shot),Toast.LENGTH_LONG);
-														}
-													}
-												}).show();
-										}	
-									}
-								}).start();
-							break;
-						default:
-							Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
-								.setActionTextColor(getResources().getColor(R.color.colorAccent_Light))
-								.setAction(R.string.send_error, new View.OnClickListener(){
-
-									@Override
-									public void onClick(View p1)
-									{startActivity(Intent.createChooser(Others.isQQInstalled(getApplicationContext(), new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, getString(R.string.send_error_message, Others.getAppVersionName(getApplicationContext()), Others.getRunningActivityName(TestActivity.this), item.getTitle().toString())).setType("text/plain")), getString(R.string.Error_no_item_action)));}
-								}).show();
-							break;
-					}
-					return true;
-				}
-			});
-		
+		CoordinatorLayout mCl = (CoordinatorLayout) findViewById(R.id.test_mdCoordinatorLayout);
+		Others.initActivity(this,toolbar,mCl);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -132,7 +62,7 @@ public class TestActivity extends AppCompatActivity
     public void test1 (View view)
     {
         Intent web = new Intent();
-        web.setAction("android.intent.action.VIEW");
+        web.setAction(Intent.ACTION_VIEW);
         Uri baidu = Uri.parse("https:www.baidu.com");
         web.setData(baidu);
         startActivity(web);
@@ -175,10 +105,10 @@ public class TestActivity extends AppCompatActivity
 				}
 			}).start();
 	}
-	public void OpenRawTestImage (View view)
+	public void OpenRawTestImage (final View view)
 	{
 		if (getExternalCacheDir() != null) {
-			final File cache_file = new File(getExternalCacheDir(), Others.RandomString(8));
+			final File cache_file = new File(getExternalCacheDir(), Others.RandomString(8) + ".png");
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
@@ -196,7 +126,13 @@ public class TestActivity extends AppCompatActivity
 						public void run() {
 							Uri test_image = Uri.fromFile(cache_file);
 							Intent open_test_image = new Intent(Intent.ACTION_VIEW);
-							open_test_image.setDataAndType(test_image, "image/*");
+							if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+								open_test_image.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+								test_image = FileProvider.getUriForFile(TestActivity.this,getString(R.string.fileprovider_authorities),cache_file);
+								open_test_image.setDataAndType(test_image,"image/*");
+							} else {
+								open_test_image.setDataAndType(test_image, "image/*");
+							}
 							startActivity(open_test_image);
 						}
 					});
@@ -204,7 +140,12 @@ public class TestActivity extends AppCompatActivity
 			}).start();
 		}
 		else {
-			Others.errorDialogBuilder(getString(R.string.debug_message_error_storage_unusable),this,handler).show();
+			Others.errorDialog(getString(R.string.debug_message_error_storage_unusable), this, handler, false, true, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialogInterface, int i) {
+					OpenRawTestImage(view);
+				}
+			});
 		}
 	}
 }

@@ -1,18 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="none">
-        <!--
-        <item android:title="@string/games_button">
-        <menu>
-        <item
-        android:id="@+id/navigation_item_caishu_games"
-        android:title="@string/title_games_activity"
-        android:icon="@drawable/ic_games"/>
-        <item
-
-        </menu>
-        </item>
-        -->
         <item
             android:id="@+id/navigation_item_caishu_games"
             android:title="@string/games_button"
@@ -43,11 +31,10 @@
             android:id="@+id/main_develop_sub_info"
             android:title="@string/title_debug"
             android:visible="false"/>
-        <!--
         <item
             android:id="@+id/navigation_item_update"
-            android:title="@string/update"/>
-            android:icon="@drawable/ic_update" -->
+            android:title="@string/update"
+            android:icon="@drawable/ic_update_black_24dp"/>
         <item
             android:id="@+id/navigation_item_exit"
             android:title="@string/exit"
