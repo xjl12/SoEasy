@@ -12,3 +12,4 @@
 .externalNativeBuild
 /APKs
 /app/publish.keystore
+/gradle-app.setting

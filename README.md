@@ -10,11 +10,11 @@ SoEasy——我的第一个Android App!
 
 https://xjl12.github.io/SoEasy
 
-http://xjl12.ngrok.cc
+http://xjl12.imwork.net
 
 ### 【最新APP安装包下载】
 
-http://xjl12.ngrok.cc/downloads/SoEasy.apk
+http://xjl12.imwork.net/downloads/SoEasy.apk
 
 __项目中引用了几个优秀的库，特此感谢！__
 
