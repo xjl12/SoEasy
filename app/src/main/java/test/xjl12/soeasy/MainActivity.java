@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ProgressDialog mProgressDialog;
     private AlertDialog.Builder new_version, not_new_version;
-    private MenuItem dev_sub_info,dev_sub_test;
-    private AppCompatImageView nav_dev_imageView;
+    private MenuItem dev_sub_info,dev_sub_test,game_caishu,game_addition;
+    private AppCompatImageView nav_dev_imageView,nav_game_imageview;
     private Context context = this;
     private String checkUpdateUrl,downloadUpdateUrl,updateLogUrl;
     private File updateAPK;
@@ -120,7 +120,10 @@ public class MainActivity extends AppCompatActivity {
         Menu navigation_menu = mNavigation.getMenu();
         dev_sub_info = navigation_menu.findItem(R.id.main_develop_sub_info);
         dev_sub_test = navigation_menu.findItem(R.id.main_develop_sub_test);
-        nav_dev_imageView = navigation_menu.findItem(R.id.navigation_item_develop).getActionView().findViewById(R.id.navigation_dev_imgview);
+        game_addition = navigation_menu.findItem(R.id.navigation_item_addition);
+        game_caishu = navigation_menu.findItem(R.id.navigation_item_caishu_games);
+        nav_dev_imageView = navigation_menu.findItem(R.id.navigation_item_develop).getActionView().findViewById(R.id.navigation_imgview);
+        nav_game_imageview = navigation_menu.findItem(R.id.navigation_item_games).getActionView().findViewById(R.id.navigation_imgview);
 
         nav_dev_imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +131,13 @@ public class MainActivity extends AppCompatActivity {
                 changeNavigationDevSubState();
             }
         });
+        nav_game_imageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeNavigationGamesSubState();
+            }
+        });
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
             public void onDrawerOpened(View view) {
                 super.onDrawerOpened(view);
@@ -235,6 +245,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(final MenuItem p1) {
                 switch (p1.getItemId()) {
+                    case R.id.navigation_item_games:
+                        changeNavigationGamesSubState();
+                        break;
+                    case R.id.navigation_item_addition:
+                        Intent intent = new Intent(getApplicationContext(),AdditionActivity.class);
+                        startActivity(intent);
+                        break;
                     case R.id.navigation_item_caishu_games:
                         Intent games_intent = new Intent(getApplicationContext(), GamesActivity.class);
                         startActivity(games_intent);
@@ -336,6 +353,9 @@ public class MainActivity extends AppCompatActivity {
         if (dev_sub_info.isVisible() || dev_sub_test.isVisible()) {
             changeNavigationDevSubState();
         }
+        if (game_caishu.isVisible() || game_addition.isVisible()) {
+            changeNavigationGamesSubState();
+        }
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }
@@ -351,6 +371,18 @@ public class MainActivity extends AppCompatActivity {
             dev_sub_info.setVisible(true);
             dev_sub_test.setVisible(true);
             nav_dev_imageView.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
+        }
+    }
+
+    private void changeNavigationGamesSubState() {
+        if (game_caishu.isVisible() || game_addition.isVisible()) {
+            game_caishu.setVisible(false);
+            game_addition.setVisible(false);
+            nav_game_imageview.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
+        } else {
+            game_caishu.setVisible(true);
+            game_addition.setVisible(true);
+            nav_game_imageview.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
         }
     }
 }

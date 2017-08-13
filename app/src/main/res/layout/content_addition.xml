@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/addition_welcom_textview"
+        android:text="@string/title_activity_addition"
+        android:textSize="@dimen/text_size_large"
+        android:layout_margin="@dimen/widget_space"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="@string/addition_game_begin"
+        android:id="@+id/addition_begin_game_botton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.382"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/addition_welcom_choose_textview"
+        android:text="@string/addition_chose_difficullty"
+        app:layout_constraintLeft_toLeftOf="@id/addition_begin_game_botton"
+        app:layout_constraintBottom_toTopOf="@id/addition_begin_game_botton"
+        app:layout_constraintTop_toBottomOf="@id/addition_welcom_textview"/>
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/md_16"
+        android:id="@+id/addition_welcom_spinner"
+        android:spinnerMode="dropdown"
+        android:entries="@array/difficulty"
+        style="@style/OverflowMenu"
+        app:layout_constraintBaseline_toBaselineOf="@id/addition_welcom_choose_textview"
+        app:layout_constraintLeft_toRightOf="@id/addition_welcom_choose_textview"
+        app:layout_constraintRight_toRightOf="@id/addition_begin_game_botton"/>
+
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/addition_ranking"
+        android:id="@+id/addition_welcom_ranking_button"
+        app:layout_constraintTop_toBottomOf="@id/addition_begin_game_botton"
+        app:layout_constraintRight_toRightOf="@id/addition_begin_game_botton"
+        app:layout_constraintLeft_toLeftOf="@id/addition_begin_game_botton"/>
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/addition_exit"
+        android:text="@string/games_exit"
+        app:layout_constraintRight_toRightOf="@id/addition_begin_game_botton"
+        app:layout_constraintLeft_toLeftOf="@id/addition_begin_game_botton"
+        app:layout_constraintTop_toBottomOf="@id/addition_welcom_ranking_button"/>
+</merge>

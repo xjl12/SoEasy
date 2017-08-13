@@ -4,7 +4,7 @@
     package="test.xjl12.soeasy">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".CrashApplication"
@@ -13,13 +13,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <provider
-            android:authorities="@string/fileprovider_authorities"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="@string/fileprovider_authorities"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity
@@ -28,6 +28,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -66,8 +67,12 @@
             android:label="@string/title_activity_math"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
-
-
+        <activity
+            android:name=".AdditionActivity"
+            android:label="@string/title_activity_addition"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme"
+            tools:targetApi="jelly_bean" />
     </application>
 
 </manifest>

@@ -13,7 +13,10 @@
     <dimen name="navigation_height">180dp</dimen>
 
     <dimen name="text_size_large">32sp</dimen>
-    <dimen name="text_size">20sp</dimen>
+    <dimen name="text_size_xlarge">48sp</dimen>
+    <dimen name="text_size_xxlarge">60sp</dimen>
+    <dimen name="text_size_medium">24sp</dimen>
+    <dimen name="text_size">18sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
 

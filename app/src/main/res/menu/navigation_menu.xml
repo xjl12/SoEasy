@@ -2,9 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="none">
         <item
-            android:id="@+id/navigation_item_caishu_games"
+            android:id="@+id/navigation_item_games"
             android:title="@string/games_button"
-            android:icon="@drawable/ic_games" />
+            android:icon="@drawable/ic_games"
+            app:actionLayout="@layout/navigation_dev_action"/>
+        <item
+            android:id="@+id/navigation_item_caishu_games"
+            android:title="@string/title_games_activity"
+            android:visible="false"/>
+        <item
+            android:id="@+id/navigation_item_addition"
+            android:title="@string/title_activity_addition"
+            android:visible="false"/>
         <item
             android:id="@+id/navigation_item_my_world"
             android:title="@string/navigation_item_my_world"

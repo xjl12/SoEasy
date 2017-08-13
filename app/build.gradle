@@ -5,10 +5,10 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 android {
     signingConfigs {
         release {
-            keyAlias properties.getProperty("keystore.ALIAS_NAME",System.getenv("ALIAS_NAME"))
-            keyPassword properties.getProperty("keystore.ALIAS_PASSWD",System.getenv("ALIAS_PASSWD"))
+            keyAlias properties.getProperty("keystore.ALIAS_NAME", System.getenv("ALIAS_NAME"))
+            keyPassword properties.getProperty("keystore.ALIAS_PASSWD", System.getenv("ALIAS_PASSWD"))
             storeFile file('publish.keystore')
-            storePassword properties.getProperty("keystore.ALIAS_PASSWD",System.getenv("ALIAS_PASSWD"))
+            storePassword properties.getProperty("keystore.ALIAS_PASSWD", System.getenv("ALIAS_PASSWD"))
         }
     }
     compileSdkVersion 26
@@ -19,7 +19,7 @@ android {
         targetSdkVersion 26
         versionCode 90
         versionName "1.9"
-        resConfigs ("zh", "en")
+        resConfigs("zh", "en")
         signingConfig signingConfigs.release
     }
     buildTypes {
@@ -39,4 +39,5 @@ dependencies {
     compile project(':maddogdialogs')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:design:26.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

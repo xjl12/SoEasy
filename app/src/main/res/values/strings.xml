@@ -207,4 +207,12 @@
     <string name="my_world_archive_url_2">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/MyWorld_xjl_lyy.zip</string>
     <string name="check_update">检查更新</string>
     <string name="games_show_point_info">显示提示信息</string>
+    <string name="title_activity_addition">加法游戏</string>
+    <string name="addition_chose_difficullty">游戏难度：</string>
+    <string name="addition_game_begin">开始游戏</string>
+    <string name="addition_ranking">排行榜</string>
+    <string name="addition_game_point">现在轮到%s</string>
+    <string name="player">玩家</string>
+    <string name="computer">电脑</string>
+    <string name="addition_show_int">&#160;&#160;%d&#160;&#160;</string>
 </resources>
