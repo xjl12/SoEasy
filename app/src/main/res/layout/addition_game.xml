@@ -49,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addition_game_com1"
+        android:clickable="false"
         android:textSize="@dimen/text_size_xxlarge"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addition_game_com2"
+        android:clickable="false"
         android:textSize="@dimen/text_size_xxlarge"
         android:gravity="center"
         app:layout_constraintRight_toLeftOf="@+id/addition_game_com3"
@@ -69,6 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addition_game_com3"
+        android:clickable="false"
         android:textSize="@dimen/text_size_xxlarge"
         android:visibility="gone"
         android:gravity="center"
@@ -94,9 +97,19 @@
         android:layout_height="wrap_content"
         android:text="@string/computer"
         android:textSize="@dimen/text_size_medium"
+        android:id="@+id/additon_computer_point_textview"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.76"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_medium"
+        android:id="@+id/addition_score_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/additon_computer_point_textview"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 </merge>

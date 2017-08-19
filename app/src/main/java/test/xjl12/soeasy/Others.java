@@ -44,6 +44,7 @@ public class Others {
     public static final int GET_NETWORK_STRING_SUCCESS = 4;
     public static final int GET_NETWORK_STRING_FAILED = 5;
     public static final int TASK_FAILED = 6;
+    //public static final int ADDITION_ACTIVITY_RESTART_GAME = 7;
     //public static final int URL_CHECK_FAILED = 7;
     //public static final int URL_CHECK_SUCCESS = 8;
 
@@ -52,7 +53,7 @@ public class Others {
     private static volatile boolean is_stop = false;
 
     //初始化activity
-    public static void initActivity(final AppCompatActivity mdActivity, final Toolbar toolbar, final CoordinatorLayout mCl) {
+    public static void initActivity(final AppCompatActivity mdActivity,final Toolbar toolbar, final CoordinatorLayout mCl) {
         mdActivity.setSupportActionBar(toolbar);
         mdActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mdActivity.getSupportActionBar().setHomeButtonEnabled(true);
@@ -84,6 +85,8 @@ public class Others {
                     case R.id.games_show_point_info_item:
                         GamesActivity.showPointInfo();
                         break;
+                   // case R.id.addition_replay_game:
+                     //   break;
                     case R.id.shot_item:
                         new Thread(new Runnable() {
 
@@ -168,7 +171,7 @@ public class Others {
         if (packageInfo == null) {
             return intent;
         } else {
-            return intent.setPackage(context.getString(R.string.qq_name));
+            return intent.setClassName(context.getString(R.string.qq_name),context.getString(R.string.qq_class_name));
         }
     }
 

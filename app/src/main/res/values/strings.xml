@@ -215,4 +215,16 @@
     <string name="player">玩家</string>
     <string name="computer">电脑</string>
     <string name="addition_show_int">&#160;&#160;%d&#160;&#160;</string>
+    <string name="addition_show_score">现在得分是：%d</string>
+    <string name="warn_operation">当前操作不正确，请仔细查看帮助后重试！</string>
+    <string name="play_again">再玩一局</string>
+    <string name="game_over">游戏结束</string>
+    <string name="game_over_score">当前得分：%d</string>
+    <string name="not_play">不玩了</string>
+    <string name="you_won">你赢了！</string>
+    <string name="share">分享</string>
+    <string name="qq_class_name">com.tencent.mobileqq.activity.JumpActivity</string>
+    <string name="game_win_with_message_easy">恭喜，你赢了这盘游戏！\n\n以下是你赢时的情况：\n\n玩家数字\n&#160;&#160;%1$d&#160;&#160;&#160;&#160;%2$d&#160;&#160;\n电脑数字\n&#160;&#160;%3$d&#160;&#160;&#160;&#160;%4$d&#160;&#160;</string>
+    <string name="game_win_with_message_difficult">恭喜，你赢了这盘游戏！\n\n以下是你赢时的情况：\n\n玩家数字\n&#160;&#160;%1$d&#160;&#160;&#160;&#160;%2$d&#160;&#160;&#160;&#160;%3$d&#160;&#160;\n电脑数字\n&#160;&#160;%4$d&#160;&#160;&#160;&#160;%5$d&#160;&#160;&#160;&#160;%6$d&#160;&#160;</string>
+    <string name="addition_replay_game">重新开始</string>
 </resources>

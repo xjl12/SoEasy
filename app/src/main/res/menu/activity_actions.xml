@@ -33,6 +33,12 @@
             android:title="@string/games_show_point_info"
             android:visible="false"
             app:showAsAction="never" />
+        <item
+            android:id="@+id/addition_replay_game"
+            android:title="@string/addition_replay_game"
+            android:visible="false"
+            android:icon="@drawable/ic_autorenew_24dp"
+            app:showAsAction="ifRoom"/>
     </group>
 </menu><!--
     <item

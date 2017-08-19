@@ -10,7 +10,7 @@
 	<color name="material_black">#767676</color>
 	<color name="colorAccent_Light">#FFCDD2</color>
 	<color name="colorAccent_Dark">#D32F2F</color>
-	
-    
+    <color name="warn">#FF3D00</color>
+
 
 </resources>

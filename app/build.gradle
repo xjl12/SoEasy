@@ -17,8 +17,8 @@ android {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 90
-        versionName "1.9"
+        versionCode 95
+        versionName "1.9.5"
         resConfigs("zh", "en")
         signingConfig signingConfigs.release
     }
