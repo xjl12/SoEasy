@@ -5,10 +5,13 @@ android:
   components:
   - tools
   - platform-tools
-  - tools
   - build-tools-26.0.0
   - android-26
+  - extra-android-support
   - extra-android-m2repository
+  licenses:
+  - 'android-sdk-license-.+'
+  - '.+'
 before_install:
 - openssl aes-256-cbc -K $encrypted_4c682e74c72e_key -iv $encrypted_4c682e74c72e_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
