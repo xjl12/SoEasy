@@ -44,6 +44,12 @@
             android:id="@+id/navigation_item_update"
             android:title="@string/update"
             android:icon="@drawable/ic_update_black_24dp"/>
+        <!--
+        <item
+            android:id="@+id/navigation_item_about"
+            android:title="@string/about"
+            android:icon="@drawable/ic_xjl"/>
+            !-->
         <item
             android:id="@+id/navigation_item_exit"
             android:title="@string/exit"
