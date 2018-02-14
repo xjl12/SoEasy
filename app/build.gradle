@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 200
         versionName "2.0"
         resConfigs("zh", "en")
