@@ -75,7 +75,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             app:counterEnabled="true"
-            app:counterMaxLength="10"
             android:layout_below="@id/math_linerlayout">
 
 

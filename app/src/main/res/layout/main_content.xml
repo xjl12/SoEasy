@@ -52,6 +52,8 @@
             android:id="@+id/main_content_ImageView1"/>
 
             android:layout_below="@id/main_welcome_TextView"
+
+            android:background="@drawable/beautiful_background"
     -->
 
 </RelativeLayout>

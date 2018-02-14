@@ -11,14 +11,14 @@ android {
             storePassword properties.getProperty("keystore.ALIAS_PASSWD", System.getenv("ALIAS_PASSWD"))
         }
     }
-    compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 95
-        versionName "1.9.5"
+        versionCode 200
+        versionName "2.0"
         resConfigs("zh", "en")
         signingConfig signingConfigs.release
     }
@@ -40,4 +40,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.jingtianxiaozhi.firework:firework-core:1.0.0'
 }

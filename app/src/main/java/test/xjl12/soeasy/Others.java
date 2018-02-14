@@ -576,6 +576,50 @@ public class Others {
                 try {
                     URL mURL = new URL(url);
                     connection = (HttpURLConnection) mURL.openConnection();
+                    if (connection instanceof HttpsURLConnection) {
+                        getStringFromInternetUsingHttps(url,mHandle);
+                    }
+                    else {
+                        connection.setRequestMethod("GET");
+                        connection.setReadTimeout(5000);
+                        connection.setConnectTimeout(10000);
+                        int responseCode = connection.getResponseCode();
+                        if (responseCode == 200) {
+                            InputStream is = connection.getInputStream();
+                            String response = getString(is);
+                            is.close();
+                            Message success_msg = Message.obtain();
+                            success_msg.obj = response;
+                            success_msg.what = GET_NETWORK_STRING_SUCCESS;
+                            mHandle.sendMessage(success_msg);
+                        } else {
+                            throw new NetworkErrorException("The response code is" + Integer.toString(responseCode));
+                        }
+                    }
+                } catch (Exception e) {
+                    Message msg = Message.obtain();
+                    msg.what = GET_NETWORK_STRING_FAILED;
+                    msg.obj = e.toString();
+                    mHandle.sendMessage(msg);
+                    e.printStackTrace();
+                } finally {
+                    if (connection != null) {
+                        connection.disconnect();
+                    }
+                }
+            }
+        }).start();
+    }
+
+    public static void getStringFromInternetUsingHttps(final String url, final Handler mHandle) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpsURLConnection connection = null;
+                try {
+                    URL mURL = new URL(url);
+                    connection = (HttpsURLConnection) mURL.openConnection();
+                    initHttps();
                     connection.setRequestMethod("GET");
                     connection.setReadTimeout(5000);
                     connection.setConnectTimeout(10000);

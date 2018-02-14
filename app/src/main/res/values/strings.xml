@@ -193,11 +193,11 @@
     <string name="my_world_downloaded_archive_delete">删除已下载的存档</string>
     <string name="network_error_message">您的网络出现错误啦！\n\n通常再试一次应该能解决问题，但如果您已经多次看到此对话框，请按照以下步骤排查错误：\n1、请检查您的网络是否可用，是否打开Wifi或数据流量，检查飞行模式开关是否关闭，能否正常打开网页。\n2、请检查你手机的系统管家和设置应用程序是否授予SoEasy网络使用权限。\n3、如果尝试上面两个步骤还是不行，请重启你的设备再次尝试。\n\n以上解决方案仍不能解决您的问题吗？请点击下面的反馈按钮将情况反映给开发者寻求帮助。</string>
     <string name="network_error_message_with_info">您的网络出现错误啦！\n\n通常再试一次应该能解决问题，但如果您已经多次看到此对话框，请按照以下步骤排查错误：\n1、请检查您的网络是否可用，是否打开Wifi或数据流量，检查飞行模式开关是否关闭，能否正常打开网页。\n2、请检查你手机的系统管家和设置应用程序是否授予SoEasy网络使用权限。\n3、如果尝试上面两个步骤还是不行，请重启你的设备再次尝试。\n\n以上解决方案仍不能解决您的问题吗？请点击下面的反馈按钮将情况反映给开发者寻求帮助。\n\n以下是错误的详细信息：\n\n%s</string>
-    <string name="apk_url">http://xjl12.imwork.net/downloads/SoEasy.apk</string>
+    <string name="apk_url">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/SoEasy.apk</string>
     <string name="downloaded_update_file_name">SoEasyUpdate.apk</string>
-    <string name="apk_version_code_url">http://xjl12.imwork.net/version_code</string>
-    <string name="apk_url_2">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/SoEasy.apk</string>
-    <string name="apk_version_code_url_2">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/version</string>
+    <string name="apk_version_code_url">https://coding.net/u/xjl12/p/SoEasy_downloads/git/raw/master/version</string>
+    <string name="apk_url_2">https://xjl12.tpddns.cn/downloads/SoEasy.apk</string>
+    <string name="apk_version_code_url_2">http://xjl12.tpddns.cn/version</string>
     <string name="update_later">稍后更新</string>
     <string name="view_update_log">查看更新记录</string>
     <string name="update_log_url">http://xjl12.imwork.net/update_logs.html</string>
@@ -228,4 +228,6 @@
     <string name="game_win_with_message_difficult">恭喜，你赢了这盘游戏！\n\n以下是你赢时的情况：\n\n玩家数字\n&#160;&#160;%1$d&#160;&#160;&#160;&#160;%2$d&#160;&#160;&#160;&#160;%3$d&#160;&#160;\n电脑数字\n&#160;&#160;%4$d&#160;&#160;&#160;&#160;%5$d&#160;&#160;&#160;&#160;%6$d&#160;&#160;</string>
     <string name="addition_replay_game">重新开始</string>
     <string name="about">关于</string>
+    <string name="input_form_error">输入数据错误，请重新输入！</string>
+    <string name="check_update_failed">检查更新失败，请稍后再试。\n\n出错的网址：%1$s\n\n%2$s\n\n出错的网址：%3$s\n\n%4$s</string>
 </resources>

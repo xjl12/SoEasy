@@ -16,6 +16,7 @@ import android.view.*;
 import android.widget.*;
 
 import com.maddog05.maddogdialogs.MaddogProgressDialog;
+import com.xiaozhi.firework_core.FireWorkView;
 
 import java.io.File;
 
@@ -29,11 +30,12 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem dev_sub_info,dev_sub_test,game_caishu,game_addition;
     private AppCompatImageView nav_dev_imageView,nav_game_imageview;
     private Context context = this;
-    private String checkUpdateUrl,downloadUpdateUrl,updateLogUrl;
+    private String checkUpdateUrl,downloadUpdateUrl,updateLogUrl,network_error;
     private File updateAPK;
     private boolean is_failed_again,is_check_update_dialog_show = false;
-    private DialogInterface.OnClickListener redownloadListener;
+    private DialogInterface.OnClickListener redownloadListener,reCheckListener;
     private MaddogProgressDialog checkingUpdateDialog;
+    private FireWorkView fireWorkView;
 
     Handler mHandle = new Handler() {
         @Override
@@ -75,17 +77,26 @@ public class MainActivity extends AppCompatActivity {
                     if (is_check_update_dialog_show) {
                         checkingUpdateDialog.dismiss();
                         is_check_update_dialog_show = false;
-                        if (internet_version_code == Others.getAppVersionCode(context))
+                        if (internet_version_code <= Others.getAppVersionCode(context))
                             not_new_version.show();
                     }
                     break;
                 case Others.GET_NETWORK_STRING_FAILED:
                     if (! is_failed_again) {
                         is_failed_again = true;
+                        network_error = (String) msg.obj;
                         checkUpdateUrl = getString(R.string.apk_version_code_url_2);
                         downloadUpdateUrl = getString(R.string.apk_url_2);
                         updateLogUrl = getString(R.string.update_log_url_2);
                         Others.getStringFromInternet(checkUpdateUrl,mHandle);
+                    }
+                    else {
+                        if (is_check_update_dialog_show) {
+                            checkingUpdateDialog.dismiss();
+                            is_check_update_dialog_show = false;
+                            is_failed_again = false;
+                            Others.errorDialog(getString(R.string.check_update_failed, checkUpdateUrl,msg.obj,getString(R.string.apk_version_code_url),network_error), MainActivity.this, mHandle, true, false, reCheckListener);
+                        }
                     }
             }
         }
@@ -111,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
         input = (EditText) findViewById(R.id.main_m_input);
         final Typeface light_typeface = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
         Others.initActivity(this, toolbar, mCl);
+
+        startFireWork();
 
         View header = mNavigation.getHeaderView(0);
         TextView mNavigation_header_version = header.findViewById(R.id.navigation_header_app_version);
@@ -140,16 +153,18 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
             public void onDrawerOpened(View view) {
-                super.onDrawerOpened(view);
+                fireWorkView.stopAnim();
                 fab.hide();
+                super.onDrawerOpened(view);
             }
 
             public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
+                startFireWork();
                 fab.show();
+                super.onDrawerClosed(view);
             }
         };
-        //mDrawerLayout.setDrawerListener(toggle);
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         //检查更新
@@ -162,6 +177,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
                 downloadUpdate();
+            }
+        };
+        reCheckListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                checkUpdateUrl = getString(R.string.apk_version_code_url);
+                downloadUpdateUrl = getString(R.string.apk_url);
+                updateLogUrl = getString(R.string.update_log_url);
+                is_check_update_dialog_show = true;
+                checkingUpdateDialog.show();
+                Others.getStringFromInternet(checkUpdateUrl,mHandle);
             }
         };
         Others.getStringFromInternet(checkUpdateUrl,mHandle);
@@ -384,5 +410,12 @@ public class MainActivity extends AppCompatActivity {
             game_addition.setVisible(true);
             nav_game_imageview.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
         }
+    }
+
+    private void startFireWork() {
+        fireWorkView = new FireWorkView(this,R.drawable.firework);
+        CoordinatorLayout.LayoutParams mlayoutParams = new CoordinatorLayout.LayoutParams(-1,-1);
+        mCl.addView(fireWorkView,mlayoutParams);
+        fireWorkView.playAnim();
     }
 }

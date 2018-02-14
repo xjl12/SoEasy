@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -15,10 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -47,8 +50,10 @@ public class AdditionActivity extends AppCompatActivity {
     private ConstraintLayout constraintLayout;
     private Vibrator vibrator;
     private String winmessage;
+    private MenuItem restartMenu;
     private AlertDialog.Builder gameOverBuilder, gameWinBuilder;
     private boolean isGameOver = false;
+    private final long pauseTime = 200;
     private int difficult, score, target, wincom1, wincom2, wincom3, winplayer1, winplayer2, winplayer3 = 0;
 
     private Runnable afterComdoRunable = new Runnable() {
@@ -93,6 +98,7 @@ public class AdditionActivity extends AppCompatActivity {
         mCl = (CoordinatorLayout) findViewById(R.id.addition_mCl);
 
         Others.initActivity(this, toolbar, mCl);
+        toolbar.setOnMenuItemClickListener(getListener());
         initBasicViews();
 
         vibrator = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
@@ -182,7 +188,83 @@ public class AdditionActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
             getMenuInflater().inflate(R.menu.activity_actions, menu);
+            restartMenu = menu.findItem(R.id.addition_replay_game);
             return super.onCreateOptionsMenu(menu);
+    }
+
+    private Toolbar.OnMenuItemClickListener getListener() {
+        return new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(final MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.help_development:
+                        Intent help_development_web = new Intent(Intent.ACTION_VIEW);
+                        help_development_web.setData(Uri.parse(AdditionActivity.this.getResources().getStringArray(R.array.web_url)[1]));
+                        AdditionActivity.this.startActivity(help_development_web);
+                        break;
+                    case R.id.source_item:
+                        Intent source_web = new Intent(Intent.ACTION_VIEW);
+                        source_web.setData(Uri.parse(AdditionActivity.this.getResources().getStringArray(R.array.web_url)[0]));
+                        AdditionActivity.this.startActivity(source_web);
+                        break;
+                    case R.id.force_exit_item:
+                        Others.DeleteDirAllFile(AdditionActivity.this.getExternalCacheDir());
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(0);
+                        break;
+                    case R.id.my_world_delete_downloaded:
+                        MyWorldActivity.downloaded_archive.delete();
+                        item.setVisible(false);
+                        break;
+                    case R.id.games_show_point_info_item:
+                        GamesActivity.showPointInfo();
+                        break;
+                    case R.id.addition_replay_game:
+                        restartGame();
+                        item.setVisible(false);
+                        break;
+                    case R.id.shot_item:
+                        new Thread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Intent shot_share = Others.SendShot(AdditionActivity.this);
+                                if (shot_share != null) {
+                                    AdditionActivity.this.startActivity(shot_share);
+                                } else {
+                                    Snackbar.make(mCl, R.string.Error_shot_error, Snackbar.LENGTH_LONG)
+                                            .setActionTextColor(AdditionActivity.this.getResources().getColor(R.color.colorAccent_Light))
+                                            .setAction(R.string.retry, new View.OnClickListener() {
+
+                                                @Override
+                                                public void onClick(View p1) {
+                                                    Intent intent = Others.getShot(AdditionActivity.this);
+                                                    if (intent != null) {
+                                                        AdditionActivity.this.startActivity(intent);
+                                                    } else {
+                                                        Toast.makeText(AdditionActivity.this, AdditionActivity.this.getString(R.string.Error_cannot_shot), Toast.LENGTH_LONG);
+                                                    }
+                                                }
+                                            }).show();
+                                }
+                            }
+                        }).start();
+                        break;
+                    default:
+                        Snackbar.make(mCl, R.string.wrong, Snackbar.LENGTH_LONG)
+                                .setActionTextColor(AdditionActivity.this.getResources().getColor(R.color.colorAccent_Light))
+                                .setAction(R.string.send_error, new View.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(View p1) {
+                                        AdditionActivity.this.startActivity(Intent.createChooser(Others.isQQInstalled(AdditionActivity.this, new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, AdditionActivity.this.getString(R.string.send_error_message, Others.getAppVersionName(AdditionActivity.this), Others.getRunningActivityName(AdditionActivity.this), item.getTitle().toString())).setType("text/plain")), AdditionActivity.this.getString(R.string.Error_no_item_action)));
+                                    }
+                                }).show();
+                        break;
+                }
+                return true;
+            }
+        };
     }
 
     private void initGameViews() {
@@ -265,6 +347,7 @@ public class AdditionActivity extends AppCompatActivity {
 
     private void changeScore() {
         scoreTextView.setText(getString(R.string.addition_show_score, score));
+        if (score==1) restartMenu.setVisible(true);
     }
 
     private void changeBout(boolean isComBout) {
@@ -295,7 +378,7 @@ public class AdditionActivity extends AppCompatActivity {
                 view.setBackgroundResource(R.drawable.addition_button_shape_up);
                 view.setClickable(true);
             }
-        }, 200);
+        },pauseTime);
     }
 
     private void warnShow() {
