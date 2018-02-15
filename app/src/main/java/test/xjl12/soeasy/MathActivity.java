@@ -207,7 +207,7 @@ public class MathActivity extends AppCompatActivity {
             int percent = 0;
             switch (mode) {
                 case 0:
-                    int input0 = Integer.valueOf(inputString, mode);
+                    int input0 = Integer.valueOf(inputString);
                     long out_result = 0;
                     for (int i = 1; i <= input0; i++) {
                         if (stop) {
@@ -225,7 +225,7 @@ public class MathActivity extends AppCompatActivity {
                     output = String.valueOf(out_result);
                     break;
                 case 1:
-                    int input1 = Integer.valueOf(inputString, mode);
+                    int input1 = Integer.valueOf(inputString);
                     BigInteger big_out_one = BigInteger.ONE;
                     for (int i = 1; i <= input1; i++) {
                         if (stop) {
@@ -243,7 +243,7 @@ public class MathActivity extends AppCompatActivity {
                     output = big_out_one.toString();
                     break;
                 case 2:
-                    int input2 = Integer.valueOf(inputString, mode);
+                    int input2 = Integer.valueOf(inputString);
                     BigInteger big_out_three = BigInteger.ONE;
                     BigInteger big_tmp_one;
                     final BigInteger bit_two = new BigInteger("2");
@@ -272,7 +272,7 @@ public class MathActivity extends AppCompatActivity {
                     output = big_out_three.toString();
                     break;
                 case 3:
-                    int input3 = Integer.valueOf(inputString, mode);
+                    int input3 = Integer.valueOf(inputString);
                     if (input3 > 2) {
                         BigInteger[] big_out_two = new BigInteger[input3];
                         big_out_two[0] = BigInteger.ZERO;
@@ -310,6 +310,21 @@ public class MathActivity extends AppCompatActivity {
                             temp1 += Double.parseDouble(inputArray[length/2 + i]) - Double.parseDouble(inputArray[i]);
                     double result = temp1/((length/2)*(inputArray.length/2)*T2)/100;
                     output = String.valueOf((double) Math.round(result*1000)/1000);
+                    break;
+                case 5:
+                    String[] inputArray2 = inputString.split(" ");
+                    double T22 = Double.parseDouble(inputArray2[inputArray2.length-1]);
+                    double T222 = Math.pow(T22,2);
+                    inputArray2 = Arrays.copyOf(inputArray2,inputArray2.length-1);
+                    int length2 = inputArray2.length%2 == 1 ? inputArray2.length + 1 : inputArray2.length;
+                    double temp12 = 0;
+                    double temp22 = 0;
+                    for (int i2 = 0;i2<inputArray2.length/2;i2++) {
+                        temp22 = i2 == 0 ? Double.parseDouble(inputArray2[i2]):Double.parseDouble(inputArray2[i2]) - Double.parseDouble(inputArray2[i2 - 1]);
+                        temp12 += Double.parseDouble(inputArray2[length2 / 2 + i2]) - Double.parseDouble(inputArray2[length2 / 2 + i2 - 1]) - temp22;
+                    }
+                    double result2 = temp12/((length2/2)*(inputArray2.length/2)*T222)/100;
+                    output = String.valueOf((double) Math.round(result2*1000)/1000);
                     break;
             }
         }
