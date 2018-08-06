@@ -12,4 +12,6 @@
 .externalNativeBuild
 /APKs
 /app/publish.keystore
+/gradle.log
+/.idea/caches
 /gradle-app.setting
