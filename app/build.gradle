@@ -11,8 +11,8 @@ android {
             storePassword properties.getProperty("keystore.ALIAS_PASSWD", System.getenv("ALIAS_PASSWD"))
         }
     }
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.1'
     defaultConfig {
         applicationId "test.xjl12.soeasy"
         minSdkVersion 14

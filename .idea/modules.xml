@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SoEasy.iml" filepath="$PROJECT_DIR$/SoEasy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SoEasy.iml" filepath="$PROJECT_DIR$/SoEasy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maddogdialogs/maddogdialogs.iml" filepath="$PROJECT_DIR$/maddogdialogs/maddogdialogs.iml" />
       <module fileurl="file://$PROJECT_DIR$/maddogdialogs/maddogdialogs.iml" filepath="$PROJECT_DIR$/maddogdialogs/maddogdialogs.iml" />
     </modules>
   </component>
